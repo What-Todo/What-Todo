@@ -89,7 +89,9 @@ Shared people can track their achievement and get motivated.
 
 ## Wireframes
 ### [BONUS] Digital Wireframes & Mockups
-![reference link](https://i.imgur.com/XVx2pu2.png)
+
+![](https://i.imgur.com/FyUxRFl.png)
+
 
 
 ### [BONUS] Interactive Prototype
