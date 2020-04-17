@@ -8,16 +8,17 @@
 
 ## Overview
 ### Description
-[Description of your app]
+A competitive and cooperative todo list app.
+Shared people can track their achievement and get motivated. 
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
-- **Category:**
-- **Mobile:**
-- **Story:**
-- **Market:**
-- **Habit:**
-- **Scope:**
+
+- **Category:** Productivity
+- **Mobile:** This app would be primarily developed for mobile. 
+- **Story:** Allows users to keep track of all the tasks they need to finish as well as their achievements. Users keep adding todo lists and share them among group. Aims to motivate by sharing todo lists and achievemnts.
+- **Market:** General users. Open to all individuals, from students to professionals.
+- **Habit:**  Users can use this app on a daily basis to track shared people's achevement. 
+- **Scope:** Fist we would start with having people sign up and start sharing their achievements and daily tasks. Later it could evolve into a more integrated experience among different user accounts. Implementations such as chat or comment functions could allow the app to expand more into the Social Networking category.
 
 ## Product Spec
 
@@ -25,45 +26,71 @@
 
 **Required Must-have Stories**
 
-* [fill in your required user stories here]
-* ...
+* User can register a new account.
+* User can login.
+* User can have internet connection for register, login, and group feature.
+* User can add list onto todo list.
+* User can remove list from todo list.
+* User can tap on to-do list to view individual items.
+* User can see user's and groups' progresses through in-app notifications.
+* User can see and edit their profile.
+* User can see list items and people involved.
+
 
 **Optional Nice-to-have Stories**
 
-* [fill in your required user stories here]
-* ...
+* User can compete with others on an item of a todo list.
+* User can cooperate with others on an term of a todo list. 
+* User seeks productivity and efficiency.
 
 ### 2. Screen Archetypes
 
-* [list first screen here]
-   * [list associated required story here]
-   * ...
-* [list second screen here]
-   * [list associated required story here]
-   * ...
+* Register
+   * User can register a new account and have internet connection.
+* Login
+   * User can login using own account and have internet connection.
+* Stream
+    * User can see their notification.
+* Profile
+    * User can see their profile.
+* Settings 
+    * User can edit their profile.
+* Main Menu
+    * User can view their to-do list categories
+    * User can tap on to-do list to view individual items.
+* Detail
+    * User can view individual list items and people involved.
+* Creation
+    * User can add list onto todo list
+    * User can remove list from todo list.
+
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* Main Menu 
+* Notifications
+* Profile
 
 **Flow Navigation** (Screen to Screen)
 
-* [list first screen here]
-   * [list screen navigation here]
-   * ...
-* [list second screen here]
-   * [list screen navigation here]
-   * ...
+* Registration Screen
+    * Main Menu Screen
+* Login Screen
+    * Registration Screen
+    * Main Menu Screen
+* Main Menu Screen
+    * Creation Screen
+    * Detail Screen
+* Profile Screen
+    * Settings Screen
+    
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
-
 ### [BONUS] Digital Wireframes & Mockups
+![reference link](https://i.imgur.com/XVx2pu2.png)
+
 
 ### [BONUS] Interactive Prototype
 
@@ -75,3 +102,4 @@
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+
