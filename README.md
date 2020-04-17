@@ -1,4 +1,3 @@
-### [BONUS] Interactive Prototype
 # WhatTODO
 
 ## Table of Contents
