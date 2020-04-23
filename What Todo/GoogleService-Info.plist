@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>336525449782-le0979882onhhbjl5r447ff2p46ltfrl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.336525449782-le0979882onhhbjl5r447ff2p46ltfrl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCSm4i5pFpPPWEdqB1zn-hbnnbidQTtpAI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>336525449782</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>soma.yoshida.What-Todo</string>
+	<key>PROJECT_ID</key>
+	<string>what-todo-edd20</string>
+	<key>STORAGE_BUCKET</key>
+	<string>what-todo-edd20.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:336525449782:ios:d128852f17b843b7599697</string>
+	<key>DATABASE_URL</key>
+	<string>https://what-todo-edd20.firebaseio.com</string>
+</dict>
+</plist>
