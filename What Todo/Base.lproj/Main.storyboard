@@ -3,10 +3,11 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Project A-->
+        <!--Each Todo Post-->
         <scene sceneID="dCD-O6-ew9">
             <objects>
                 <tableViewController id="L5i-cf-R7n" customClass="PostListTableViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +30,7 @@
                             <outlet property="delegate" destination="L5i-cf-R7n" id="c7X-Xg-eZ1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Project A" id="OoB-Bz-4Rh">
+                    <navigationItem key="navigationItem" title="Each Todo Post" id="OoB-Bz-4Rh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="g5x-fE-udw">
                             <connections>
                                 <action selector="addButtonDidTouch:" destination="L5i-cf-R7n" id="hU3-CK-7Xv"/>
@@ -40,6 +41,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dzH-OJ-izK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1899" y="151"/>
+        </scene>
+        <!--Main Category Menu-->
+        <scene sceneID="Ugz-DC-8gU">
+            <objects>
+                <collectionViewController id="VQo-K3-OFl" customClass="MainCategoryCollectionViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="3AZ-YG-gyn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7RD-yy-vP7">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lsK-GB-Uxg">
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uwf-Bz-Mqu">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionViewCellContentView>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="VQo-K3-OFl" id="OT6-fG-OWL"/>
+                            <outlet property="delegate" destination="VQo-K3-OFl" id="oQb-g0-IaQ"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Main Category Menu" id="dI6-u5-KF8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="bOD-ho-jzN">
+                            <connections>
+                                <action selector="addButtonDidTouch:" destination="VQo-K3-OFl" id="wgD-c4-Vqf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bJf-hl-3FJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1899" y="909"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SLE-Li-RjR">
@@ -58,6 +100,24 @@
                 </navigationController>
             </objects>
             <point key="canvasLocation" x="1003" y="151"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HOk-kJ-nHf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LPI-Qi-VeX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Um-ze-H00">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VQo-K3-OFl" kind="relationship" relationship="rootViewController" id="zZX-HH-YC8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u61-D1-iRA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="988" y="909"/>
         </scene>
     </scenes>
 </document>

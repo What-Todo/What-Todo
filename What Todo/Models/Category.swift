@@ -16,22 +16,23 @@ struct Category {
 
     var name : String
     var addedByUser : String
+//    var posts : Post
     
     // constructor
-    init(aName: String, completed: Bool, anAddedByUser: String, key: String = "") {
+    init(aName: String, anAddedByUser: String, key: String = "") {
         self.ref = nil
         self.key = key
 
         self.name = aName
         self.addedByUser = anAddedByUser
+        
     }
     
     init? (snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
             let details = value["details"] as? String,
-            let addedByUser = value["addedByUser"] as? String else { return nil
-        }
+            let addedByUser = value["addedByUser"] as? String else { return nil }
         
         self.ref = snapshot.ref
         self.key = snapshot.key

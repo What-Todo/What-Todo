@@ -12,7 +12,7 @@ import Firebase
 class PostListTableViewController: UITableViewController {
     
     // MARK: - Properties
-    let ref = Database.database().reference(withPath: "post-lists")
+    let catRef = Database.database().reference().child("ToDoLists").child("project a") // category reference ToDoLists > project a
     var posts: [Post] = []
     var user: User!
 
@@ -54,7 +54,7 @@ class PostListTableViewController: UITableViewController {
                                 createdAt: "time",
                                 updatedAt: "time")
           
-            let todoPostRef = self.ref.child(text.lowercased())
+            let todoPostRef = self.catRef.child(text.lowercased())
             todoPostRef.setValue(todoPost.toAnyObject())
         }
         
