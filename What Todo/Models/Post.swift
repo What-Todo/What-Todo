@@ -12,7 +12,7 @@ import Firebase
 struct Post {
     
     let ref : DatabaseReference? // use ref instead of postId?
-    let key : String
+    var key : String = "key"
 
     var details : String
     var completed : Bool

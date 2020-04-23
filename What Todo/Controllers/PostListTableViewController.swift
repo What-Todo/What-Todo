@@ -12,7 +12,9 @@ import Firebase
 class PostListTableViewController: UITableViewController {
     
     // MARK: - Properties
-    //let ref = Database.database().reference(withPath: "post-lists")
+    let ref = Database.database().reference(withPath: "post-lists")
+    var posts: [Post] = []
+    var user: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,36 @@ class PostListTableViewController: UITableViewController {
         return 0
     }
 
+    @IBAction func addButtonDidTouch(_ sender: AnyObject) {
+        let addPopUp = UIAlertController(title: "Post Todo",
+                                         message: "Type to post Todo",
+                                         preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+            guard let textField = addPopUp.textFields?.first,
+                let text = textField.text else { return }
+          
+            // init(aDetails: String, completed: Bool, anAddedByUser: String, createdAt: String, updatedAt: String, key: String = "")
+            let todoPost = Post(aDetails: text,
+                                completed: false,
+                                anAddedByUser: "self.user.name",
+                                createdAt: "time",
+                                updatedAt: "time")
+          
+            let todoPostRef = self.ref.child(text.lowercased())
+            todoPostRef.setValue(todoPost.toAnyObject())
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel",
+                                         style: .cancel)
+        
+        addPopUp.addTextField()
+        
+        addPopUp.addAction(saveAction)
+        addPopUp.addAction(cancelAction)
+        
+        present(addPopUp, animated: true, completion: nil)
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
