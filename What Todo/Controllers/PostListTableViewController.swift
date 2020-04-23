@@ -9,10 +9,11 @@
 import UIKit
 import Firebase
 
+private let ToDoRef = Database.database().reference(withPath: "ToDoLists")
+
 class PostListTableViewController: UITableViewController {
     
     // MARK: - Properties
-    let catRef = Database.database().reference().child("ToDoLists").child("project a") // category reference ToDoLists > project a
     var posts: [Post] = []
     var user: User!
 
@@ -39,6 +40,8 @@ class PostListTableViewController: UITableViewController {
     }
 
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
+        let catRef = Database.database().reference().child("ToDoLists").child("project a").child("posts") // category reference ToDoLists > project a > posts (project a) should be variable
+        
         let addPopUp = UIAlertController(title: "Post Todo",
                                          message: "Type to post Todo",
                                          preferredStyle: .alert)
@@ -46,15 +49,13 @@ class PostListTableViewController: UITableViewController {
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
             guard let textField = addPopUp.textFields?.first,
                 let text = textField.text else { return }
-          
-            // init(aDetails: String, completed: Bool, anAddedByUser: String, createdAt: String, updatedAt: String, key: String = "")
+            
             let todoPost = Post(aDetails: text,
                                 completed: false,
                                 anAddedByUser: "self.user.name",
-                                createdAt: "time",
-                                updatedAt: "time")
-          
-            let todoPostRef = self.catRef.child(text.lowercased())
+                                timestamp: "timestamp")
+            // this todo post's unique reference is set by firebase
+            let todoPostRef = catRef.childByAutoId()
             todoPostRef.setValue(todoPost.toAnyObject())
         }
         

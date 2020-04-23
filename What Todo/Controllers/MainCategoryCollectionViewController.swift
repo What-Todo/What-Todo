@@ -10,11 +10,11 @@ import UIKit
 import Firebase
 
 private let reuseIdentifier = "Cell"
+private let ToDoRef = Database.database().reference(withPath: "ToDoLists")
 
 class MainCategoryCollectionViewController: UICollectionViewController {
     
     // MARK: Properties
-    let ref = Database.database().reference(withPath: "ToDoLists")
     var categories: [Category] = []
     var user: User!
 
@@ -72,7 +72,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
           
             // init(aDetails: String, completed: Bool, anAddedByUser: String, createdAt: String, updatedAt: String, key: String = "")
             let category = Category(aName: text, anAddedByUser: "self.user.name")
-            let categoryRef = self.ref.child(text.lowercased())
+            let categoryRef = ToDoRef.childByAutoId()
             categoryRef.setValue(category.toAnyObject())
         }
         

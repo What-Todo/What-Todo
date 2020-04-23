@@ -17,19 +17,17 @@ struct Post {
     var details : String
     var completed : Bool
     var addedByUser : String
-    var createdAt : String
-    var updatedAt : String
+    var timestamp : String
     
     // constructor
-    init(aDetails: String, completed: Bool, anAddedByUser: String, createdAt: String, updatedAt: String, key: String = "") {
+    init(aDetails: String, completed: Bool, anAddedByUser: String, timestamp: String, key: String = "") {
         self.ref = nil
         self.key = key
 
         self.details = aDetails
         self.completed = completed
         self.addedByUser = anAddedByUser
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        self.timestamp = timestamp
     }
     
     init? (snapshot: DataSnapshot) {
@@ -38,8 +36,7 @@ struct Post {
             let details = value["details"] as? String,
             let completed = value["completed"] as? Bool,
             let addedByUser = value["addedByUser"] as? String,
-            let createdAt = value["createdAt"] as? String,
-            let updatedAt = value["updatedAt"] as? String else { return nil
+            let timestamp = value["timestamp"] as? String else { return nil
         }
         
         self.ref = snapshot.ref
@@ -47,8 +44,7 @@ struct Post {
         self.details = details
         self.completed = completed
         self.addedByUser = addedByUser
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
+        self.timestamp = timestamp
     }
     
     func toAnyObject() -> Any {
@@ -56,8 +52,7 @@ struct Post {
             "details": details,
             "completed": completed,
             "addedByUser": addedByUser,
-            "createdAt": createdAt,
-            "updatedAt": updatedAt
+            "timestamp": timestamp,
         ]
     }
 }
