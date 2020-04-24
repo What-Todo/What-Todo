@@ -9,15 +9,16 @@
 import UIKit
 import Firebase
 
-private let reuseIdentifier = "Cell"
-private let ToDoRef = Database.database().reference(withPath: "ToDoLists")
-
 class MainCategoryCollectionViewController: UICollectionViewController {
     
     // MARK: Properties
     var categories: [Category] = []
     var user: User!
-
+    let ToDoRef = Database.database().reference(withPath: "ToDoLists")
+    
+    @IBOutlet var catCollectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,43 +26,71 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 
         // Do any additional setup after loading the view.
+        
+        // Synchronizing Data to the Collection view
+        self.ToDoRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+          var newItems: [Category] = []
+          for child in snapshot.children {
+            if let snapshot = child as? DataSnapshot,
+              let category = Category(snapshot: snapshot) {
+              newItems.append(category)
+                print(category.name, category.key)
+            }
+          }
+          self.categories = newItems
+          self.collectionView.reloadData()
+        })
     }
+    
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if let cell = sender as? UICollectionViewCell,
+            let indexPath = self.collectionView.indexPath(for: cell) {
+
+            // update dest controller's variable
+             let vc = segue.destination as! PostListTableViewController
+             //Now simply set the title property of vc
+            vc.selectedCategoryKey = categories[indexPath.row].key as String
+         }
     }
-    */
+    
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return categories.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
     
+        print(indexPath)
         // Configure the cell
+        let cat = categories[indexPath.row]
+        cell.nameLabel?.text = cat.name
     
+        
         return cell
     }
 
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
+        // popup
         let addPopUp = UIAlertController(title: "Add Category",
                                          message: "Type name to add Todo category",
                                          preferredStyle: .alert)
@@ -70,9 +99,10 @@ class MainCategoryCollectionViewController: UICollectionViewController {
             guard let textField = addPopUp.textFields?.first,
                 let text = textField.text else { return }
           
-            // init(aDetails: String, completed: Bool, anAddedByUser: String, createdAt: String, updatedAt: String, key: String = "")
-            let category = Category(aName: text, anAddedByUser: "self.user.name")
-            let categoryRef = ToDoRef.childByAutoId()
+            // firebase operation
+            let category = Category(aName: text,
+                                    anAddedByUser: "self.user.name")
+            let categoryRef = self.ToDoRef.childByAutoId()
             categoryRef.setValue(category.toAnyObject())
         }
         
@@ -109,6 +139,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
 //        addPopUp.addAction(cancelAction)
 //
 //        present(addPopUp, animated: true, completion: nil)
+        
+       
     }
     // MARK: UICollectionViewDelegate
 

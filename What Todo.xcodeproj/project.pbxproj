@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6C5F45E1D1A6D6D72156495C /* Pods_What_Todo_What_TodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA194ED4300980B43C9445A /* Pods_What_Todo_What_TodoUITests.framework */; };
 		909093B4DA0F0A6469555018 /* Pods_What_TodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B07626A8BB49E4A6668558 /* Pods_What_TodoTests.framework */; };
+		AA75BD6724521BD800950950 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */; };
 		AAC5149824510E37004BCEE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC5149724510E37004BCEE9 /* AppDelegate.swift */; };
 		AAC5149A24510E37004BCEE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC5149924510E37004BCEE9 /* SceneDelegate.swift */; };
 		AAC5149F24510E37004BCEE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC5149D24510E37004BCEE9 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		AAC514D4245128E0004BCEE9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514D3245128E0004BCEE9 /* Category.swift */; };
 		AAC514D624513E99004BCEE9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514D524513E99004BCEE9 /* RegistrationViewController.swift */; };
 		AAC514D824514DF3004BCEE9 /* MainCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */; };
+		AAC76A0E2452465F00ADBA0B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */; };
 		F2DCAC7C8693493E9D420A6D /* Pods_What_Todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77460AFB54CAA2C18160386C /* Pods_What_Todo.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,7 @@
 		87B07626A8BB49E4A6668558 /* Pods_What_TodoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_TodoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8969C62A35700660EA1D4552 /* Pods-What Todo-What TodoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What Todo-What TodoUITests.debug.xcconfig"; path = "Target Support Files/Pods-What Todo-What TodoUITests/Pods-What Todo-What TodoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AA194ED4300980B43C9445A /* Pods_What_Todo_What_TodoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_Todo_What_TodoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAC5149424510E37004BCEE9 /* What Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC5149724510E37004BCEE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAC5149924510E37004BCEE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 		AAC514D3245128E0004BCEE9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		AAC514D524513E99004BCEE9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryCollectionViewController.swift; sourceTree = "<group>"; };
+		AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		B44ED61AF566EB570DDAB2D2 /* Pods-What Todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What Todo.debug.xcconfig"; path = "Target Support Files/Pods-What Todo/Pods-What Todo.debug.xcconfig"; sourceTree = "<group>"; };
 		B569A72B65A27262BBD6BE53 /* Pods-What Todo-What TodoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What Todo-What TodoUITests.release.xcconfig"; path = "Target Support Files/Pods-What Todo-What TodoUITests/Pods-What Todo-What TodoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CD14E8B3B60ED13954EEA65A /* Pods-What TodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What TodoTests.debug.xcconfig"; path = "Target Support Files/Pods-What TodoTests/Pods-What TodoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				AAC514CB24511FF0004BCEE9 /* Models */,
 				AAC514CC24511FFF004BCEE9 /* Controllers */,
 				AAC5149D24510E37004BCEE9 /* Main.storyboard */,
+				AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */,
+				AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */,
 				AAC5149724510E37004BCEE9 /* AppDelegate.swift */,
 				AAC5149924510E37004BCEE9 /* SceneDelegate.swift */,
 				AAC514A024510E3A004BCEE9 /* Assets.xcassets */,
@@ -197,10 +203,10 @@
 		AAC514CC24511FFF004BCEE9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */,
 				AAC514C924511E7A004BCEE9 /* PostListTableViewController.swift */,
 				AAC514CD2451228D004BCEE9 /* LoginViewController.swift */,
 				AAC514D524513E99004BCEE9 /* RegistrationViewController.swift */,
-				AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -445,12 +451,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC76A0E2452465F00ADBA0B /* PostTableViewCell.swift in Sources */,
 				AAC5149824510E37004BCEE9 /* AppDelegate.swift in Sources */,
 				AAC5149A24510E37004BCEE9 /* SceneDelegate.swift in Sources */,
 				AAC514D824514DF3004BCEE9 /* MainCategoryCollectionViewController.swift in Sources */,
 				AAC514D624513E99004BCEE9 /* RegistrationViewController.swift in Sources */,
 				AAC514D02451232B004BCEE9 /* Post.swift in Sources */,
 				AAC514CE2451228D004BCEE9 /* LoginViewController.swift in Sources */,
+				AA75BD6724521BD800950950 /* CategoryCollectionViewCell.swift in Sources */,
 				AAC514CA24511E7A004BCEE9 /* PostListTableViewController.swift in Sources */,
 				AAC514D224512726004BCEE9 /* User.swift in Sources */,
 				AAC514D4245128E0004BCEE9 /* Category.swift in Sources */,

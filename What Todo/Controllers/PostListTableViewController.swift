@@ -9,14 +9,16 @@
 import UIKit
 import Firebase
 
-private let ToDoRef = Database.database().reference(withPath: "ToDoLists")
 
 class PostListTableViewController: UITableViewController {
     
     // MARK: - Properties
     var posts: [Post] = []
     var user: User!
-
+    var selectedCategoryKey : String = "" // updated from MainCategoryViewController > prepare()
+    
+    
+    let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,22 +27,49 @@ class PostListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // Synchronizing Data to the Table view
+//        print(self.ToDoRef.child(selectedCategoryKey)) // print reference
+        // if posts exists,
+        self.ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.hasChild("posts") { // if posts exists
+                self.ToDoRef.child(self.selectedCategoryKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+                  var newItems: [Post] = []
+                    for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                      let post = Post(snapshot: snapshot) {
+                      newItems.append(post)
+                        print(post.details, post.key)
+                    }
+                  }
+                  self.posts = newItems
+                  self.tableView.reloadData()
+                })
+            } else { // if posts does not exists (first time)
+                self.ToDoRef.child(self.selectedCategoryKey).child("posts").setValue("posts")
+            }
+        }
+
+        
+//        self.ToDoRef.child(selectedCategoryKey).child("posts").observe(.value, with: { snapshot in
+//          print(snapshot.value as Any)
+//        })
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return posts.count
     }
 
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
-        let catRef = Database.database().reference().child("ToDoLists").child("project a").child("posts") // category reference ToDoLists > project a > posts (project a) should be variable
+        let postsRef = Database.database().reference().child("ToDoLists").child(selectedCategoryKey).child("posts")
         
         let addPopUp = UIAlertController(title: "Post Todo",
                                          message: "Type to post Todo",
@@ -55,7 +84,7 @@ class PostListTableViewController: UITableViewController {
                                 anAddedByUser: "self.user.name",
                                 timestamp: "timestamp")
             // this todo post's unique reference is set by firebase
-            let todoPostRef = catRef.childByAutoId()
+            let todoPostRef = postsRef.childByAutoId()
             todoPostRef.setValue(todoPost.toAnyObject())
         }
         
@@ -69,15 +98,16 @@ class PostListTableViewController: UITableViewController {
         
         present(addPopUp, animated: true, completion: nil)
     }
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
 
         // Configure the cell...
-
+        let thisPost = posts[indexPath.row]
+        cell.detailsLabel?.text = thisPost.details
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
