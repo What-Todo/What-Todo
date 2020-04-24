@@ -105,6 +105,7 @@ class PostListTableViewController: UITableViewController {
         // Configure the cell...
         let thisPost = posts[indexPath.row]
         cell.detailsLabel?.text = thisPost.details
+        print(cell.detailsLabel.text as Any)
         return cell
     }
     

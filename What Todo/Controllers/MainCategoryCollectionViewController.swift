@@ -45,8 +45,6 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         })
     }
     
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -82,10 +80,9 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     
         print(indexPath)
         // Configure the cell
-        let cat = categories[indexPath.row]
-        cell.nameLabel?.text = cat.name
-    
-        
+        let thisCat = categories[indexPath.row]
+        cell.nameLabel?.text = thisCat.name
+        print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
         return cell
     }
 
@@ -115,32 +112,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         addPopUp.addAction(cancelAction)
         
         present(addPopUp, animated: true, completion: nil)
-        
-        
-        
-//        let addPopUp = UIAlertController(title: "Add Category",
-//                                         message: "Type to add Todo Category",
-//                                         preferredStyle: .alert)
-//
-//        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-//            // init(aName: String, completed: Bool, anAddedByUser: String, key: String = "")
-//            let category = Category(aName: addPopUp.textFields![0].text ?? "Error: nil in addPopUp.textFields![0].text", anAddedByUser: self.user.name)
-//
-//            self.categories.append(category)
-//            self.collectionView.reloadData()
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel",
-//                                         style: .cancel)
-//
-//        addPopUp.addTextField()
-//
-//        addPopUp.addAction(saveAction)
-//        addPopUp.addAction(cancelAction)
-//
-//        present(addPopUp, animated: true, completion: nil)
-        
-       
+        self.collectionView.reloadData()
     }
     // MARK: UICollectionViewDelegate
 
