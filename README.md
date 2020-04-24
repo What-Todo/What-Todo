@@ -135,24 +135,20 @@ Shared people can track their achievement and get motivated.
 * Main Menu Screen
     * (Read/GET) Query all posts where user is author
     ```
-        // 1
-    ref.observe(.value, with: { snapshot in
-      // 2
-      var newItems: [Categories] = []
-
-      // 3
-      for child in snapshot.children {
-        // 4
-        if let snapshot = child as? DataSnapshot,
-           let listCategory = Categories(snapshot: snapshot) {
-          newItems.append(listCategory)
-        }
-      }
-
-      // 5
-      self.items = newItems
-      self.tableView.reloadData()
-    })
+            if snapshot.hasChild("posts") { // if posts exists
+                self.ToDoRef.child(self.selectedCategoryKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+                  var newItems: [Post] = []
+                    for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                      let post = Post(snapshot: snapshot) {
+                      newItems.append(post)
+                        print(post.details, post.key)
+                    }
+                  }
+                  self.posts = newItems
+                  self.tableView.reloadData()
+                })
+            }
     ```
 
     * (Delete) Delete existing category
