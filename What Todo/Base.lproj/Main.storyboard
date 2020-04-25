@@ -192,16 +192,16 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Td-F2-2r0">
-                                <rect key="frame" x="40" y="644" width="42" height="30"/>
-                                <state key="normal" title="Log In"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVj-fD-8Zy">
                                 <rect key="frame" x="320" y="644" width="54" height="30"/>
                                 <state key="normal" title="Sing Up"/>
                                 <connections>
                                     <segue destination="PRG-Dj-sW1" kind="show" id="ltD-wR-MPF"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Td-F2-2r0">
+                                <rect key="frame" x="40" y="643" width="42" height="30"/>
+                                <state key="normal" title="Log In"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -216,6 +216,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DZf-xL-Sgn"/>
                     </view>
+                    <connections>
+                        <outlet property="errorLabel" destination="bJj-gf-UVL" id="k2A-8s-dup"/>
+                        <outlet property="loginButton" destination="8Td-F2-2r0" id="7LU-j1-HO1"/>
+                        <outlet property="passwordTextField" destination="dp0-AB-uml" id="QGv-Kj-3Og"/>
+                        <outlet property="signupButton" destination="xVj-fD-8Zy" id="Qfn-7f-bQV"/>
+                        <outlet property="usernameTextField" destination="l5I-oj-YEQ" id="jzd-GD-ICh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqk-sn-SuJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
