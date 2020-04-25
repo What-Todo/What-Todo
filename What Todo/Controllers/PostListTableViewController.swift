@@ -68,6 +68,8 @@ class PostListTableViewController: UITableViewController {
         return posts.count
     }
 
+    
+    // MARK: - Button Actions
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         let postsRef = Database.database().reference().child("ToDoLists").child(selectedCategoryKey).child("posts")
         
