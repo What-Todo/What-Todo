@@ -23,6 +23,8 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // MARK: - Button Actions
+
     @IBAction func signUpButtonDidTouch(_ sender: Any) {
     }
     

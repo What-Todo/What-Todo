@@ -86,6 +86,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         return cell
     }
 
+    // MARK: - Button Actions
+
     @IBAction func addButtonDidTouch(_ sender: AnyObject) {
         // popup
         let addPopUp = UIAlertController(title: "Add Category",
