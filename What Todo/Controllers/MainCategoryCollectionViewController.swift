@@ -116,6 +116,22 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         present(addPopUp, animated: true, completion: nil)
         self.collectionView.reloadData()
     }
+    
+    
+    @IBAction func logOutDidTouch(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            let main = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+            
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            
+            delegate.window?.rootViewController = loginViewController
+        } catch {
+            print("Sign out Failed")
+            
+        }
+    }
     // MARK: UICollectionViewDelegate
 
     /*

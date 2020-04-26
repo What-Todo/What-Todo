@@ -17,16 +17,15 @@
 		AAC514A424510E3A004BCEE9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC514A224510E3A004BCEE9 /* LaunchScreen.storyboard */; };
 		AAC514AF24510E3A004BCEE9 /* What_TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514AE24510E3A004BCEE9 /* What_TodoTests.swift */; };
 		AAC514BA24510E3B004BCEE9 /* What_TodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514B924510E3B004BCEE9 /* What_TodoUITests.swift */; };
-		AAC514C824510E75004BCEE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAC514C724510E75004BCEE9 /* GoogleService-Info.plist */; };
 		AAC514CA24511E7A004BCEE9 /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514C924511E7A004BCEE9 /* PostListTableViewController.swift */; };
 		AAC514CE2451228D004BCEE9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514CD2451228D004BCEE9 /* LoginViewController.swift */; };
 		AAC514D02451232B004BCEE9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514CF2451232B004BCEE9 /* Post.swift */; };
 		AAC514D224512726004BCEE9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514D124512726004BCEE9 /* User.swift */; };
 		AAC514D4245128E0004BCEE9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514D3245128E0004BCEE9 /* Category.swift */; };
-		AAC514D624513E99004BCEE9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514D524513E99004BCEE9 /* RegistrationViewController.swift */; };
 		AAC514D824514DF3004BCEE9 /* MainCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */; };
 		AAC76A0E2452465F00ADBA0B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */; };
 		AAC76A102454B54D00ADBA0B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC76A0F2454B54D00ADBA0B /* SignUpViewController.swift */; };
+		AAF20C572456220B00A5BFF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAF20C562456220B00A5BFF9 /* GoogleService-Info.plist */; };
 		F2DCAC7C8693493E9D420A6D /* Pods_What_Todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77460AFB54CAA2C18160386C /* Pods_What_Todo.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,16 +66,15 @@
 		AAC514B524510E3A004BCEE9 /* What TodoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "What TodoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC514B924510E3B004BCEE9 /* What_TodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What_TodoUITests.swift; sourceTree = "<group>"; };
 		AAC514BB24510E3B004BCEE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAC514C724510E75004BCEE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAC514C924511E7A004BCEE9 /* PostListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListTableViewController.swift; sourceTree = "<group>"; };
 		AAC514CD2451228D004BCEE9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AAC514CF2451232B004BCEE9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		AAC514D124512726004BCEE9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AAC514D3245128E0004BCEE9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		AAC514D524513E99004BCEE9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		AAC76A0F2454B54D00ADBA0B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		AAF20C562456220B00A5BFF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B44ED61AF566EB570DDAB2D2 /* Pods-What Todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What Todo.debug.xcconfig"; path = "Target Support Files/Pods-What Todo/Pods-What Todo.debug.xcconfig"; sourceTree = "<group>"; };
 		B569A72B65A27262BBD6BE53 /* Pods-What Todo-What TodoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What Todo-What TodoUITests.release.xcconfig"; path = "Target Support Files/Pods-What Todo-What TodoUITests/Pods-What Todo-What TodoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CD14E8B3B60ED13954EEA65A /* Pods-What TodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What TodoTests.debug.xcconfig"; path = "Target Support Files/Pods-What TodoTests/Pods-What TodoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,7 +166,7 @@
 				AAC5149924510E37004BCEE9 /* SceneDelegate.swift */,
 				AAC514A024510E3A004BCEE9 /* Assets.xcassets */,
 				AAC514A224510E3A004BCEE9 /* LaunchScreen.storyboard */,
-				AAC514C724510E75004BCEE9 /* GoogleService-Info.plist */,
+				AAF20C562456220B00A5BFF9 /* GoogleService-Info.plist */,
 				AAC514A524510E3A004BCEE9 /* Info.plist */,
 			);
 			path = "What Todo";
@@ -195,9 +193,9 @@
 		AAC514CB24511FF0004BCEE9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AAC514D3245128E0004BCEE9 /* Category.swift */,
 				AAC514CF2451232B004BCEE9 /* Post.swift */,
 				AAC514D124512726004BCEE9 /* User.swift */,
-				AAC514D3245128E0004BCEE9 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,7 +206,6 @@
 				AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */,
 				AAC514C924511E7A004BCEE9 /* PostListTableViewController.swift */,
 				AAC514CD2451228D004BCEE9 /* LoginViewController.swift */,
-				AAC514D524513E99004BCEE9 /* RegistrationViewController.swift */,
 				AAC76A0F2454B54D00ADBA0B /* SignUpViewController.swift */,
 			);
 			path = Controllers;
@@ -324,7 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAC514A424510E3A004BCEE9 /* LaunchScreen.storyboard in Resources */,
-				AAC514C824510E75004BCEE9 /* GoogleService-Info.plist in Resources */,
+				AAF20C572456220B00A5BFF9 /* GoogleService-Info.plist in Resources */,
 				AAC514A124510E3A004BCEE9 /* Assets.xcassets in Resources */,
 				AAC5149F24510E37004BCEE9 /* Main.storyboard in Resources */,
 			);
@@ -458,7 +455,6 @@
 				AAC5149824510E37004BCEE9 /* AppDelegate.swift in Sources */,
 				AAC5149A24510E37004BCEE9 /* SceneDelegate.swift in Sources */,
 				AAC514D824514DF3004BCEE9 /* MainCategoryCollectionViewController.swift in Sources */,
-				AAC514D624513E99004BCEE9 /* RegistrationViewController.swift in Sources */,
 				AAC514D02451232B004BCEE9 /* Post.swift in Sources */,
 				AAC76A102454B54D00ADBA0B /* SignUpViewController.swift in Sources */,
 				AAC514CE2451228D004BCEE9 /* LoginViewController.swift in Sources */,

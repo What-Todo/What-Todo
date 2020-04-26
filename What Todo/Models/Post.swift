@@ -11,7 +11,7 @@ import Firebase
 
 struct Post {
     
-    let ref : DatabaseReference? // use ref instead of postId?
+    let ref : DatabaseReference? 
     var key : String = "key"
 
     var details : String

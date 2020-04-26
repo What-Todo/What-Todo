@@ -11,7 +11,7 @@ import Firebase
 
 struct Category {
     
-    let ref : DatabaseReference? // use ref instead of categoryId?
+    let ref : DatabaseReference? 
     let key : String
 
     var name : String

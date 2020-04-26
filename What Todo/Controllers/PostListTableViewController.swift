@@ -17,8 +17,8 @@ class PostListTableViewController: UITableViewController {
     var user: User!
     var selectedCategoryKey : String = "" // updated from MainCategoryViewController > prepare()
     
-    
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

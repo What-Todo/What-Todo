@@ -11,18 +11,35 @@ import Firebase
 
 struct User {
     let userId: String
+    let email: String
+
     let name: String
+    let displayName: String
     let location: String
     
-    init(authData: Firebase.User) {
+    init(authData: Firebase.User, aName: String, aDisplayName: String, aLocation: String) {
         userId = authData.uid
-        name = authData.displayName!
+        email = authData.email!
+        name = aName
+        displayName = aDisplayName
+        location = aLocation
+    }
+    
+    init(aUserId: String, aEmail: String, aName: String, aDisplayName: String) {
+        userId = aUserId
+        email = aEmail
+        name = aName
+        displayName = aDisplayName
         location = ""
     }
     
-    init(aUserId: String, aName: String, aLocation: String) {
-        self.userId = aUserId
-        self.name = aName
-        self.location = aLocation
+    func toAnyObject() -> Any {
+        return [
+            "userId": userId,
+            "email": email,
+            "name": name,
+            "displayName": displayName,
+            "location": location
+        ]
     }
 }
