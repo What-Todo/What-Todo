@@ -12,6 +12,7 @@ import Firebase
 class PostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
