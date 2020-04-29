@@ -40,24 +40,22 @@ class AddCategoryViewController: UIViewController {
         let currentUser = Auth.auth().currentUser
         let categoryKey = joinKeyTextField!.text
         let catRef = ToDoRef.child(categoryKey!)
-        var members: [String] = []
-        
-        self.ToDoRef.observe(.value, with: { snapshot in
-            
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-              let category = Category(snapshot: snapshot) {
-                if category.key == categoryKey {
-                    // get category's member list
-                    members = category.members
-                    members.append(currentUser!.uid)
-                    // update members with current user id
-                    catRef.updateChildValues(["members": members])
-                    break
-                }
-            }
-          }
-        })
+
+//        let userID = Auth.auth().currentUser?.uid
+        catRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            var members = value?.value(forKey: "members") as! [String]
+            print(value as Any)
+            print(members as Any)
+            // append current user
+            members.append(currentUser!.uid)
+            // update members with current user id
+            catRef.updateChildValues(["members": members])
+          }) { (error) in
+            print(error.localizedDescription)
+        }
+
         self.dismiss(animated: true, completion: nil)
     }
         

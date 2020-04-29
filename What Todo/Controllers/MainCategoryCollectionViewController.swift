@@ -100,7 +100,6 @@ class MainCategoryCollectionViewController: UICollectionViewController {
                 return true
             }
         }
-        
         return false
     }
 
@@ -113,7 +112,6 @@ class MainCategoryCollectionViewController: UICollectionViewController {
                                          preferredStyle: .alert)
         
         let currentUser = Auth.auth().currentUser
-        let userProfile = Database.database().reference().child("Users").child(currentUser!.uid)
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
             guard let textField = addPopUp.textFields?.first,
