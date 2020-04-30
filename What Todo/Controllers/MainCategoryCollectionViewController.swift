@@ -30,14 +30,16 @@ class MainCategoryCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         
-        // Synchronizing Data to the Collection view
-        self.ToDoRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+        // Synchronizing Data to the Collection view        
+        self.ToDoRef.observe(.value, with: { snapshot in
           var newItems: [Category] = []
           for child in snapshot.children {
             if let snapshot = child as? DataSnapshot,
               let category = Category(snapshot: snapshot) {
-              newItems.append(category)
-                print(category.name, category.key)
+                print(category.name, category.key + "\n")
+                if self.isMemberof(category) {
+                    newItems.append(category)
+                }
             }
           }
           self.categories = newItems
@@ -85,6 +87,18 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
         return cell
     }
+    
+    func isMemberof(_ category: Category) -> Bool {
+        let catMembers = category.members
+        let currentUser = Auth.auth().currentUser
+
+        for member in catMembers {
+            if currentUser!.uid == member {
+                return true
+            }
+        }
+        return false
+    }
 
     // MARK: - Button Actions
 
@@ -94,13 +108,16 @@ class MainCategoryCollectionViewController: UICollectionViewController {
                                          message: "Type name to add Todo category",
                                          preferredStyle: .alert)
         
+        let currentUser = Auth.auth().currentUser
+        
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
             guard let textField = addPopUp.textFields?.first,
                 let text = textField.text else { return }
           
             // firebase operation
             let category = Category(aName: text,
-                                    anAddedByUser: "self.user.name")
+                                    anAddedByUser: currentUser!.uid,
+                                    aMembers: [currentUser!.uid])
             let categoryRef = self.ToDoRef.childByAutoId()
             categoryRef.setValue(category.toAnyObject())
         }
@@ -123,9 +140,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
             try Auth.auth().signOut()
             let main = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
-            
             let delegate = UIApplication.shared.delegate as! AppDelegate
-            
             delegate.window?.rootViewController = loginViewController
         } catch {
             print("Sign out Failed")

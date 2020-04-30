@@ -16,34 +16,37 @@ struct Category {
 
     var name : String
     var addedByUser : String
-//    var posts : Post
+    var members : [String] = []
     
     // constructor
-    init(aName: String, anAddedByUser: String, key: String = "") {
+    init(aName: String, anAddedByUser: String, aMembers : [String], key: String = "") {
         self.ref = nil
         self.key = key
 
         self.name = aName
         self.addedByUser = anAddedByUser
-        
+        self.members = aMembers
     }
     
     init? (snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
-            let details = value["details"] as? String,
-            let addedByUser = value["addedByUser"] as? String else { return nil }
+            var details = value["details"] as? String,
+            let addedByUser = value["addedByUser"] as? String,
+            var members = value["members"]as? [String] else { return nil }
         
         self.ref = snapshot.ref
         self.key = snapshot.key
         self.name = details
         self.addedByUser = addedByUser
+        self.members = members
     }
     
     func toAnyObject() -> Any {
         return [
             "details": name,
             "addedByUser": addedByUser,
+            "members": members
         ]
     }
 }

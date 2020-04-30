@@ -24,8 +24,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="118"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpw-3S-RA1">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="details Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dpw-3S-RA1">
                                             <rect key="frame" x="20" y="11" width="154" height="41"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbP-tE-Nym">
+                                            <rect key="frame" x="20" y="86" width="121" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -35,6 +42,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="detailsLabel" destination="Dpw-3S-RA1" id="7ty-rd-ObB"/>
+                                    <outlet property="userNameLabel" destination="EbP-tE-Nym" id="TSe-K1-QRr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -109,14 +117,14 @@
                                 <rect key="frame" x="20" y="13" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="LogOutTemp"/>
+                                <connections>
+                                    <action selector="logOutDidTouch:" destination="VQo-K3-OFl" eventType="touchUpInside" id="yy5-Uc-QdU"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="logOutDidTouch:" destination="VQo-K3-OFl" id="Det-ZP-S81"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bOD-ho-jzN">
                             <connections>
-                                <action selector="addButtonDidTouch:" destination="VQo-K3-OFl" id="wgD-c4-Vqf"/>
+                                <segue destination="LrS-3l-klc" kind="show" id="m7J-j6-6J1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -127,6 +135,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bJf-hl-3FJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="38" y="1754"/>
+        </scene>
+        <!--Add Category View Controller-->
+        <scene sceneID="8zG-4d-7Gf">
+            <objects>
+                <viewController id="l7F-f5-Qyu" customClass="AddCategoryViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xXg-Um-xyg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7gh-y3-FGv">
+                                <rect key="frame" x="40" y="96" width="334" height="124.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create new category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9jG-0Q-w4X">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JKv-ZF-sei">
+                                        <rect key="frame" x="0.0" y="40.5" width="334" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68J-Eh-6HG">
+                                        <rect key="frame" x="0.0" y="94.5" width="334" height="30"/>
+                                        <state key="normal" title="create new category"/>
+                                        <connections>
+                                            <action selector="createButtonDidTouch:" destination="l7F-f5-Qyu" eventType="touchUpInside" id="Dyg-kM-5F1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ZGD-Za-gpG">
+                                <rect key="frame" x="40" y="283.5" width="334" height="124.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join to exisitng category with join key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jse-Ip-9LN">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Join Key" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zUU-Ak-eHq">
+                                        <rect key="frame" x="0.0" y="40.5" width="334" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQq-op-NEe">
+                                        <rect key="frame" x="0.0" y="94.5" width="334" height="30"/>
+                                        <state key="normal" title="Join to category"/>
+                                        <connections>
+                                            <action selector="joinButtonDidTouch:" destination="l7F-f5-Qyu" eventType="touchUpInside" id="Ihl-S8-NZ9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7gh-y3-FGv" firstAttribute="leading" secondItem="VaX-Vx-xNA" secondAttribute="leading" constant="40" id="Cj7-Cz-zu4"/>
+                            <constraint firstItem="VaX-Vx-xNA" firstAttribute="bottom" secondItem="ZGD-Za-gpG" secondAttribute="bottom" constant="400" id="Vvn-GU-wjk"/>
+                            <constraint firstItem="7gh-y3-FGv" firstAttribute="top" secondItem="VaX-Vx-xNA" secondAttribute="top" constant="40" id="ZRF-Mt-1BW"/>
+                            <constraint firstItem="VaX-Vx-xNA" firstAttribute="trailing" secondItem="7gh-y3-FGv" secondAttribute="trailing" constant="40" id="mdX-xy-vM7"/>
+                            <constraint firstItem="ZGD-Za-gpG" firstAttribute="leading" secondItem="VaX-Vx-xNA" secondAttribute="leading" constant="40" id="vJq-6p-9pU"/>
+                            <constraint firstItem="VaX-Vx-xNA" firstAttribute="trailing" secondItem="ZGD-Za-gpG" secondAttribute="trailing" constant="40" id="wiR-u7-dCy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VaX-Vx-xNA"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="IBn-L3-w9B"/>
+                    <connections>
+                        <outlet property="categoryNameTextField" destination="JKv-ZF-sei" id="ZVd-l1-mjq"/>
+                        <outlet property="joinCategoryLabel" destination="Jse-Ip-9LN" id="z7i-Lp-DXt"/>
+                        <outlet property="joinKeyTextField" destination="zUU-Ak-eHq" id="tao-KX-ftS"/>
+                        <outlet property="newCategoryLabel" destination="9jG-0Q-w4X" id="4Zh-sq-DoF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Vd-Un-Muf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947.82608695652186" y="2468.9732142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SLE-Li-RjR">
@@ -329,6 +415,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXf-SL-uWX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1030" y="219"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="smx-aU-uqe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LrS-3l-klc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="gDK-WL-z4L"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HkP-Hl-8bs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="l7F-f5-Qyu" kind="relationship" relationship="rootViewController" id="ZCb-8G-fLg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9D-05-Te3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.681159420289859" y="2468.9732142857142"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

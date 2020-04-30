@@ -16,6 +16,7 @@ class PostListTableViewController: UITableViewController {
     var posts: [Post] = []
     var user: User!
     var selectedCategoryKey : String = "" // updated from MainCategoryViewController > prepare()
+    var postCount = 0
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     
@@ -29,8 +30,8 @@ class PostListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // Synchronizing Data to the Table view
+        let currentUser = Auth.auth().currentUser
 //        print(self.ToDoRef.child(selectedCategoryKey)) // print reference
-        // if posts exists,
         self.ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in
             if snapshot.hasChild("posts") { // if posts exists
                 self.ToDoRef.child(self.selectedCategoryKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
@@ -38,8 +39,9 @@ class PostListTableViewController: UITableViewController {
                     for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
                       let post = Post(snapshot: snapshot) {
-                      newItems.append(post)
                         print(post.details, post.key)
+                        print(currentUser!.uid)
+                            newItems.append(post)
                     }
                   }
                   self.posts = newItems
@@ -77,13 +79,16 @@ class PostListTableViewController: UITableViewController {
                                          message: "Type to post Todo",
                                          preferredStyle: .alert)
         
+        let currentUser = Auth.auth().currentUser
+        let userProfile = Database.database().reference().child("Users").child(currentUser!.uid)
+        
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
             guard let textField = addPopUp.textFields?.first,
                 let text = textField.text else { return }
             
             let todoPost = Post(aDetails: text,
                                 completed: false,
-                                anAddedByUser: "self.user.name",
+                                anAddedByUser: currentUser!.uid, // unique user id in Authentication
                                 timestamp: "timestamp")
             // this todo post's unique reference is set by firebase
             let todoPostRef = postsRef.childByAutoId()
