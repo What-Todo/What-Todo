@@ -17,7 +17,7 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var joinKeyTextField: UITextField!
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
-
+    let mainNavigationController = "MainNC"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,7 @@ class AddCategoryViewController: UIViewController {
                                 aMembers: [currentUser!.uid])
         let categoryRef = self.ToDoRef.childByAutoId()
         categoryRef.setValue(category.toAnyObject())
-        self.dismiss(animated: true, completion: nil)
+        self.transitionToHome()
     }
     
     @IBAction func joinButtonDidTouch(_ sender: Any) {
@@ -46,8 +46,6 @@ class AddCategoryViewController: UIViewController {
             // Get user value
             let value = snapshot.value as? NSDictionary
             var members = value?.value(forKey: "members") as! [String]
-            print(value as Any)
-            print(members as Any)
             // append current user
             members.append(currentUser!.uid)
             // update members with current user id
@@ -55,10 +53,14 @@ class AddCategoryViewController: UIViewController {
           }) { (error) in
             print(error.localizedDescription)
         }
-
-        self.dismiss(animated: true, completion: nil)
+        self.transitionToHome()
     }
-        
+
+    func transitionToHome() {
+        let MainNC = storyboard?.instantiateViewController(identifier: mainNavigationController)
+        view.window?.rootViewController = MainNC
+        view.window?.makeKeyAndVisible()
+    }
         
     
     /*

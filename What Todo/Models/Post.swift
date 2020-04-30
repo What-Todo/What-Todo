@@ -20,14 +20,15 @@ struct Post {
     var timestamp : String
     
     // constructor
-    init(aDetails: String, completed: Bool, anAddedByUser: String, timestamp: String, key: String = "") {
+    init(aDetails: String, completed: Bool, anAddedByUser: String, key: String = "") {
         self.ref = nil
         self.key = key
 
         self.details = aDetails
         self.completed = completed
         self.addedByUser = anAddedByUser
-        self.timestamp = timestamp
+        self.timestamp = "timestamp"
+        
     }
     
     init? (snapshot: DataSnapshot) {
@@ -36,8 +37,7 @@ struct Post {
             let details = value["details"] as? String,
             let completed = value["completed"] as? Bool,
             let addedByUser = value["addedByUser"] as? String,
-            let timestamp = value["timestamp"] as? String else { return nil
-        }
+            let timestamp = value["timestamp"] as? String else { return nil}
         
         self.ref = snapshot.ref
         self.key = snapshot.key

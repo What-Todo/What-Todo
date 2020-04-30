@@ -31,9 +31,9 @@ struct Category {
     init? (snapshot: DataSnapshot) {
         guard
             let value = snapshot.value as? [String: AnyObject],
-            var details = value["details"] as? String,
+            let details = value["details"] as? String,
             let addedByUser = value["addedByUser"] as? String,
-            var members = value["members"]as? [String] else { return nil }
+            let members = value["members"]as? [String] else { return nil }
         
         self.ref = snapshot.ref
         self.key = snapshot.key

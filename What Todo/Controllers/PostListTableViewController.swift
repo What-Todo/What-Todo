@@ -80,7 +80,6 @@ class PostListTableViewController: UITableViewController {
                                          preferredStyle: .alert)
         
         let currentUser = Auth.auth().currentUser
-        let userProfile = Database.database().reference().child("Users").child(currentUser!.uid)
         
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
             guard let textField = addPopUp.textFields?.first,
@@ -88,8 +87,7 @@ class PostListTableViewController: UITableViewController {
             
             let todoPost = Post(aDetails: text,
                                 completed: false,
-                                anAddedByUser: currentUser!.uid, // unique user id in Authentication
-                                timestamp: "timestamp")
+                                anAddedByUser: currentUser!.uid) // unique user id in Authentication
             // this todo post's unique reference is set by firebase
             let todoPostRef = postsRef.childByAutoId()
             todoPostRef.setValue(todoPost.toAnyObject())
@@ -112,8 +110,30 @@ class PostListTableViewController: UITableViewController {
         // Configure the cell...
         let thisPost = posts[indexPath.row]
         cell.detailsLabel?.text = thisPost.details
+        
+        let displayName = nameOfuid(thisPost.addedByUser)
+        cell.userNameLabel?.text = displayName
+        
         print(cell.detailsLabel.text as Any)
         return cell
+    }
+    
+    func nameOfuid(_ uid: String) -> String {
+        let UsersRef = Database.database().reference(withPath: "Users")
+        var result: String = ""
+        
+        UsersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            let users = snapshot.value as? NSDictionary
+            for aUser in users! {
+                print(UsersRef.child(aUser.key as! String))
+                UsersRef.child(aUser.key as! String).observeSingleEvent(of: .value, with: { (userSnapshot) in
+                    let value = userSnapshot.value as? NSDictionary
+                    let displayName = value?["displayName"] as? String ?? "failed to obtain displayName"
+                    result = displayName
+                })
+            }
+        })
+        return result
     }
     
 

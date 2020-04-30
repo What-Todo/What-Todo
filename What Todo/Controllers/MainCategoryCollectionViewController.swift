@@ -93,7 +93,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         let currentUser = Auth.auth().currentUser
 
         for member in catMembers {
-            if currentUser!.uid == member {
+            print(currentUser!.uid, member)
+            if currentUser!.uid.elementsEqual(member) {
                 return true
             }
         }
@@ -101,52 +102,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     }
 
     // MARK: - Button Actions
+    
 
-    @IBAction func addButtonDidTouch(_ sender: AnyObject) {
-        // popup
-        let addPopUp = UIAlertController(title: "Add Category",
-                                         message: "Type name to add Todo category",
-                                         preferredStyle: .alert)
-        
-        let currentUser = Auth.auth().currentUser
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let textField = addPopUp.textFields?.first,
-                let text = textField.text else { return }
-          
-            // firebase operation
-            let category = Category(aName: text,
-                                    anAddedByUser: currentUser!.uid,
-                                    aMembers: [currentUser!.uid])
-            let categoryRef = self.ToDoRef.childByAutoId()
-            categoryRef.setValue(category.toAnyObject())
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        
-        addPopUp.addTextField()
-        
-        addPopUp.addAction(saveAction)
-        addPopUp.addAction(cancelAction)
-        
-        present(addPopUp, animated: true, completion: nil)
-        self.collectionView.reloadData()
-    }
-    
-    
-    @IBAction func logOutDidTouch(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            let main = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            delegate.window?.rootViewController = loginViewController
-        } catch {
-            print("Sign out Failed")
-            
-        }
-    }
     // MARK: UICollectionViewDelegate
 
     /*
