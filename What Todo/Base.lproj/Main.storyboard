@@ -117,10 +117,10 @@
                                 <rect key="frame" x="20" y="13" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="LogOutTemp"/>
+                                <connections>
+                                    <action selector="logOutDidTouch:" destination="VQo-K3-OFl" eventType="touchUpInside" id="yy5-Uc-QdU"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="logOutDidTouch:" destination="VQo-K3-OFl" id="Det-ZP-S81"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bOD-ho-jzN">
                             <connections>

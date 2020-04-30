@@ -30,16 +30,13 @@ class MainCategoryCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         
-        // Synchronizing Data to the Collection view
-        let currentUser = Auth.auth().currentUser
-        
-        self.ToDoRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+        // Synchronizing Data to the Collection view        
+        self.ToDoRef.observe(.value, with: { snapshot in
           var newItems: [Category] = []
           for child in snapshot.children {
             if let snapshot = child as? DataSnapshot,
               let category = Category(snapshot: snapshot) {
-                print(category.name, category.key)
-                print(currentUser!.uid)
+                print(category.name, category.key + "\n")
                 if self.isMemberof(category) {
                     newItems.append(category)
                 }
@@ -92,7 +89,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     }
     
     func isMemberof(_ category: Category) -> Bool {
-        var catMembers = category.members
+        let catMembers = category.members
         let currentUser = Auth.auth().currentUser
 
         for member in catMembers {
@@ -143,9 +140,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
             try Auth.auth().signOut()
             let main = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
-            
             let delegate = UIApplication.shared.delegate as! AppDelegate
-            
             delegate.window?.rootViewController = loginViewController
         } catch {
             print("Sign out Failed")
