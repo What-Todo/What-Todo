@@ -18,11 +18,9 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     
     @IBOutlet var catCollectionView: UICollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
+    // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
@@ -46,6 +44,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
           self.collectionView.reloadData()
         })
     }
+
     
     // MARK: - Navigation
 
@@ -58,6 +57,9 @@ class MainCategoryCollectionViewController: UICollectionViewController {
 
             // update dest controller's variable
              let vc = segue.destination as! PostListTableViewController
+            
+//            let nv = segue.destination as! UINavigationController
+//            let vc = nv.topViewController as! PostListTableViewController
              //Now simply set the title property of vc
             vc.selectedCategoryKey = categories[indexPath.row].key as String
          }
@@ -84,8 +86,20 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         // Configure the cell
         let thisCat = categories[indexPath.row]
         cell.nameLabel?.text = thisCat.name
-        print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
+//        print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
+        var imageTemp: UIImage = UIImage(named: "pink")!
+        cell.imageView.image = imageTemp
         return cell
+    }
+    
+    // header
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionHeader) {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryCollectionReusableView", for: indexPath)
+            // Customize headerView here
+            return headerView
+        }
+        fatalError()
     }
     
     func isMemberof(_ category: Category) -> Bool {
@@ -93,7 +107,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         let currentUser = Auth.auth().currentUser
 
         for member in catMembers {
-            if currentUser!.uid == member {
+            print(currentUser!.uid, member)
+            if currentUser!.uid.elementsEqual(member) {
                 return true
             }
         }
@@ -101,52 +116,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     }
 
     // MARK: - Button Actions
+    
 
-    @IBAction func addButtonDidTouch(_ sender: AnyObject) {
-        // popup
-        let addPopUp = UIAlertController(title: "Add Category",
-                                         message: "Type name to add Todo category",
-                                         preferredStyle: .alert)
-        
-        let currentUser = Auth.auth().currentUser
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let textField = addPopUp.textFields?.first,
-                let text = textField.text else { return }
-          
-            // firebase operation
-            let category = Category(aName: text,
-                                    anAddedByUser: currentUser!.uid,
-                                    aMembers: [currentUser!.uid])
-            let categoryRef = self.ToDoRef.childByAutoId()
-            categoryRef.setValue(category.toAnyObject())
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        
-        addPopUp.addTextField()
-        
-        addPopUp.addAction(saveAction)
-        addPopUp.addAction(cancelAction)
-        
-        present(addPopUp, animated: true, completion: nil)
-        self.collectionView.reloadData()
-    }
-    
-    
-    @IBAction func logOutDidTouch(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            let main = UIStoryboard(name: "Main", bundle: nil)
-            let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            delegate.window?.rootViewController = loginViewController
-        } catch {
-            print("Sign out Failed")
-            
-        }
-    }
     // MARK: UICollectionViewDelegate
 
     /*
@@ -179,3 +150,5 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     */
 
 }
+
+

@@ -12,9 +12,14 @@ import Firebase
 class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: UI Propaties
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func prepareForReuse() {
+    }
+ 
 }

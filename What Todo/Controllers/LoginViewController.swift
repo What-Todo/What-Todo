@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     
     let segueSignedIn = "SignedIn"
+    let mainNavigationController = "MainNC"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +42,10 @@ class LoginViewController: UIViewController {
           } else { // signed in
                 Auth.auth().addStateDidChangeListener() { auth, user in
                   if user != nil {
-                    self.performSegue(withIdentifier: self.segueSignedIn, sender: nil)
+//                    self.performSegue(withIdentifier: self.segueSignedIn, sender: nil)
                     self.usernameTextField.text = nil
                     self.passwordTextField.text = nil
+                    self.transitionToHome()
                   }
                 }
             print("singed in")
@@ -54,6 +57,13 @@ class LoginViewController: UIViewController {
     func showError(_ error : String) {
         errorLabel.text = error
         errorLabel.alpha = 1
+    }
+    
+    func transitionToHome() {
+        
+        let MainNC = storyboard?.instantiateViewController(identifier: mainNavigationController)
+        view.window?.rootViewController = MainNC
+        view.window?.makeKeyAndVisible()
     }
     
     /*

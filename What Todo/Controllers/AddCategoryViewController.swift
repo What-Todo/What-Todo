@@ -17,7 +17,8 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var joinKeyTextField: UITextField!
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
-
+    let mainNavigationController = "MainNC"
+    var categoryKey: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,32 +34,46 @@ class AddCategoryViewController: UIViewController {
                                 aMembers: [currentUser!.uid])
         let categoryRef = self.ToDoRef.childByAutoId()
         categoryRef.setValue(category.toAnyObject())
-        self.dismiss(animated: true, completion: nil)
+        self.transitionToHome()
     }
     
     @IBAction func joinButtonDidTouch(_ sender: Any) {
         let currentUser = Auth.auth().currentUser
-        let categoryKey = joinKeyTextField!.text
-        let catRef = ToDoRef.child(categoryKey!)
-
-//        let userID = Auth.auth().currentUser?.uid
+        categoryKey = joinKeyTextField!.text!
+        let catRef = ToDoRef.child(categoryKey)
+        
+        // let userID = Auth.auth().currentUser?.uid
+        
         catRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            var members = value?.value(forKey: "members") as! [String]
-            print(value as Any)
-            print(members as Any)
-            // append current user
-            members.append(currentUser!.uid)
-            // update members with current user id
-            catRef.updateChildValues(["members": members])
-          }) { (error) in
+            if snapshot.key == self.categoryKey {
+                
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                print("value as Any: \n")
+                print(value as Any)
+                print("snapshot as Any: \n")
+                print(snapshot as Any)
+                var members = value?.value(forKey: "members") as! [String]
+                // append current user
+                members.append(currentUser!.uid)
+                // update members with current user id
+                catRef.updateChildValues(["members": members])
+                
+            } else {
+                print("invalid key is entered in joining category")
+                
+            }
+        }) { (error) in
             print(error.localizedDescription)
         }
-
-        self.dismiss(animated: true, completion: nil)
+        self.transitionToHome()
     }
-        
+
+    func transitionToHome() {
+        let MainNC = storyboard?.instantiateViewController(identifier: mainNavigationController)
+        view.window?.rootViewController = MainNC
+        view.window?.makeKeyAndVisible()
+    }
         
     
     /*
