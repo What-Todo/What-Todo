@@ -16,9 +16,7 @@ class PostListTableViewController: UITableViewController {
     @IBOutlet var postTableView: UITableView!
     var posts: [Post] = []
     var users: [User] = []
-    var displayNames = [[String : String]]()
     var selectedCategoryKey : String = "" // updated from MainCategoryViewController > prepare()
-    var reload: Bool = false;
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let UsersRef = Database.database().reference(withPath: "Users")
@@ -36,7 +34,8 @@ class PostListTableViewController: UITableViewController {
         // Synchronizing Data to the Table view
 //        print(self.ToDoRef.child(selectedCategoryKey)) // print reference
         updatePosts()
-        reload = true
+//        orderChecked()
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -88,7 +87,8 @@ class PostListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-
+        print("cell in tableView")
+        print(cell as Any)
         // Configure the cell...
         let thisPost = posts[indexPath.row]
         cell.detailsLabel?.text = thisPost.details
@@ -97,44 +97,80 @@ class PostListTableViewController: UITableViewController {
         UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
-            print(cell.userNameLabel.text! + " in observeSingleEvent")
-            if self.reload {
-                self.tableView.reloadData()
-                self.reload = false
-            }
             })
 //        let displayName = nameOfuid(thisPost.addedByUser)
 //        cell.userNameLabel!.text = displayName
-        print("cell.userNameLabel?.text: " + cell.userNameLabel.text!)
-            
         return cell
     }
     
-    func updatePosts() {
-        let currentUser = Auth.auth().currentUser
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) else { return }
+        print("cell in tableView _didSelectRowAt: ")
+        print(cell as Any)
+      let selected = posts[indexPath.row]
+      let toggledCompletion = !selected.completed
+      toggleChecked(cell, isCompleted: toggledCompletion)
+      selected.ref?.updateChildValues([
+        "completed": toggledCompletion
+        ])
+    }
+    
+    func toggleChecked(_ cell: UITableViewCell, isCompleted: Bool) {
+        cell.textLabel?.textColor = .gray
+        
+      if isCompleted {
+//        cell.accessoryType = .checkmark
+//        cell.detailsTextLabel?.textColor = .gray
+//        cell.userNameLabel?.textColor = .gray
+        cell.contentView.backgroundColor = UIColor.lightText
 
-        self.ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in
+      } else {
+        cell.contentView.backgroundColor = UIColor.clear
+//        cell.accessoryType = .none
+//        cell.userNameLabel?.textColor = .black
+//        cell.detailsTextLabel?.textColor = .black
+      }
+    }
+    
+    func updatePosts() {
+        self.ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in // look category
             if snapshot.hasChild("posts") { // if posts exists
                 self.ToDoRef.child(self.selectedCategoryKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
                   var newItems: [Post] = []
-                    var displayNames: [String] = []
+                    print("snapshot in updatePosts: ")
+                    print(snapshot as Any)
                     for child in snapshot.children {
                     if let snapshot = child as? DataSnapshot,
                       let post = Post(snapshot: snapshot) {
-                        print(post.details, post.key)
-                        print(currentUser!.uid)
-                        newItems.append(post)
-                        displayNames.append(self.getDisplayName(post))
-                        
+//                        print(post.details, post.key)
+//                        print(currentUser!.uid)
+                        if !post.completed {
+                            newItems.append(post)
+                        }
                     }
                   }
                   self.posts = newItems
-                  self.tableView.reloadData()
+                    self.tableView.reloadData()
                 })
             } else { // if posts does not exists (first time)
                 self.ToDoRef.child(self.selectedCategoryKey).child("posts").setValue("posts")
             }
         }
+    }
+    
+    func orderChecked() {
+        self.ToDoRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+          var newItems: [Post] = []
+          for child in snapshot.children {
+            if let snapshot = child as? DataSnapshot,
+              let post = Post(snapshot: snapshot) {
+              newItems.append(post)
+            }
+          }
+          
+          self.posts = newItems
+          self.tableView.reloadData()
+        })
     }
     
     func getDisplayName(_ post: Post) -> String {

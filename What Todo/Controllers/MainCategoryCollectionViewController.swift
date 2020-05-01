@@ -87,7 +87,19 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         let thisCat = categories[indexPath.row]
         cell.nameLabel?.text = thisCat.name
 //        print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
+        var imageTemp: UIImage = UIImage(named: "pink")!
+        cell.imageView.image = imageTemp
         return cell
+    }
+    
+    // header
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionHeader) {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoryCollectionReusableView", for: indexPath)
+            // Customize headerView here
+            return headerView
+        }
+        fatalError()
     }
     
     func isMemberof(_ category: Category) -> Bool {
@@ -138,3 +150,5 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     */
 
 }
+
+

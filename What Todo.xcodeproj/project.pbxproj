@@ -12,6 +12,8 @@
 		AA75BD6724521BD800950950 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */; };
 		AAA7CA69245A05F100003E78 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */; };
 		AAA7CA6B245B3D1F00003E78 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */; };
+		AAA7CAAD245C8A1D00003E78 /* CategoryCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CAAC245C8A1D00003E78 /* CategoryCollectionReusableView.swift */; };
+		AAA7CAAF245CB23600003E78 /* NotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CAAE245CB23600003E78 /* NotificationTableViewController.swift */; };
 		AAC5149824510E37004BCEE9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC5149724510E37004BCEE9 /* AppDelegate.swift */; };
 		AAC5149A24510E37004BCEE9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC5149924510E37004BCEE9 /* SceneDelegate.swift */; };
 		AAC5149F24510E37004BCEE9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC5149D24510E37004BCEE9 /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AAA7CAAC245C8A1D00003E78 /* CategoryCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionReusableView.swift; sourceTree = "<group>"; };
+		AAA7CAAE245CB23600003E78 /* NotificationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewController.swift; sourceTree = "<group>"; };
 		AAC5149424510E37004BCEE9 /* What Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAC5149724510E37004BCEE9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAC5149924510E37004BCEE9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				AAC514CC24511FFF004BCEE9 /* Controllers */,
 				AAC5149D24510E37004BCEE9 /* Main.storyboard */,
 				AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */,
+				AAA7CAAC245C8A1D00003E78 /* CategoryCollectionReusableView.swift */,
 				AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */,
 				AAC5149724510E37004BCEE9 /* AppDelegate.swift */,
 				AAC5149924510E37004BCEE9 /* SceneDelegate.swift */,
@@ -213,6 +218,7 @@
 				AAC76A0F2454B54D00ADBA0B /* SignUpViewController.swift */,
 				AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */,
 				AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */,
+				AAA7CAAE245CB23600003E78 /* NotificationTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -457,9 +463,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA7CAAF245CB23600003E78 /* NotificationTableViewController.swift in Sources */,
 				AAC76A0E2452465F00ADBA0B /* PostTableViewCell.swift in Sources */,
 				AAC5149824510E37004BCEE9 /* AppDelegate.swift in Sources */,
 				AAC5149A24510E37004BCEE9 /* SceneDelegate.swift in Sources */,
+				AAA7CAAD245C8A1D00003E78 /* CategoryCollectionReusableView.swift in Sources */,
 				AAC514D824514DF3004BCEE9 /* MainCategoryCollectionViewController.swift in Sources */,
 				AAC514D02451232B004BCEE9 /* Post.swift in Sources */,
 				AAC76A102454B54D00ADBA0B /* SignUpViewController.swift in Sources */,
