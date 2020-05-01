@@ -76,7 +76,7 @@ class SignUpViewController: UIViewController {
         let usersRef = Database.database().reference().child("Users")
         let user = User(aUserId: newUser.user.uid, aEmail: newUser.user.email!, aName: nameTextField.text!, aDisplayName: displayNameTextField.text!)
         
-        let userRef = usersRef.childByAutoId()
+        let userRef = usersRef.child(newUser.user.uid)
         userRef.setValue(user.toAnyObject())
     }
     

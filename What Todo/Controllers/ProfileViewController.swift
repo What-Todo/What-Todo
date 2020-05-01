@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     let LoginVC = "LoginVC"
+    var users: [User] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +25,21 @@ class ProfileViewController: UIViewController {
     }
     
     func showUserProfile() {
-        
+        let currentUser = Auth.auth().currentUser
+        let UsersRef = Database.database().reference(withPath: "Users")
+
+        UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            
+            self.nameLabel?.text = value?.value(forKey: "displayName") as! String
+            self.locationLabel?.text = value?.value(forKey: "location") as! String
+            
+          }) { (error) in
+            print(error.localizedDescription)
+        }
     }
+
     
     @IBAction func logOutDidTouch(_ sender: Any) {
         do {

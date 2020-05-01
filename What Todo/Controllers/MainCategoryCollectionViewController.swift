@@ -18,11 +18,9 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     
     @IBOutlet var catCollectionView: UICollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
+    // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
@@ -46,6 +44,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
           self.collectionView.reloadData()
         })
     }
+
     
     // MARK: - Navigation
 
@@ -84,7 +83,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         // Configure the cell
         let thisCat = categories[indexPath.row]
         cell.nameLabel?.text = thisCat.name
-        print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
+//        print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
         return cell
     }
     
