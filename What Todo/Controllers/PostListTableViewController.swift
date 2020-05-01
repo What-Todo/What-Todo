@@ -13,12 +13,16 @@ import Firebase
 class PostListTableViewController: UITableViewController {
     
     // MARK: - Properties
+    @IBOutlet var postTableView: UITableView!
     var posts: [Post] = []
-    var user: User!
+    var users: [User] = []
+    var displayNames = [[String : String]]()
     var selectedCategoryKey : String = "" // updated from MainCategoryViewController > prepare()
-    var postCount = 0
+    var reload: Bool = false;
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
+    let UsersRef = Database.database().reference(withPath: "Users")
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,32 +34,9 @@ class PostListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // Synchronizing Data to the Table view
-        let currentUser = Auth.auth().currentUser
 //        print(self.ToDoRef.child(selectedCategoryKey)) // print reference
-        self.ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in
-            if snapshot.hasChild("posts") { // if posts exists
-                self.ToDoRef.child(self.selectedCategoryKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-                  var newItems: [Post] = []
-                    for child in snapshot.children {
-                    if let snapshot = child as? DataSnapshot,
-                      let post = Post(snapshot: snapshot) {
-                        print(post.details, post.key)
-                        print(currentUser!.uid)
-                            newItems.append(post)
-                    }
-                  }
-                  self.posts = newItems
-                  self.tableView.reloadData()
-                })
-            } else { // if posts does not exists (first time)
-                self.ToDoRef.child(self.selectedCategoryKey).child("posts").setValue("posts")
-            }
-        }
-
-        
-//        self.ToDoRef.child(selectedCategoryKey).child("posts").observe(.value, with: { snapshot in
-//          print(snapshot.value as Any)
-//        })
+        updatePosts()
+        reload = true
     }
 
     // MARK: - Table view data source
@@ -102,6 +83,7 @@ class PostListTableViewController: UITableViewController {
         addPopUp.addAction(cancelAction)
         
         present(addPopUp, animated: true, completion: nil)
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -110,31 +92,63 @@ class PostListTableViewController: UITableViewController {
         // Configure the cell...
         let thisPost = posts[indexPath.row]
         cell.detailsLabel?.text = thisPost.details
-        
-        let displayName = nameOfuid(thisPost.addedByUser)
-        cell.userNameLabel?.text = displayName
-        
-        print(cell.detailsLabel.text as Any)
+
+        // get dispalyName
+        UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
+            print(cell.userNameLabel.text! + " in observeSingleEvent")
+            if self.reload {
+                self.tableView.reloadData()
+                self.reload = false
+            }
+            })
+//        let displayName = nameOfuid(thisPost.addedByUser)
+//        cell.userNameLabel!.text = displayName
+        print("cell.userNameLabel?.text: " + cell.userNameLabel.text!)
+            
         return cell
     }
     
-    func nameOfuid(_ uid: String) -> String {
-        let UsersRef = Database.database().reference(withPath: "Users")
-        var result: String = ""
-        
-        UsersRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            let users = snapshot.value as? NSDictionary
-            for aUser in users! {
-                print(UsersRef.child(aUser.key as! String))
-                UsersRef.child(aUser.key as! String).observeSingleEvent(of: .value, with: { (userSnapshot) in
-                    let value = userSnapshot.value as? NSDictionary
-                    let displayName = value?["displayName"] as? String ?? "failed to obtain displayName"
-                    result = displayName
+    func updatePosts() {
+        let currentUser = Auth.auth().currentUser
+
+        self.ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.hasChild("posts") { // if posts exists
+                self.ToDoRef.child(self.selectedCategoryKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+                  var newItems: [Post] = []
+                    var displayNames: [String] = []
+                    for child in snapshot.children {
+                    if let snapshot = child as? DataSnapshot,
+                      let post = Post(snapshot: snapshot) {
+                        print(post.details, post.key)
+                        print(currentUser!.uid)
+                        newItems.append(post)
+                        displayNames.append(self.getDisplayName(post))
+                        
+                    }
+                  }
+                  self.posts = newItems
+                  self.tableView.reloadData()
                 })
+            } else { // if posts does not exists (first time)
+                self.ToDoRef.child(self.selectedCategoryKey).child("posts").setValue("posts")
             }
-        })
+        }
+    }
+    
+    func getDisplayName(_ post: Post) -> String {
+        var result: String = ""
+        // get dispalyName
+        UsersRef.child(post.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            result = value?.value(forKey: "displayName") as? String ?? ""
+            })
         return result
     }
+
+    
+
     
 
     /*

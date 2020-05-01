@@ -15,7 +15,7 @@ struct Category {
     let key : String
 
     var name : String
-    var addedByUser : String
+    let addedByUser : String
     var members : [String] = []
     
     // constructor

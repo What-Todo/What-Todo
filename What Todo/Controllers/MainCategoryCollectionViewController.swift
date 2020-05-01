@@ -57,6 +57,9 @@ class MainCategoryCollectionViewController: UICollectionViewController {
 
             // update dest controller's variable
              let vc = segue.destination as! PostListTableViewController
+            
+//            let nv = segue.destination as! UINavigationController
+//            let vc = nv.topViewController as! PostListTableViewController
              //Now simply set the title property of vc
             vc.selectedCategoryKey = categories[indexPath.row].key as String
          }

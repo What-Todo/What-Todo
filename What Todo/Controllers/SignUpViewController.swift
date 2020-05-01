@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreLocation
 
 class SignUpViewController: UIViewController {
 
@@ -24,7 +25,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         errorLabel.alpha = 0
-
+        locationSetUp()
         // Do any additional setup after loading the view.
     }
     
@@ -74,7 +75,8 @@ class SignUpViewController: UIViewController {
     
     func addUserInfo(_ newUser: AuthDataResult) {
         let usersRef = Database.database().reference().child("Users")
-        let user = User(aUserId: newUser.user.uid, aEmail: newUser.user.email!, aName: nameTextField.text!, aDisplayName: displayNameTextField.text!)
+        var user = User(aUserId: newUser.user.uid, aEmail: newUser.user.email!, aName: nameTextField.text!, aDisplayName: displayNameTextField.text!)
+        user.setLocation(newLocation: "default")
         
         let userRef = usersRef.child(newUser.user.uid)
         userRef.setValue(user.toAnyObject())
@@ -83,6 +85,10 @@ class SignUpViewController: UIViewController {
     func showError(_ error : String) {
         errorLabel.text = error
         errorLabel.alpha = 1
+    }
+    
+    func locationSetUp() {
+    
     }
 
     /*

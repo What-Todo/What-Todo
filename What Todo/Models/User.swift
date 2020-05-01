@@ -17,8 +17,8 @@ struct User {
     let email: String
 
     let name: String
-    let displayName: String
-    let location: String
+    var displayName: String
+    var location: String
     
     init(authData: Firebase.User, aName: String, aDisplayName: String, aLocation: String = "", key: String = "") {
         self.ref = nil
@@ -58,6 +58,14 @@ struct User {
         self.name = name
         self.displayName = displayName
         self.location = location
+    }
+    
+    mutating func setDisplayName(newDisplayName: String) {
+        self.displayName = newDisplayName
+    }
+    
+    mutating func setLocation(newLocation: String) {
+        self.location = newLocation
     }
     
     func toAnyObject() -> Any {

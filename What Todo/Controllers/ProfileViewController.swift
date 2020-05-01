@@ -15,7 +15,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     let LoginVC = "LoginVC"
-    var users: [User] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +28,18 @@ class ProfileViewController: UIViewController {
         let UsersRef = Database.database().reference(withPath: "Users")
 
         UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
             // Get user value
             let value = snapshot.value as? NSDictionary
             
-            self.nameLabel?.text = value?.value(forKey: "displayName") as! String
-            self.locationLabel?.text = value?.value(forKey: "location") as! String
+            self.nameLabel?.text = value?.value(forKey: "displayName") as? String
+            self.locationLabel?.text = value?.value(forKey: "location") as? String
+            print(self.nameLabel.text! + " and " + self.locationLabel.text!)
             
           }) { (error) in
             print(error.localizedDescription)
         }
+        
     }
 
     
