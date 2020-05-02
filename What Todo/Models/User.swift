@@ -19,6 +19,8 @@ struct User {
     let name: String
     var displayName: String
     var location: String
+    var notifications: [String]
+    var recentActivities: [String]
     
     init(authData: Firebase.User, aName: String, aDisplayName: String, aLocation: String = "", key: String = "") {
         self.ref = nil
@@ -29,6 +31,8 @@ struct User {
         self.name = aName
         self.displayName = aDisplayName
         self.location = aLocation
+        self.notifications = []
+        self.recentActivities = []
     }
     
     init(aUserId: String, aEmail: String, aName: String, aDisplayName: String, aLocation: String = "", key: String = "") {
@@ -40,6 +44,8 @@ struct User {
         self.name = aName
         self.displayName = aDisplayName
         self.location = aLocation
+        self.notifications = []
+        self.recentActivities = []
     }
     
     init? (snapshot: DataSnapshot) {
@@ -49,7 +55,9 @@ struct User {
             let email = value["email"] as? String,
             let name = value["name"] as? String,
             let displayName = value["displayName"] as? String,
-            let location = value["location"] as? String else { return nil}
+            let location = value["location"] as? String,
+            let notifications = value["notifications"] as? [String],
+            let recentActivities = value["recentActivities"] as? [String] else { return nil}
         
         self.ref = snapshot.ref
         self.key = snapshot.key
@@ -58,6 +66,8 @@ struct User {
         self.name = name
         self.displayName = displayName
         self.location = location
+        self.notifications = notifications
+        self.recentActivities = recentActivities
     }
     
     mutating func setDisplayName(newDisplayName: String) {
@@ -74,7 +84,9 @@ struct User {
             "email": email,
             "name": name,
             "displayName": displayName,
-            "location": location
+            "location": location,
+            "notifications": notifications,
+            "recentActivities": recentActivities
         ]
     }
 }
