@@ -507,10 +507,10 @@
             filePath = "What Todo/Controllers/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "ProfileViewController"
-            landmarkType = "3">
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "logOutDidTouch(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -523,8 +523,8 @@
             filePath = "What Todo/Controllers/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "logOutDidTouch(_:)"
             landmarkType = "7">
          </BreakpointContent>

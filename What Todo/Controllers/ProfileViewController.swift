@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var recentActivitiesTableViewCell: UITableView!
+    @IBOutlet weak var recentActivitiesTableView: UITableView!
     
     let LoginVC = "LoginVC"
 
@@ -24,6 +24,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.showUserProfile()
 
         // Do any additional setup after loading the view.
+//        self.tableView.delgate = self
+//        self.tableView.dataSource = self
     }
     
     func showUserProfile() {
