@@ -1,15 +1,14 @@
 //
-//  PostTableViewCell.swift
+//  NotificationTableViewCell.swift
 //  What Todo
 //
-//  Created by Soma Yoshida on 4/23/20.
+//  Created by Soma Yoshida on 5/1/20.
 //  Copyright © 2020 What Todo. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class PostTableViewCell: UITableViewCell {
+class NotificationTableViewCell: UITableViewCell {
 
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
