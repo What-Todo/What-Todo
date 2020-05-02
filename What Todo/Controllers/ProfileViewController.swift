@@ -9,10 +9,13 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var recentActivitiesTableView: UITableView!
     
     let LoginVC = "LoginVC"
 
@@ -21,6 +24,8 @@ class ProfileViewController: UIViewController {
         self.showUserProfile()
 
         // Do any additional setup after loading the view.
+//        self.tableView.delgate = self
+//        self.tableView.dataSource = self
     }
     
     func showUserProfile() {
@@ -55,6 +60,20 @@ class ProfileViewController: UIViewController {
         }
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitiesTableViewCell", for: indexPath) as! PostTableViewCell
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection
+                                section: Int) -> String? {
+       return "Recent Activities"
+    }
 
     /*
     // MARK: - Navigation

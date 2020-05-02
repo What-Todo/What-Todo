@@ -1,20 +1,15 @@
 //
-//  PostTableViewCell.swift
+//  RecentActivitiesTableViewCell.swift
 //  What Todo
 //
-//  Created by Soma Yoshida on 4/23/20.
+//  Created by Soma Yoshida on 5/1/20.
 //  Copyright © 2020 What Todo. All rights reserved.
 //
 
 import UIKit
-import Firebase
 
-class PostTableViewCell: UITableViewCell {
+class RecentActivitiesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var detailsLabel: UILabel!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var dueLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,5 +20,6 @@ class PostTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }
