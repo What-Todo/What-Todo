@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class NotificationTableViewController: UITableViewController {
+    // MARK: Properties
+    let ToDoRef = Database.database().reference(withPath: "ToDoLists")
+    var posts: [Post] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +37,35 @@ class NotificationTableViewController: UITableViewController {
         return 0
     }
     
-    func updatePosts() {
-
-    }
+//    func updatePosts() {
+//        self.ToDoRef.observe(.value, with: { snapshot in
+//          var newItems: [Post] = []
+//          for child in snapshot.children {
+//            if let snapshot = child as? DataSnapshot,
+//              let category = Category(snapshot: snapshot) {
+//                print(category.name, category.key + "\n")
+//                if self.isMemberof(category) {
+//                    newItems.append(post)
+//                }
+//            }
+//          }
+//          self.posts = newItems
+//          self.collectionView.reloadData()
+//        })
+//    }
+//    
+//    func isMemberof(_ category: Category) -> Bool {
+//        let catMembers = category.members
+//        let currentUser = Auth.auth().currentUser
+//
+//        for member in catMembers {
+//            print(currentUser!.uid, member)
+//            if currentUser!.uid.elementsEqual(member) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
