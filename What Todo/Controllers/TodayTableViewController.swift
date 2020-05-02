@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class TodayTableViewController: UITableViewController {
 
     @IBOutlet var todayTableView: UITableView!
+    let ToDoRef = Database.database().reference(withPath: "ToDoLists")
+    let UsersRef = Database.database().reference(withPath: "Users")
+
+    var categories: [Category] = []
+    var todaysPosts: [Post] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,37 +27,85 @@ class TodayTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        for category in categories {
+            getTodayPosts(category.key)
+        }
+//        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return todaysPosts.count
     }
     
-    func getDate() {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTableViewCell", for: indexPath) as! TodayTableViewCell
+
+        // detailsLabel
+        let thisPost = todaysPosts[indexPath.row]
+        cell.detailsLabel?.text = thisPost.details
+
+        // dispalyName
+        UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
+            })
+        
+        // due
+        cell.dueLabel!.text = thisPost.due
+        
+        return cell
+    }
+    
+    func getTodayPosts(_ catKey: String) {
+        self.ToDoRef.child(catKey).observeSingleEvent(of: .value) { (snapshot) in // look category
+            if snapshot.hasChild("posts") { // if posts exists
+                self.ToDoRef.child(catKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
+                    print("snapshot in updatePosts: ")
+                    print(snapshot as Any)
+                    for child in snapshot.children {
+                        if let snapshot = child as? DataSnapshot,
+                            let post = Post(snapshot: snapshot) {
+                            if self.checkDate(post.due) {
+                                self.todaysPosts.append(post)
+                            }
+                        }
+                    }
+                    self.tableView.reloadData()
+                })
+            } else { // if posts does not exists (first time)
+//                self.ToDoRef.child(self.selectedCategoryKey).child("posts").setValue("posts")
+            }
+        }
+    }
+    
+    func checkDate(_ postDue: String) -> Bool {
         let dateFormat = "MM/dd/yy"
         let dateFormatter = DateFormatter()
-        
-        let postDue: String = ""
-        
-//        dateFormatter.dateFormat = dateFormat
-//        let startDate = dateFormatter.date(from: "due form post")
-        
-        let today = dateFormatter.string(from: Date()) // today in format of "MM/dd/yy"
+        dateFormatter.dateFormat = dateFormat
 
-        
-        let index = postDue.index(postDue.startIndex, offsetBy: 8)
-        let mySubstring = postDue[..<index] // due in format of "MM/dd/yy"
-        
+        let today = dateFormatter.string(from: Date()) // today in format of "MM/dd/yy"
+        if postDue != "" {
+            let index = postDue.index(postDue.startIndex, offsetBy: 8)
+            let dueInFormat = postDue[..<index] // due in format of "MM/dd/yy"
+            
+            if today.elementsEqual(dueInFormat) {
+                return true // this post due today
+            }
+        }
+        return false // this post is not due today
     }
     
+    func appendToTodaysPosts(_ newPosts: [Post]) {
+
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

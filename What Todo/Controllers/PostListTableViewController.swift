@@ -16,7 +16,7 @@ class PostListTableViewController: UITableViewController {
     @IBOutlet var postTableView: UITableView!
     var posts: [Post] = []
     var users: [User] = []
-    public var selectedCategoryKey : String = "" // updated from prepare()
+    var selectedCategoryKey : String = "" // updated from prepare()
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let UsersRef = Database.database().reference(withPath: "Users")

@@ -17,8 +17,6 @@ class AddPostViewController: UIViewController {
     
     var selectedCategoryKey: String = ""
     var selectedDue: String = ""
-    let PostLTVCID = "PostLTVC"
-    let PostListVC = PostListTableViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -152,6 +152,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AA13DE0A245DF20A0075D845 /* Cells and ReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */,
+				AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */,
+				AAA7CAB2245D154700003E78 /* RecentActivitiesTableViewCell.swift */,
+				AAA7CAB0245D140A00003E78 /* NotificationTableViewCell.swift */,
+				AAA7CAAC245C8A1D00003E78 /* CategoryCollectionReusableView.swift */,
+				AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */,
+			);
+			path = "Cells and ReusableView";
+			sourceTree = "<group>";
+		};
 		AAC5148B24510E37004BCEE9 = {
 			isa = PBXGroup;
 			children = (
@@ -179,13 +192,8 @@
 			children = (
 				AAC514CB24511FF0004BCEE9 /* Models */,
 				AAC514CC24511FFF004BCEE9 /* Controllers */,
+				AA13DE0A245DF20A0075D845 /* Cells and ReusableView */,
 				AAC5149D24510E37004BCEE9 /* Main.storyboard */,
-				AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */,
-				AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */,
-				AAA7CAB2245D154700003E78 /* RecentActivitiesTableViewCell.swift */,
-				AAA7CAB0245D140A00003E78 /* NotificationTableViewCell.swift */,
-				AAA7CAAC245C8A1D00003E78 /* CategoryCollectionReusableView.swift */,
-				AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */,
 				AAC5149724510E37004BCEE9 /* AppDelegate.swift */,
 				AAC5149924510E37004BCEE9 /* SceneDelegate.swift */,
 				AAC514A024510E3A004BCEE9 /* Assets.xcassets */,
