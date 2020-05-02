@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		6C5F45E1D1A6D6D72156495C /* Pods_What_Todo_What_TodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA194ED4300980B43C9445A /* Pods_What_Todo_What_TodoUITests.framework */; };
 		909093B4DA0F0A6469555018 /* Pods_What_TodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B07626A8BB49E4A6668558 /* Pods_What_TodoTests.framework */; };
-		AA13DE03245D184A0075D845 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE02245D184A0075D845 /* ProfileTableViewController.swift */; };
 		AA13DE05245D1B350075D845 /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE04245D1B350075D845 /* TodayTableViewController.swift */; };
 		AA13DE07245D1B600075D845 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */; };
 		AA13DE09245D24D90075D845 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE08245D24D90075D845 /* AddPostViewController.swift */; };
+		AA63198E245E0BA000E7BEDE /* RecentActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63198D245E0BA000E7BEDE /* RecentActivitiesTableViewController.swift */; };
 		AA75BD6724521BD800950950 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */; };
 		AAA7CA69245A05F100003E78 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */; };
 		AAA7CA6B245B3D1F00003E78 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */; };
@@ -62,10 +62,10 @@
 		87B07626A8BB49E4A6668558 /* Pods_What_TodoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_TodoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8969C62A35700660EA1D4552 /* Pods-What Todo-What TodoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What Todo-What TodoUITests.debug.xcconfig"; path = "Target Support Files/Pods-What Todo-What TodoUITests/Pods-What Todo-What TodoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AA194ED4300980B43C9445A /* Pods_What_Todo_What_TodoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_Todo_What_TodoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA13DE02245D184A0075D845 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AA13DE04245D1B350075D845 /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewCell.swift; sourceTree = "<group>"; };
 		AA13DE08245D24D90075D845 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		AA63198D245E0BA000E7BEDE /* RecentActivitiesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentActivitiesTableViewController.swift; sourceTree = "<group>"; };
 		AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -243,8 +243,8 @@
 				AA13DE08245D24D90075D845 /* AddPostViewController.swift */,
 				AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */,
 				AAA7CAAE245CB23600003E78 /* NotificationTableViewController.swift */,
-				AA13DE02245D184A0075D845 /* ProfileTableViewController.swift */,
 				AA13DE04245D1B350075D845 /* TodayTableViewController.swift */,
+				AA63198D245E0BA000E7BEDE /* RecentActivitiesTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -489,7 +489,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA13DE03245D184A0075D845 /* ProfileTableViewController.swift in Sources */,
+				AA63198E245E0BA000E7BEDE /* RecentActivitiesTableViewController.swift in Sources */,
 				AAA7CAAF245CB23600003E78 /* NotificationTableViewController.swift in Sources */,
 				AAC76A0E2452465F00ADBA0B /* PostTableViewCell.swift in Sources */,
 				AAC5149824510E37004BCEE9 /* AppDelegate.swift in Sources */,

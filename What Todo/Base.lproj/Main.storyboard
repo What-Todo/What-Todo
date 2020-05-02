@@ -148,6 +148,11 @@
                                                 <constraint firstItem="erY-Hh-5dz" firstAttribute="leading" secondItem="c8Z-IE-cus" secondAttribute="leading" constant="20" id="wbV-JC-Syp"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detailsLabel" destination="erY-Hh-5dz" id="O8Z-rI-65s"/>
+                                            <outlet property="dueLabel" destination="4Gu-jc-z4N" id="WO0-ff-ygF"/>
+                                            <outlet property="userNameLabel" destination="DQM-vZ-hcg" id="tjB-4W-hzB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

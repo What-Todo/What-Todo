@@ -1,14 +1,17 @@
 //
-//  ProfileTableViewController.swift
+//  RecentActivitiesTableViewController.swift
 //  What Todo
 //
-//  Created by Soma Yoshida on 5/1/20.
+//  Created by Soma Yoshida on 5/2/20.
 //  Copyright © 2020 What Todo. All rights reserved.
 //
 
 import UIKit
 
-class ProfileTableViewController: UITableViewController {
+class RecentActivitiesTableViewController: UITableViewController {
+    
+    @IBOutlet weak var recentActivitiesTableView: UITableView!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +27,16 @@ class ProfileTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+       return "Recent Activities"
     }
 
     /*

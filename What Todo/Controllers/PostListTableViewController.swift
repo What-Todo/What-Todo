@@ -87,6 +87,7 @@ class PostListTableViewController: UITableViewController {
       selected.ref?.updateChildValues([
         "completed": toggledCompletion
         ])
+        addToRecentActivities(selected)
     }
     
     func toggleChecked(_ cell: UITableViewCell, isCompleted: Bool) {
@@ -132,37 +133,28 @@ class PostListTableViewController: UITableViewController {
         }
     }
     
-    func orderChecked() {
-        self.ToDoRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-          var newItems: [Post] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-              let post = Post(snapshot: snapshot) {
-              newItems.append(post)
-            }
-          }
-          
-          self.posts = newItems
-          self.tableView.reloadData()
-        })
-    }
-    
-    func getDisplayName(_ post: Post) -> String {
-        var result: String = ""
-        // get dispalyName
-        UsersRef.child(post.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+    func addToRecentActivities(_ completedPost: Post) {
+        let currentUser = Auth.auth().currentUser
+        
+        UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
             let value = snapshot.value as? NSDictionary
-            result = value?.value(forKey: "displayName") as? String ?? ""
-            })
-        return result
+            if snapshot.hasChild("recentActivities") {
+                var recentActivities = value?.value(forKey: "recentActivities") as! [Any]
+                // append completedPost
+                recentActivities.append(completedPost.toAnyObject())
+                // update members with current user id
+                self.UsersRef.child(currentUser!.uid).updateChildValues(["recentActivities": recentActivities])
+            } else {
+                self.UsersRef.child(currentUser!.uid).child("recentActivities").setValue([completedPost.toAnyObject()])
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
-    func getSelectedCatKey() -> String {
-        return self.selectedCategoryKey
-    }
-
     
-
     
 
     /*
