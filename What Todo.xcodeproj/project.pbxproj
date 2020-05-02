@@ -12,6 +12,7 @@
 		AA13DE03245D184A0075D845 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE02245D184A0075D845 /* ProfileTableViewController.swift */; };
 		AA13DE05245D1B350075D845 /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE04245D1B350075D845 /* TodayTableViewController.swift */; };
 		AA13DE07245D1B600075D845 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */; };
+		AA13DE09245D24D90075D845 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE08245D24D90075D845 /* AddPostViewController.swift */; };
 		AA75BD6724521BD800950950 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */; };
 		AAA7CA69245A05F100003E78 /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */; };
 		AAA7CA6B245B3D1F00003E78 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */; };
@@ -64,6 +65,7 @@
 		AA13DE02245D184A0075D845 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AA13DE04245D1B350075D845 /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewCell.swift; sourceTree = "<group>"; };
+		AA13DE08245D24D90075D845 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -226,11 +228,12 @@
 		AAC514CC24511FFF004BCEE9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */,
-				AAC514C924511E7A004BCEE9 /* PostListTableViewController.swift */,
-				AAC514CD2451228D004BCEE9 /* LoginViewController.swift */,
 				AAC76A0F2454B54D00ADBA0B /* SignUpViewController.swift */,
+				AAC514CD2451228D004BCEE9 /* LoginViewController.swift */,
+				AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */,
 				AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */,
+				AAC514C924511E7A004BCEE9 /* PostListTableViewController.swift */,
+				AA13DE08245D24D90075D845 /* AddPostViewController.swift */,
 				AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */,
 				AAA7CAAE245CB23600003E78 /* NotificationTableViewController.swift */,
 				AA13DE02245D184A0075D845 /* ProfileTableViewController.swift */,
@@ -491,6 +494,7 @@
 				AAC76A102454B54D00ADBA0B /* SignUpViewController.swift in Sources */,
 				AAC514CE2451228D004BCEE9 /* LoginViewController.swift in Sources */,
 				AA13DE05245D1B350075D845 /* TodayTableViewController.swift in Sources */,
+				AA13DE09245D24D90075D845 /* AddPostViewController.swift in Sources */,
 				AA75BD6724521BD800950950 /* CategoryCollectionViewCell.swift in Sources */,
 				AAA7CA69245A05F100003E78 /* AddCategoryViewController.swift in Sources */,
 				AAC514CA24511E7A004BCEE9 /* PostListTableViewController.swift in Sources */,

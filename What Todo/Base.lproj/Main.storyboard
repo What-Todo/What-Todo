@@ -11,7 +11,7 @@
         <!--Posts-->
         <scene sceneID="dCD-O6-ew9">
             <objects>
-                <tableViewController id="L5i-cf-R7n" customClass="PostListTableViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PostLTVC" id="L5i-cf-R7n" customClass="PostListTableViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g0W-cl-0Ge">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,7 +71,7 @@
                     <navigationItem key="navigationItem" title="Posts" id="OoB-Bz-4Rh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="g5x-fE-udw">
                             <connections>
-                                <action selector="addButtonDidTouch:" destination="L5i-cf-R7n" id="hU3-CK-7Xv"/>
+                                <segue destination="qFc-rv-jyd" kind="show" identifier="AddPostSegue" id="34v-Vq-92N"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -332,7 +332,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVp-E6-LhJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-772.46376811594212" y="2654.4642857142858"/>
+            <point key="canvasLocation" x="-772" y="2655"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="AeK-D1-Vfu">
@@ -512,7 +512,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wqg-Pa-2w8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826" y="1853"/>
+            <point key="canvasLocation" x="-772" y="1853"/>
         </scene>
         <!--Today-->
         <scene sceneID="erg-JJ-e0i">
@@ -546,6 +546,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v80-3Z-PRn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="845" y="3440"/>
+        </scene>
+        <!--Add Post View Controller-->
+        <scene sceneID="FAG-tx-Axc">
+            <objects>
+                <viewController id="qFc-rv-jyd" customClass="AddPostViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i4N-gA-u3j">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kfX-Yn-r6a">
+                                <rect key="frame" x="40" y="128" width="334" height="360.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Todo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjt-uV-aEn">
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iu7-Bd-FRq">
+                                        <rect key="frame" x="0.0" y="40.5" width="334" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="qOl-Hx-GoM">
+                                        <rect key="frame" x="0.0" y="94" width="334" height="216"/>
+                                        <connections>
+                                            <action selector="datePickerDidSelect:" destination="qFc-rv-jyd" eventType="valueChanged" id="JJU-hx-EPQ"/>
+                                        </connections>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rZ-sH-f3V">
+                                        <rect key="frame" x="0.0" y="330.5" width="334" height="30"/>
+                                        <state key="normal" title="Post"/>
+                                        <connections>
+                                            <action selector="postButtonDidTouch:" destination="qFc-rv-jyd" eventType="touchUpInside" id="Zau-uP-u4f"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kfX-Yn-r6a" firstAttribute="leading" secondItem="zKh-RV-6RI" secondAttribute="leading" constant="40" id="FlT-uf-nhN"/>
+                            <constraint firstItem="kfX-Yn-r6a" firstAttribute="top" secondItem="zKh-RV-6RI" secondAttribute="top" constant="40" id="W48-rQ-ABh"/>
+                            <constraint firstAttribute="trailing" secondItem="kfX-Yn-r6a" secondAttribute="trailing" constant="40" id="Yp2-S2-Yl6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="zKh-RV-6RI"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="RWf-RH-5ii"/>
+                    <connections>
+                        <outlet property="datePicker" destination="qOl-Hx-GoM" id="1iO-cE-JOV"/>
+                        <outlet property="detailsTextField" destination="iu7-Bd-FRq" id="g7S-8D-30l"/>
+                        <outlet property="postTodoLabel" destination="hjt-uV-aEn" id="tUT-L4-04g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kzo-Tm-6i5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1699" y="2656"/>
         </scene>
         <!--My Lists-->
         <scene sceneID="eGp-GY-hwJ">
@@ -685,7 +742,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Flh-cu-rpr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1554" y="2656"/>
+            <point key="canvasLocation" x="-1542" y="2654"/>
         </scene>
     </scenes>
 </document>
