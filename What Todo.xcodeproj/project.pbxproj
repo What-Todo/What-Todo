@@ -180,7 +180,6 @@
 				AAC514CB24511FF0004BCEE9 /* Models */,
 				AAC514CC24511FFF004BCEE9 /* Controllers */,
 				AAC5149D24510E37004BCEE9 /* Main.storyboard */,
-				AA13DE04245D1B350075D845 /* TodayTableViewController.swift */,
 				AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */,
 				AA75BD6624521BD800950950 /* CategoryCollectionViewCell.swift */,
 				AAA7CAB2245D154700003E78 /* RecentActivitiesTableViewCell.swift */,
@@ -237,6 +236,7 @@
 				AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */,
 				AAA7CAAE245CB23600003E78 /* NotificationTableViewController.swift */,
 				AA13DE02245D184A0075D845 /* ProfileTableViewController.swift */,
+				AA13DE04245D1B350075D845 /* TodayTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

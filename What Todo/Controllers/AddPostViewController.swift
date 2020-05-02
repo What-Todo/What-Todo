@@ -28,11 +28,13 @@ class AddPostViewController: UIViewController {
     
     @IBAction func datePickerDidSelect(_ sender: Any) {
         let dateFormatter = DateFormatter()
-
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.short
-
-        selectedDue = dateFormatter.string(from: datePicker.date)
+        
+        dateFormatter.dateFormat = "MM/dd/yy"
+        let day = dateFormatter.string(from: datePicker.date)
+        dateFormatter.timeStyle = .short
+        let time = dateFormatter.string(from: datePicker.date)
+        
+        selectedDue = day + " " + time
     }
     
     @IBAction func postButtonDidTouch(_ sender: Any) {

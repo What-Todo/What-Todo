@@ -11,6 +11,7 @@ import UIKit
 class TodayTableViewController: UITableViewController {
 
     @IBOutlet var todayTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +33,24 @@ class TodayTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
+    
+    func getDate() {
+        let dateFormat = "MM/dd/yy"
+        let dateFormatter = DateFormatter()
+        
+        let postDue: String = ""
+        
+//        dateFormatter.dateFormat = dateFormat
+//        let startDate = dateFormatter.date(from: "due form post")
+        
+        let today = dateFormatter.string(from: Date()) // today in format of "MM/dd/yy"
+
+        
+        let index = postDue.index(postDue.startIndex, offsetBy: 8)
+        let mySubstring = postDue[..<index] // due in format of "MM/dd/yy"
+        
+    }
+    
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
