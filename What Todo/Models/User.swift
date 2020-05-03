@@ -19,10 +19,11 @@ struct User {
     let name: String
     var displayName: String
     var location: String
-    var notifications: [String]
-    var recentActivities: [String]
+    var notifications: [Post]
+    var recentActivities: [Post]
     
-    init(authData: Firebase.User, aName: String, aDisplayName: String, aLocation: String = "", key: String = "") {
+    init(authData: Firebase.User, aName: String, aDisplayName: String, aLocation: String = "",
+         aNotifications: [Post] = [], aRecentActivities: [Post] = [], key: String = "") {
         self.ref = nil
         self.key = key
         
@@ -31,11 +32,12 @@ struct User {
         self.name = aName
         self.displayName = aDisplayName
         self.location = aLocation
-        self.notifications = []
-        self.recentActivities = []
+        self.notifications = aNotifications
+        self.recentActivities = aRecentActivities
     }
     
-    init(aUserId: String, aEmail: String, aName: String, aDisplayName: String, aLocation: String = "", key: String = "") {
+    init(aUserId: String, aEmail: String, aName: String, aDisplayName: String, aLocation: String = "",
+         aNotifications: [Post] = [], aRecentActivities: [Post] = [], key: String = "") {
         self.ref = nil
         self.key = key
         
@@ -44,8 +46,8 @@ struct User {
         self.name = aName
         self.displayName = aDisplayName
         self.location = aLocation
-        self.notifications = []
-        self.recentActivities = []
+        self.notifications = aNotifications
+        self.recentActivities = aRecentActivities
     }
     
     init? (snapshot: DataSnapshot) {
@@ -56,8 +58,8 @@ struct User {
             let name = value["name"] as? String,
             let displayName = value["displayName"] as? String,
             let location = value["location"] as? String,
-            let notifications = value["notifications"] as? [String],
-            let recentActivities = value["recentActivities"] as? [String] else { return nil}
+            let notifications = value["notifications"] as? [Post],
+            let recentActivities = value["recentActivities"] as? [Post] else { return nil}
         
         self.ref = snapshot.ref
         self.key = snapshot.key

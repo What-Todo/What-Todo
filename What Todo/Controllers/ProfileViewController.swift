@@ -9,23 +9,31 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var recentActivitiesTableView: UITableView!
+    
+    var recentActivities: [Post] = []
+    
     let LoginVC = "LoginVC"
+    let UsersRef = Database.database().reference(withPath: "Users")
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showUserProfile()
 
         // Do any additional setup after loading the view.
+
+        self.recentActivitiesTableView.reloadData()
+
     }
     
     func showUserProfile() {
         let currentUser = Auth.auth().currentUser
-        let UsersRef = Database.database().reference(withPath: "Users")
 
         UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -34,12 +42,18 @@ class ProfileViewController: UIViewController {
             
             self.nameLabel?.text = value?.value(forKey: "displayName") as? String
             self.locationLabel?.text = value?.value(forKey: "location") as? String
-            print(self.nameLabel.text! + " and " + self.locationLabel.text!)
-            
-          }) { (error) in
-            print(error.localizedDescription)
-        }
+
+        })
         
+        UsersRef.child(currentUser!.uid).child("recentActivities").observeSingleEvent(of: .value) { (snapshot) in
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let post = Post(snapshot: snapshot) {
+                    self.recentActivities.append(post)
+                }
+            }
+            self.recentActivitiesTableView.reloadData()
+        }
     }
 
     
@@ -54,7 +68,37 @@ class ProfileViewController: UIViewController {
             print("Sign out Failed")
         }
     }
+    
+    
+    // MARK: Recent Activities Table View
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recentActivities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitiesTableViewCell", for: indexPath) as! RecentActivitiesTableViewCell
+        if recentActivities.count != 0 {
+            // detailsLabel
+            let thisPost = recentActivities[indexPath.row]
+            cell.detailsLabel?.text = thisPost.details
+            
+            // dispalyName
+            UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
+            })
+            
+            // due
+            cell.dueLabel!.text = thisPost.due
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection
+                                section: Int) -> String? {
+       return "Recent Activities"
+    }
 
     /*
     // MARK: - Navigation

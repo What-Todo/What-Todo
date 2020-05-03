@@ -16,10 +16,11 @@ class PostListTableViewController: UITableViewController {
     @IBOutlet var postTableView: UITableView!
     var posts: [Post] = []
     var users: [User] = []
-    var selectedCategoryKey : String = "" // updated from MainCategoryViewController > prepare()
+    var selectedCategoryKey : String = "" // updated from prepare()
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let UsersRef = Database.database().reference(withPath: "Users")
+    
 
     
     override func viewDidLoad() {
@@ -50,69 +51,43 @@ class PostListTableViewController: UITableViewController {
         return posts.count
     }
 
-    
-    // MARK: - Button Actions
-    @IBAction func addButtonDidTouch(_ sender: AnyObject) {
-        let postsRef = Database.database().reference().child("ToDoLists").child(selectedCategoryKey).child("posts")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
         
-        let addPopUp = UIAlertController(title: "Post Todo",
-                                         message: "Type to post Todo",
-                                         preferredStyle: .alert)
-        
-        let currentUser = Auth.auth().currentUser
-        
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let textField = addPopUp.textFields?.first,
-                let text = textField.text else { return }
-            
-            let todoPost = Post(aDetails: text,
-                                completed: false,
-                                anAddedByUser: currentUser!.uid) // unique user id in Authentication
-            // this todo post's unique reference is set by firebase
-            let todoPostRef = postsRef.childByAutoId()
-            todoPostRef.setValue(todoPost.toAnyObject())
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel",
-                                         style: .cancel)
-        
-        addPopUp.addTextField()
-        
-        addPopUp.addAction(saveAction)
-        addPopUp.addAction(cancelAction)
-        
-        present(addPopUp, animated: true, completion: nil)
-        self.tableView.reloadData()
+        let AddPostVC = segue.destination as! AddPostViewController
+        // pass selectedCategoryKey to AddPostVC
+        AddPostVC.selectedCategoryKey = self.selectedCategoryKey
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-        print("cell in tableView")
-        print(cell as Any)
-        // Configure the cell...
+
+        // detailsLabel
         let thisPost = posts[indexPath.row]
         cell.detailsLabel?.text = thisPost.details
 
-        // get dispalyName
+        // dispalyName
         UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
             })
-//        let displayName = nameOfuid(thisPost.addedByUser)
-//        cell.userNameLabel!.text = displayName
+        
+        // due
+        cell.dueLabel!.text = thisPost.due
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
-        print("cell in tableView _didSelectRowAt: ")
-        print(cell as Any)
       let selected = posts[indexPath.row]
       let toggledCompletion = !selected.completed
       toggleChecked(cell, isCompleted: toggledCompletion)
       selected.ref?.updateChildValues([
         "completed": toggledCompletion
         ])
+        addToRecentActivities(selected)
     }
     
     func toggleChecked(_ cell: UITableViewCell, isCompleted: Bool) {
@@ -158,33 +133,28 @@ class PostListTableViewController: UITableViewController {
         }
     }
     
-    func orderChecked() {
-        self.ToDoRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-          var newItems: [Post] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-              let post = Post(snapshot: snapshot) {
-              newItems.append(post)
-            }
-          }
-          
-          self.posts = newItems
-          self.tableView.reloadData()
-        })
-    }
-    
-    func getDisplayName(_ post: Post) -> String {
-        var result: String = ""
-        // get dispalyName
-        UsersRef.child(post.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+    func addToRecentActivities(_ completedPost: Post) {
+        let currentUser = Auth.auth().currentUser
+        
+        UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
             let value = snapshot.value as? NSDictionary
-            result = value?.value(forKey: "displayName") as? String ?? ""
-            })
-        return result
+            if snapshot.hasChild("recentActivities") {
+                var recentActivities = value?.value(forKey: "recentActivities") as! [Any]
+                // append completedPost
+                recentActivities.append(completedPost.toAnyObject())
+                // update members with current user id
+                self.UsersRef.child(currentUser!.uid).updateChildValues(["recentActivities": recentActivities])
+            } else {
+                self.UsersRef.child(currentUser!.uid).child("recentActivities").setValue([completedPost.toAnyObject()])
+            }
+            
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
-
     
-
+    
     
 
     /*
