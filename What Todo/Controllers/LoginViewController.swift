@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     
     let segueSignedIn = "SignedIn"
-    let mainNavigationController = "MainNC"
+    let TabBarController = "TabBarController"
     
     
     override func viewDidLoad() {
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
     
     func transitionToHome() {
         
-        let MainNC = storyboard?.instantiateViewController(identifier: mainNavigationController)
+        let MainNC = storyboard?.instantiateViewController(identifier: TabBarController)
         view.window?.rootViewController = MainNC
         view.window?.makeKeyAndVisible()
     }
