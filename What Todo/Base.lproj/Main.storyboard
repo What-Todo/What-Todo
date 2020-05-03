@@ -681,7 +681,7 @@
             </objects>
             <point key="canvasLocation" x="1454" y="2656"/>
         </scene>
-        <!--My Lists-->
+        <!--My Todo Lists-->
         <scene sceneID="eGp-GY-hwJ">
             <objects>
                 <collectionViewController id="iPy-s2-SZI" customClass="MainCategoryCollectionViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -764,7 +764,7 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Item" id="Nxn-Ac-w60"/>
-                    <navigationItem key="navigationItem" title="My Lists" id="Twn-y1-7pj">
+                    <navigationItem key="navigationItem" title="My Todo Lists" id="Twn-y1-7pj">
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="zLF-bh-Pne">
                                 <connections>
