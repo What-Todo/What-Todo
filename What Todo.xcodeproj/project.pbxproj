@@ -235,8 +235,8 @@
 		AAC514CC24511FFF004BCEE9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AAC76A0F2454B54D00ADBA0B /* SignUpViewController.swift */,
 				AAC514CD2451228D004BCEE9 /* LoginViewController.swift */,
+				AAC76A0F2454B54D00ADBA0B /* SignUpViewController.swift */,
 				AAC514D724514DF3004BCEE9 /* MainCategoryCollectionViewController.swift */,
 				AAA7CA68245A05F100003E78 /* AddCategoryViewController.swift */,
 				AAC514C924511E7A004BCEE9 /* PostListTableViewController.swift */,
