@@ -49,10 +49,10 @@ class AddCategoryViewController: UIViewController {
                 
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-                print("value as Any: \n")
-                print(value as Any)
-                print("snapshot as Any: \n")
-                print(snapshot as Any)
+//                print("value as Any: \n")
+//                print(value as Any)
+//                print("snapshot as Any: \n")
+//                print(snapshot as Any)
                 var members = value?.value(forKey: "members") as! [String]
                 // append current user
                 members.append(currentUser!.uid)

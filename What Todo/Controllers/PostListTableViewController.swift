@@ -20,7 +20,7 @@ class PostListTableViewController: UITableViewController {
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let UsersRef = Database.database().reference(withPath: "Users")
-    
+    let currentUser = Auth.auth().currentUser
 
     
     override func viewDidLoad() {
@@ -88,6 +88,7 @@ class PostListTableViewController: UITableViewController {
         "completed": toggledCompletion
         ])
         addToRecentActivities(selected)
+        addToNotifications(selected)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -146,8 +147,6 @@ class PostListTableViewController: UITableViewController {
     }
     
     func addToRecentActivities(_ completedPost: Post) {
-        let currentUser = Auth.auth().currentUser
-        
         UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
@@ -156,15 +155,70 @@ class PostListTableViewController: UITableViewController {
                 // append completedPost
                 recentActivities.append(completedPost.toAnyObject())
                 // update members with current user id
-                self.UsersRef.child(currentUser!.uid).updateChildValues(["recentActivities": recentActivities])
+                self.UsersRef.child(self.currentUser!.uid).updateChildValues(["recentActivities": recentActivities])
             } else {
-                self.UsersRef.child(currentUser!.uid).child("recentActivities").setValue([completedPost.toAnyObject()])
+                self.UsersRef.child(self.currentUser!.uid).child("recentActivities").setValue([completedPost.toAnyObject()])
             }
             
         }) { (error) in
             print(error.localizedDescription)
         }
     }
+    
+    func addToNotifications(_ completedPost: Post) {
+        // get members
+        ToDoRef.child((completedPost.ref?.parent?.parent?.key)!).observeSingleEvent(of: .value) { (snapshot) in
+            // Get user value
+            print("completedPost.ref?.parent?.key!: " + (completedPost.ref?.parent?.parent?.key)!)
+            let value = snapshot.value as? NSDictionary
+            let members = value?.value(forKey: "members") as! [String]
+            for member in members {
+                self.addNotificationsToMember(snapshot, completedPost, member)
+            }
+        }
+//        let theCatMembers = completedPost.ref?.parent?.child("members")
+//        for member in theCatMembers {
+//            UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+//                // Get user value
+//                let value = snapshot.value as? NSDictionary
+//                if snapshot.hasChild("recentActivities") {
+//                    var recentActivities = value?.value(forKey: "recentActivities") as! [Any]
+//                    // append completedPost
+//                    recentActivities.append(completedPost.toAnyObject())
+//                    // update members with current user id
+//                    self.UsersRef.child(self.currentUser!.uid).updateChildValues(["recentActivities": recentActivities])
+//                } else {
+//                    self.UsersRef.child(self.currentUser!.uid).child("recentActivities").setValue([completedPost.toAnyObject()])
+//                }
+//
+//            }) { (error) in
+//                print(error.localizedDescription)
+//            }
+//        }
+    }
+    
+    func addNotificationsToMember(_ snapshot: DataSnapshot, _ completedPost: Post, _ member: String) {
+        if snapshot.hasChild("notifications") {
+            let value = snapshot.value as? NSDictionary
+            var notifications = value?.value(forKey: "notifications") as! [Any]
+            notifications.append(completedPost.toAnyObject())
+            self.UsersRef.child(member).updateChildValues(["notifications": notifications])
+        } else {
+            self.UsersRef.child(member).child("notifications").setValue([completedPost.toAnyObject()])
+        }
+    }
+    
+//    func isMemberof(_ category: Category) -> Bool {
+//        let catMembers = category.members
+//
+//        for member in catMembers {
+//            print(currentUser!.uid, member)
+//            if currentUser!.uid.elementsEqual(member) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
     
     /*
     // Override to support conditional editing of the table view.

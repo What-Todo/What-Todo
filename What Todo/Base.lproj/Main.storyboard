@@ -279,7 +279,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="135" id="hkg-cf-J0z" customClass="NotificationTableViewCell" customModule="What_Todo" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" rowHeight="135" id="hkg-cf-J0z" customClass="NotificationTableViewCell" customModule="What_Todo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="135"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hkg-cf-J0z" id="VIs-ew-97K">
@@ -331,7 +331,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Notification" id="96O-om-015"/>
                     <connections>
-                        <outlet property="NotificationTableView" destination="UMO-6A-05p" id="dyj-0a-UKM"/>
+                        <outlet property="notificationTableView" destination="UMO-6A-05p" id="dyj-0a-UKM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVp-E6-LhJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

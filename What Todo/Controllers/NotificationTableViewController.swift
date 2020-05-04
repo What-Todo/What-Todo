@@ -12,8 +12,11 @@ import Firebase
 class NotificationTableViewController: UITableViewController {
     // MARK: Properties
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
-    var posts: [Post] = []
-    @IBOutlet var NotificationTableView: UITableView!
+    let UsersRef = Database.database().reference(withPath: "Users")
+    let currentUser = Auth.auth().currentUser
+
+    var notifications: [Post] = []
+    @IBOutlet var notificationTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,52 +26,51 @@ class NotificationTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        //updatePosts()
+        getNotifications()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return notifications.count
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell", for: indexPath) as! NotificationTableViewCell
 
+        // detailsLabel
+        let thisPost = notifications[indexPath.row]
+        cell.detailsLabel?.text = thisPost.details
+
+        // dispalyName
+        UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
+            })
+        
+        // due
+        cell.dueLabel!.text = thisPost.due
+
+        return cell
+    }
     
-//    func updatePosts() {
-//        self.ToDoRef.observe(.value, with: { snapshot in
-//          var newItems: [Post] = []
-//          for child in snapshot.children {
-//            if let snapshot = child as? DataSnapshot,
-//              let category = Category(snapshot: snapshot) {
-//                print(category.name, category.key + "\n")
-//                if self.isMemberof(category) {
-//                    newItems.append(post)
-//                }
-//            }
-//          }
-//          self.posts = newItems
-//          self.collectionView.reloadData()
-//        })
-//    }
-//    
-//    func isMemberof(_ category: Category) -> Bool {
-//        let catMembers = category.members
-//        let currentUser = Auth.auth().currentUser
-//
-//        for member in catMembers {
-//            print(currentUser!.uid, member)
-//            if currentUser!.uid.elementsEqual(member) {
-//                return true
-//            }
-//        }
-//        return false
-//    }
+    func getNotifications() {
+        UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value) { (snapshot) in
+            for child in snapshot.children {
+                if let snapshot = child as? DataSnapshot,
+                    let post = Post(snapshot: snapshot) {
+                    self.notifications.append(post)
+                }
+            }
+            self.tableView.reloadData()
+        }
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
