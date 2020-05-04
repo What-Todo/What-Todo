@@ -169,42 +169,23 @@ class PostListTableViewController: UITableViewController {
         // get members
         ToDoRef.child((completedPost.ref?.parent?.parent?.key)!).observeSingleEvent(of: .value) { (snapshot) in
             // Get user value
-            print("completedPost.ref?.parent?.key!: " + (completedPost.ref?.parent?.parent?.key)!)
             let value = snapshot.value as? NSDictionary
             let members = value?.value(forKey: "members") as! [String]
+            let mode = value?.value(forKey: "mode") as! String
             for member in members {
-                self.addNotificationsToMember(snapshot, completedPost, member)
+                self.addNotificationsToMember(snapshot, completedPost, member, mode)
             }
         }
-//        let theCatMembers = completedPost.ref?.parent?.child("members")
-//        for member in theCatMembers {
-//            UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-//                // Get user value
-//                let value = snapshot.value as? NSDictionary
-//                if snapshot.hasChild("recentActivities") {
-//                    var recentActivities = value?.value(forKey: "recentActivities") as! [Any]
-//                    // append completedPost
-//                    recentActivities.append(completedPost.toAnyObject())
-//                    // update members with current user id
-//                    self.UsersRef.child(self.currentUser!.uid).updateChildValues(["recentActivities": recentActivities])
-//                } else {
-//                    self.UsersRef.child(self.currentUser!.uid).child("recentActivities").setValue([completedPost.toAnyObject()])
-//                }
-//
-//            }) { (error) in
-//                print(error.localizedDescription)
-//            }
-//        }
     }
     
-    func addNotificationsToMember(_ snapshot: DataSnapshot, _ completedPost: Post, _ member: String) {
+    func addNotificationsToMember(_ snapshot: DataSnapshot, _ completedPost: Post, _ member: String, _ mode: String) {
         if snapshot.hasChild("notifications") {
             let value = snapshot.value as? NSDictionary
-            var notifications = value?.value(forKey: "notifications") as! [Any]
+            var notifications = value?.value(forKey: mode) as! [Any]
             notifications.append(completedPost.toAnyObject())
-            self.UsersRef.child(member).updateChildValues(["notifications": notifications])
+            self.UsersRef.child(member).child("notifications").updateChildValues([mode: notifications])
         } else {
-            self.UsersRef.child(member).child("notifications").setValue([completedPost.toAnyObject()])
+            self.UsersRef.child(member).child("notifications").child(mode).setValue([completedPost.toAnyObject()])
         }
     }
     

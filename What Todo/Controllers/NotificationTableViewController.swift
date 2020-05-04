@@ -9,18 +9,25 @@
 import UIKit
 import Firebase
 
-class NotificationTableViewController: UITableViewController {
+class NotificationTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // MARK: Properties
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let UsersRef = Database.database().reference(withPath: "Users")
     let currentUser = Auth.auth().currentUser
-
+    let segmentedControlData = ["Cooperative", "Competitive"]
     var notifications: [Post] = []
-    @IBOutlet var notificationTableView: UITableView!
+    var mode: String = "Cooperative"
+    
+    @IBOutlet weak var notificationTableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.notificationTableView.delegate = self
+        self.notificationTableView.dataSource = self
 
+        segmentedControl.setTitle(segmentedControlData[0], forSegmentAt: 0)
+        segmentedControl.setTitle(segmentedControlData[1], forSegmentAt: 1)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -29,19 +36,19 @@ class NotificationTableViewController: UITableViewController {
         getNotifications()
     }
 
-    // MARK: - Table view data source
+    // MARK: - Notification Table View
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return notifications.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell", for: indexPath) as! NotificationTableViewCell
 
         // detailsLabel
@@ -60,18 +67,36 @@ class NotificationTableViewController: UITableViewController {
         return cell
     }
     
+    
+    
     func getNotifications() {
-        UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value) { (snapshot) in
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let post = Post(snapshot: snapshot) {
-                    self.notifications.append(post)
+        UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild(self.mode) {
+                self.UsersRef.child(self.currentUser!.uid).child("notifications").child(self.mode).observeSingleEvent(of: .value) { (snapshot) in
+                    for child in snapshot.children {
+                        if let snapshot = child as? DataSnapshot,
+                            let post = Post(snapshot: snapshot) {
+                            self.notifications.append(post)
+                        }
+                    }
+                    self.notificationTableView.reloadData()
                 }
             }
-            self.tableView.reloadData()
-        }
+        })
     }
 
+    @IBAction func modeSegmentControlDidTouch(_ sender: Any) {
+        notifications = []
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            mode = segmentedControlData[0]
+        case 1:
+            mode = segmentedControlData[1]
+        default:
+            break
+        }
+        getNotifications()
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
