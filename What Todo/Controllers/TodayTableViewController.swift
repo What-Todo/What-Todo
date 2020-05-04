@@ -57,6 +57,12 @@ class TodayTableViewController: UITableViewController {
             cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
             })
         
+        // display category name
+        ToDoRef.child((thisPost.ref?.parent?.parent?.key)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            cell.categoryNameLabel!.text = value?["details"] as? String ?? "failed"
+            })
+        
         // due
         cell.dueLabel!.text = thisPost.due
         

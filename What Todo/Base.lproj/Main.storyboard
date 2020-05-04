@@ -307,12 +307,12 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailingMargin" secondItem="hKz-Nf-XQA" secondAttribute="trailing" constant="4" id="8LJ-Y1-5d0"/>
-                                        <constraint firstItem="74w-2e-P5Y" firstAttribute="top" secondItem="VIs-ew-97K" secondAttribute="top" constant="4" id="CB1-w2-aW8"/>
                                         <constraint firstAttribute="bottom" secondItem="afG-wW-LVy" secondAttribute="bottom" constant="4" id="DJs-Yu-GLt"/>
                                         <constraint firstItem="hKz-Nf-XQA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="afG-wW-LVy" secondAttribute="trailing" constant="8" symbolic="YES" id="JsF-v1-T26"/>
                                         <constraint firstItem="afG-wW-LVy" firstAttribute="leading" secondItem="VIs-ew-97K" secondAttribute="leading" constant="20" id="SdU-gF-lbF"/>
                                         <constraint firstItem="afG-wW-LVy" firstAttribute="top" secondItem="74w-2e-P5Y" secondAttribute="bottom" constant="4" id="eVG-Zr-Yaq"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="74w-2e-P5Y" secondAttribute="trailing" constant="20" symbolic="YES" id="kNl-g4-a0T"/>
+                                        <constraint firstItem="74w-2e-P5Y" firstAttribute="top" secondItem="VIs-ew-97K" secondAttribute="top" constant="4" id="o3u-5J-9UO"/>
                                         <constraint firstItem="74w-2e-P5Y" firstAttribute="leading" secondItem="VIs-ew-97K" secondAttribute="leading" constant="20" id="q5w-B0-ciZ"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="hKz-Nf-XQA" secondAttribute="bottom" constant="4" id="r5m-MJ-JwQ"/>
                                     </constraints>
@@ -863,13 +863,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="details Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVY-f2-5hR">
-                                            <rect key="frame" x="20" y="4" width="96.5" height="20.5"/>
+                                            <rect key="frame" x="20" y="29" width="96.5" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user name label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVC-1m-n0c">
-                                            <rect key="frame" x="40" y="28.5" width="76.5" height="91.5"/>
+                                            <rect key="frame" x="40" y="53.5" width="76.5" height="66.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -880,21 +880,31 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Category Name Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qb2-EV-b6c">
+                                            <rect key="frame" x="20" y="4" width="166" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="qb2-EV-b6c" firstAttribute="top" secondItem="B6f-6z-quP" secondAttribute="top" constant="4" id="CEE-pj-Zjp"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qb2-EV-b6c" secondAttribute="trailing" constant="20" symbolic="YES" id="DLV-Xd-fOQ"/>
                                         <constraint firstItem="EVY-f2-5hR" firstAttribute="leading" secondItem="B6f-6z-quP" secondAttribute="leading" constant="20" id="ELf-lD-BAy"/>
-                                        <constraint firstItem="EVY-f2-5hR" firstAttribute="top" secondItem="B6f-6z-quP" secondAttribute="top" constant="4" id="I51-jm-lpH"/>
+                                        <constraint firstItem="qb2-EV-b6c" firstAttribute="leading" secondItem="B6f-6z-quP" secondAttribute="leading" constant="20" id="MVN-t8-cW8"/>
                                         <constraint firstItem="XPW-nM-myd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wVC-1m-n0c" secondAttribute="trailing" constant="8" symbolic="YES" id="P9U-83-1AX"/>
                                         <constraint firstItem="wVC-1m-n0c" firstAttribute="top" secondItem="EVY-f2-5hR" secondAttribute="bottom" constant="4" id="WcW-NR-thf"/>
                                         <constraint firstItem="wVC-1m-n0c" firstAttribute="leading" secondItem="B6f-6z-quP" secondAttribute="leadingMargin" constant="20" id="bHY-3D-VFu"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EVY-f2-5hR" secondAttribute="trailing" constant="20" symbolic="YES" id="c0t-XE-ueg"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="XPW-nM-myd" secondAttribute="trailing" constant="4" id="hfq-Ae-i8v"/>
+                                        <constraint firstItem="EVY-f2-5hR" firstAttribute="top" secondItem="qb2-EV-b6c" secondAttribute="bottom" constant="4" id="ieD-Kc-fDy"/>
                                         <constraint firstItem="wVC-1m-n0c" firstAttribute="top" secondItem="EVY-f2-5hR" secondAttribute="bottom" constant="4" id="jI6-8a-eqD"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="XPW-nM-myd" secondAttribute="bottom" constant="4" id="kla-J9-COo"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="wVC-1m-n0c" secondAttribute="bottom" constant="4" id="o3F-2D-xmm"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="categoryNameLabel" destination="qb2-EV-b6c" id="mKf-1k-rPe"/>
                                     <outlet property="detailsLabel" destination="EVY-f2-5hR" id="SHy-a5-IYi"/>
                                     <outlet property="dueLabel" destination="XPW-nM-myd" id="V9L-ee-ekE"/>
                                     <outlet property="userNameLabel" destination="wVC-1m-n0c" id="Wr2-bH-O36"/>

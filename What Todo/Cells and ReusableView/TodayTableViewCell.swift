@@ -13,6 +13,7 @@ class TodayTableViewCell: UITableViewCell {
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
+    @IBOutlet weak var categoryNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
