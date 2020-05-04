@@ -30,7 +30,6 @@ class TodayTableViewController: UITableViewController {
         for category in categories {
             getTodayPosts(category.key)
         }
-//        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -63,33 +62,6 @@ class TodayTableViewController: UITableViewController {
         
         return cell
     }
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let cell = tableView.cellForRow(at: indexPath) else { return }
-//        let selected = todaysPosts[indexPath.row]
-//        let toggledCompletion = !selected.completed
-//        toggleChecked(cell, isCompleted: toggledCompletion)
-//        selected.ref?.updateChildValues([
-//            "completed": toggledCompletion
-//        ])
-//    }
-//
-//    func toggleChecked(_ cell: UITableViewCell, isCompleted: Bool) {
-//        cell.textLabel?.textColor = .gray
-//
-//        if isCompleted {
-//            //        cell.accessoryType = .checkmark
-//            //        cell.detailsTextLabel?.textColor = .gray
-//            //        cell.userNameLabel?.textColor = .gray
-//            cell.contentView.backgroundColor = UIColor.lightText
-//
-//        } else {
-//            cell.contentView.backgroundColor = UIColor.clear
-//            //        cell.accessoryType = .none
-//            //        cell.userNameLabel?.textColor = .black
-//            //        cell.detailsTextLabel?.textColor = .black
-//        }
-//    }
     
     func getTodayPosts(_ catKey: String) {
         self.ToDoRef.child(catKey).observeSingleEvent(of: .value) { (snapshot) in // look category

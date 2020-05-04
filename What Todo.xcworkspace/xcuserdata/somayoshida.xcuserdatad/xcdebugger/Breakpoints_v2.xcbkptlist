@@ -317,6 +317,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -617,8 +619,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "updatePosts()"
             landmarkType = "7">
          </BreakpointContent>
@@ -729,8 +731,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "updatePosts()"
             landmarkType = "7">
          </BreakpointContent>
@@ -745,8 +747,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "updatePosts()"
             landmarkType = "7">
          </BreakpointContent>
@@ -761,8 +763,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "updatePosts()"
             landmarkType = "7">
          </BreakpointContent>
@@ -777,8 +779,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "updatePosts()"
             landmarkType = "7">
          </BreakpointContent>
@@ -809,8 +811,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "toggleChecked(_:isCompleted:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -841,8 +843,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "toggleChecked(_:isCompleted:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -873,8 +875,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "updatePosts()"
             landmarkType = "7">
             <Locations>
@@ -953,8 +955,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "updatePosts()"
             landmarkType = "7">
          </BreakpointContent>
@@ -985,10 +987,10 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "getTodayPosts(_:)"
-            landmarkType = "7">
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "TodayTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1001,8 +1003,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "getTodayPosts(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1017,8 +1019,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "getTodayPosts(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1033,8 +1035,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "getTodayPosts(_:)"
             landmarkType = "7">
             <Locations>
@@ -1081,8 +1083,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "checkDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1097,8 +1099,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "checkDate(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1129,8 +1131,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "getTodayPosts(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1145,8 +1147,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "getTodayPosts(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1161,8 +1163,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "getTodayPosts(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1177,8 +1179,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "getTodayPosts(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1209,8 +1211,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1257,8 +1259,8 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1273,10 +1275,10 @@
             filePath = "What Todo/Controllers/TodayTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "TodayTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1289,8 +1291,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "addToRecentActivities(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1305,8 +1307,8 @@
             filePath = "What Todo/Controllers/PostListTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "addToRecentActivities(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1529,6 +1531,54 @@
                   offsetFromSymbolStart = "594">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "12FA81AE-02A6-45A7-83CD-16EE8414CB20"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "What Todo/Controllers/PostListTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "tableView(_:commit:forRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B9FFD8D9-C2D8-4226-B1CF-59DB9DE48C58"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "What Todo/Controllers/PostListTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "tableView(_:commit:forRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "32677535-A1A8-4C18-B4F4-C8C0C0E7DBEF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "What Todo/Controllers/PostListTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "tableView(_:commit:forRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

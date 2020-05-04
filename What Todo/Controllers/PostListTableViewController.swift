@@ -36,7 +36,7 @@ class PostListTableViewController: UITableViewController {
 //        print(self.ToDoRef.child(selectedCategoryKey)) // print reference
         updatePosts()
 //        orderChecked()
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -88,6 +88,18 @@ class PostListTableViewController: UITableViewController {
         "completed": toggledCompletion
         ])
         addToRecentActivities(selected)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+           
+//            posts.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            
+            let deletingPost = posts[indexPath.row]
+            deletingPost.ref?.removeValue()
+        }
+        
     }
     
     func toggleChecked(_ cell: UITableViewCell, isCompleted: Bool) {
@@ -154,16 +166,6 @@ class PostListTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCell.EditingStyle.delete {
-           
-            posts.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        }
-        
-    }
-    
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
