@@ -14,13 +14,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var modeLabel: UILabel!
-    
+    var cellColor: Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
-    
-    override func prepareForReuse() {
     }
  
 }

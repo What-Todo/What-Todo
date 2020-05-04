@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6C5F45E1D1A6D6D72156495C /* Pods_What_Todo_What_TodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA194ED4300980B43C9445A /* Pods_What_Todo_What_TodoUITests.framework */; };
 		909093B4DA0F0A6469555018 /* Pods_What_TodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B07626A8BB49E4A6668558 /* Pods_What_TodoTests.framework */; };
+		AA023B932460AF210074E1D1 /* InvitaionKeyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA023B922460AF210074E1D1 /* InvitaionKeyTableViewController.swift */; };
+		AA023B952460AF440074E1D1 /* InvitationKeyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA023B942460AF440074E1D1 /* InvitationKeyTableViewCell.swift */; };
 		AA13DE05245D1B350075D845 /* TodayTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE04245D1B350075D845 /* TodayTableViewController.swift */; };
 		AA13DE07245D1B600075D845 /* TodayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */; };
 		AA13DE09245D24D90075D845 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13DE08245D24D90075D845 /* AddPostViewController.swift */; };
@@ -61,6 +63,8 @@
 		87B07626A8BB49E4A6668558 /* Pods_What_TodoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_TodoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8969C62A35700660EA1D4552 /* Pods-What Todo-What TodoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-What Todo-What TodoUITests.debug.xcconfig"; path = "Target Support Files/Pods-What Todo-What TodoUITests/Pods-What Todo-What TodoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AA194ED4300980B43C9445A /* Pods_What_Todo_What_TodoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_What_Todo_What_TodoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA023B922460AF210074E1D1 /* InvitaionKeyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitaionKeyTableViewController.swift; sourceTree = "<group>"; };
+		AA023B942460AF440074E1D1 /* InvitationKeyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationKeyTableViewCell.swift; sourceTree = "<group>"; };
 		AA13DE04245D1B350075D845 /* TodayTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewController.swift; sourceTree = "<group>"; };
 		AA13DE06245D1B600075D845 /* TodayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTableViewCell.swift; sourceTree = "<group>"; };
 		AA13DE08245D24D90075D845 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				AAA7CAB0245D140A00003E78 /* NotificationTableViewCell.swift */,
 				AAA7CAAC245C8A1D00003E78 /* CategoryCollectionReusableView.swift */,
 				AAC76A0D2452465F00ADBA0B /* PostTableViewCell.swift */,
+				AA023B942460AF440074E1D1 /* InvitationKeyTableViewCell.swift */,
 			);
 			path = "Cells and ReusableView";
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				AAA7CA6A245B3D1F00003E78 /* ProfileViewController.swift */,
 				AAA7CAAE245CB23600003E78 /* NotificationTableViewController.swift */,
 				AA13DE04245D1B350075D845 /* TodayTableViewController.swift */,
+				AA023B922460AF210074E1D1 /* InvitaionKeyTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -488,11 +494,13 @@
 			files = (
 				AAA7CAAF245CB23600003E78 /* NotificationTableViewController.swift in Sources */,
 				AAC76A0E2452465F00ADBA0B /* PostTableViewCell.swift in Sources */,
+				AA023B952460AF440074E1D1 /* InvitationKeyTableViewCell.swift in Sources */,
 				AAC5149824510E37004BCEE9 /* AppDelegate.swift in Sources */,
 				AAC5149A24510E37004BCEE9 /* SceneDelegate.swift in Sources */,
 				AAA7CAB3245D154700003E78 /* RecentActivitiesTableViewCell.swift in Sources */,
 				AAA7CAB1245D140A00003E78 /* NotificationTableViewCell.swift in Sources */,
 				AAA7CAAD245C8A1D00003E78 /* CategoryCollectionReusableView.swift in Sources */,
+				AA023B932460AF210074E1D1 /* InvitaionKeyTableViewController.swift in Sources */,
 				AAC514D824514DF3004BCEE9 /* MainCategoryCollectionViewController.swift in Sources */,
 				AAC514D02451232B004BCEE9 /* Post.swift in Sources */,
 				AAC76A102454B54D00ADBA0B /* SignUpViewController.swift in Sources */,

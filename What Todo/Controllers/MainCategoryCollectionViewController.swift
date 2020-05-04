@@ -14,6 +14,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     // MARK: Properties
     var categories: [Category] = []
     var user: User!
+    var imageNum = 0
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     
     @IBOutlet var catCollectionView: UICollectionView!
@@ -28,21 +29,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         
-        // Synchronizing Data to the Collection view        
-        self.ToDoRef.observe(.value, with: { snapshot in
-          var newItems: [Category] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-              let category = Category(snapshot: snapshot) {
-                print(category.name, category.key + "\n")
-                if self.isMemberof(category) {
-                    newItems.append(category)
-                }
-            }
-          }
-          self.categories = newItems
-          self.collectionView.reloadData()
-        })
+        // Synchronizing Data to the Collection view
+        getCategories()
     }
 
     
@@ -58,6 +46,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
             // update dest controller's variable
              let PostLTVC = segue.destination as! PostListTableViewController
             PostLTVC.selectedCategoryKey = categories[indexPath.row].key as String
+            PostLTVC.cellColor = indexPath.row % 3
          }
         if let TodayTableVC = segue.destination as? TodayTableViewController {
             // pass selectedCategoryKey to
@@ -88,9 +77,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         let thisCat = categories[indexPath.row]
         cell.nameLabel?.text = thisCat.name
         cell.modeLabel?.text = thisCat.mode
-        
-        var imageTemp: UIImage = UIImage(named: "pink")!
-        cell.imageView.image = imageTemp
+        colorSet(cell)
         return cell
     }
     
@@ -104,6 +91,23 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         fatalError()
     }
     
+    func getCategories() {
+        self.ToDoRef.observe(.value, with: { snapshot in
+          var newItems: [Category] = []
+          for child in snapshot.children {
+            if let snapshot = child as? DataSnapshot,
+              let category = Category(snapshot: snapshot) {
+                print(category.name, category.key + "\n")
+                if self.isMemberof(category) {
+                    newItems.append(category)
+                }
+            }
+          }
+          self.categories = newItems
+          self.collectionView.reloadData()
+        })
+    }
+    
     func isMemberof(_ category: Category) -> Bool {
         let catMembers = category.members
         let currentUser = Auth.auth().currentUser
@@ -115,6 +119,29 @@ class MainCategoryCollectionViewController: UICollectionViewController {
             }
         }
         return false
+    }
+    
+    func colorSet(_ cell: CategoryCollectionViewCell) {
+        var image: UIImage = UIImage(named: "yellow")!
+        switch imageNum {
+        case 0:
+            image = UIImage(named: "yellow")!
+            cell.cellColor = 0
+            imageNum = 1
+            break
+        case 1:
+            image = UIImage(named: "pink")!
+            cell.cellColor = 1
+            imageNum = 2
+            break
+        case 2:
+            image = UIImage(named: "blue")!
+            cell.cellColor = 2
+            imageNum = 0
+        default:
+            break
+        }
+        cell.imageView.image = image
     }
 
     // MARK: - Button Actions
@@ -151,6 +178,17 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     }
     */
 
+}
+
+extension MainCategoryCollectionViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return CGSize(width: collectionView.frame.size.width/2.0 - 10,
+                      height: collectionView.frame.size.width/2.0 - 10)
+    }
 }
 
 

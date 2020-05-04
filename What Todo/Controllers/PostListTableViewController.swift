@@ -17,11 +17,12 @@ class PostListTableViewController: UITableViewController {
     var posts: [Post] = []
     var users: [User] = []
     var selectedCategoryKey : String = "" // updated from prepare()
+    var cellColor: Int = 0
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let UsersRef = Database.database().reference(withPath: "Users")
     let currentUser = Auth.auth().currentUser
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +34,8 @@ class PostListTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         // Synchronizing Data to the Table view
-//        print(self.ToDoRef.child(selectedCategoryKey)) // print reference
+        setNavigationBar()
         updatePosts()
-//        orderChecked()
-//        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -101,6 +100,10 @@ class PostListTableViewController: UITableViewController {
             deletingPost.ref?.removeValue()
         }
         
+    }
+    
+    override func willMove(toParent parent: UIViewController?) {
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
     }
     
     func toggleChecked(_ cell: UITableViewCell, isCompleted: Bool) {
@@ -189,17 +192,27 @@ class PostListTableViewController: UITableViewController {
         }
     }
     
-//    func isMemberof(_ category: Category) -> Bool {
-//        let catMembers = category.members
-//
-//        for member in catMembers {
-//            print(currentUser!.uid, member)
-//            if currentUser!.uid.elementsEqual(member) {
-//                return true
-//            }
-//        }
-//        return false
-//    }
+    func setNavigationBar() {
+        // set title
+        ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.navigationItem.title = value?.value(forKey: "details") as! String
+        }
+        // set color
+        switch cellColor {
+        case 0:
+            self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 252/255, green: 243/255, blue: 173/255, alpha: 1)
+            break
+        case 1:
+            self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 248/255, green: 209/255, blue: 235/255, alpha: 1)
+            break
+        case 2:
+            self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 192/255, green: 245/255, blue: 243/255, alpha: 1)
+            break
+        default:
+            break
+        }
+    }
     
     /*
     // Override to support conditional editing of the table view.
@@ -247,3 +260,5 @@ class PostListTableViewController: UITableViewController {
     */
 
 }
+
+
