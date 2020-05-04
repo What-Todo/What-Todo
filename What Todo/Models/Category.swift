@@ -16,15 +16,17 @@ struct Category {
 
     var name : String
     let addedByUser : String
+    var mode: String
     var members : [String] = []
     
     // constructor
-    init(aName: String, anAddedByUser: String, aMembers : [String], key: String = "") {
+    init(aName: String, anAddedByUser: String, aMode: String, aMembers : [String], key: String = "") {
         self.ref = nil
         self.key = key
 
         self.name = aName
         self.addedByUser = anAddedByUser
+        self.mode = aMode
         self.members = aMembers
     }
     
@@ -33,12 +35,14 @@ struct Category {
             let value = snapshot.value as? [String: AnyObject],
             let details = value["details"] as? String,
             let addedByUser = value["addedByUser"] as? String,
+            let mode = value["mode"] as? String,
             let members = value["members"]as? [String] else { return nil }
         
         self.ref = snapshot.ref
         self.key = snapshot.key
         self.name = details
         self.addedByUser = addedByUser
+        self.mode = mode
         self.members = members
     }
     
@@ -46,6 +50,7 @@ struct Category {
         return [
             "details": name,
             "addedByUser": addedByUser,
+            "mode": mode,
             "members": members
         ]
     }

@@ -9,9 +9,10 @@
 import UIKit
 import Firebase
 
-class AddCategoryViewController: UIViewController {
-
+class AddCategoryViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     @IBOutlet weak var newCategoryLabel: UILabel!
+    @IBOutlet weak var modePickerView: UIPickerView!
     @IBOutlet weak var categoryNameTextField: UITextField!
     @IBOutlet weak var joinCategoryLabel: UILabel!
     @IBOutlet weak var joinKeyTextField: UITextField!
@@ -19,11 +20,28 @@ class AddCategoryViewController: UIViewController {
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let mainNavigationController = "MainNC"
     var categoryKey: String = ""
+    let pickerData: [String] = ["Cooperative", "Competitive", "Private"]
+    var mode: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.modePickerView.delegate = self
+        self.modePickerView.dataSource = self
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        mode = pickerData[row]
+        return pickerData[row]
     }
     
     @IBAction func createButtonDidTouch(_ sender: Any) {
@@ -31,6 +49,7 @@ class AddCategoryViewController: UIViewController {
         
         let category = Category(aName: categoryNameTextField!.text!,
                                 anAddedByUser: currentUser!.uid,
+                                aMode: mode,
                                 aMembers: [currentUser!.uid])
         let categoryRef = self.ToDoRef.childByAutoId()
         categoryRef.setValue(category.toAnyObject())
@@ -49,10 +68,6 @@ class AddCategoryViewController: UIViewController {
                 
                 // Get user value
                 let value = snapshot.value as? NSDictionary
-//                print("value as Any: \n")
-//                print(value as Any)
-//                print("snapshot as Any: \n")
-//                print(snapshot as Any)
                 var members = value?.value(forKey: "members") as! [String]
                 // append current user
                 members.append(currentUser!.uid)

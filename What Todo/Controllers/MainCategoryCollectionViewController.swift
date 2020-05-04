@@ -87,7 +87,8 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         // Configure the cell
         let thisCat = categories[indexPath.row]
         cell.nameLabel?.text = thisCat.name
-//        print(cell.nameLabel.text as Any) // cell.nameLabel.text is changed collectly. Not displayed
+        cell.modeLabel?.text = thisCat.mode
+        
         var imageTemp: UIImage = UIImage(named: "pink")!
         cell.imageView.image = imageTemp
         return cell

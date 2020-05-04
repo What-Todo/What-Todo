@@ -13,6 +13,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: UI Propaties
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var modeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
