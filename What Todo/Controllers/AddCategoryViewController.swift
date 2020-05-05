@@ -21,7 +21,7 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate, UIPicke
     let mainNavigationController = "MainNC"
     var categoryKey: String = ""
     let pickerData: [String] = ["Cooperative", "Competitive", "Private"]
-    var mode: String = ""
+    var mode: String = "Cooperative"
     
     override func viewDidLoad() {
         super.viewDidLoad()
