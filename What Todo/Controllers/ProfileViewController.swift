@@ -44,9 +44,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.nameLabel?.text = value?.value(forKey: "displayName") as? String
             self.locationLabel?.text = value?.value(forKey: "location") as? String
             
-//            self.completedCounterLabel?.text = value?.value(forKey: "completedCounter") as? NSNumber
-        print(value?.value(forKey: "completedCounter") as? NSNumber)
-            self.madeCounterLabel?.text = value?.value(forKey: "madeCounter") as? String
+            let completedCounter = value?.value(forKey: "completedCounter") as? NSNumber
+            if let compCounterInt = completedCounter?.intValue {
+                self.completedCounterLabel?.text = String(compCounterInt)
+            }
+            let madeCounter = value?.value(forKey: "madeCounter") as? NSNumber
+            if let madeCounterInt = madeCounter?.intValue {
+                self.madeCounterLabel?.text = String(madeCounterInt)
+            }
+            
         })
         
         UsersRef.child(currentUser!.uid).child("recentActivities").observeSingleEvent(of: .value) { (snapshot) in
