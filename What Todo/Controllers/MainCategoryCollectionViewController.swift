@@ -186,8 +186,8 @@ extension MainCategoryCollectionViewController: UICollectionViewDelegateFlowLayo
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: collectionView.frame.size.width/2.0 - 10,
-                      height: collectionView.frame.size.width/2.0 - 10)
+        return CGSize(width: collectionView.frame.size.width/2.0 - 8,
+                      height: collectionView.frame.size.width/2.0 - 8)
     }
 }
 

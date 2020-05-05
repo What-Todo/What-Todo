@@ -830,16 +830,16 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="CategoryCollectionViewCell" id="GCd-Le-Gjc" customClass="CategoryCollectionViewCell" customModule="What_Todo" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="CategoryCollectionViewCell" id="GCd-Le-Gjc" customClass="CategoryCollectionViewCell" customModule="What_Todo" customModuleProvider="target">
                                 <rect key="frame" x="58" y="137" width="298" height="270"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="Mbj-j9-at4">
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wat-rn-2v7">
                                     <rect key="frame" x="0.0" y="0.0" width="298" height="270"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KeO-g8-1Ql">
-                                            <rect key="frame" x="7" y="-7" width="284" height="284"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="6" y="-1" width="284" height="284"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egv-Ov-6ad">
@@ -857,9 +857,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="L5f-Ay-RG2" secondAttribute="bottom" constant="4" id="SFY-VR-PNv"/>
-                                        <constraint firstItem="L5f-Ay-RG2" firstAttribute="centerX" secondItem="Mbj-j9-at4" secondAttribute="centerX" id="f6J-sl-6Bu"/>
-                                        <constraint firstItem="egv-Ov-6ad" firstAttribute="centerY" secondItem="Mbj-j9-at4" secondAttribute="centerY" id="ghD-f1-Ieg"/>
-                                        <constraint firstItem="egv-Ov-6ad" firstAttribute="centerX" secondItem="Mbj-j9-at4" secondAttribute="centerX" id="y0e-AT-jN5"/>
+                                        <constraint firstItem="L5f-Ay-RG2" firstAttribute="centerX" secondItem="wat-rn-2v7" secondAttribute="centerX" id="f6J-sl-6Bu"/>
+                                        <constraint firstItem="egv-Ov-6ad" firstAttribute="centerY" secondItem="wat-rn-2v7" secondAttribute="centerY" id="ghD-f1-Ieg"/>
+                                        <constraint firstItem="egv-Ov-6ad" firstAttribute="centerX" secondItem="wat-rn-2v7" secondAttribute="centerX" id="y0e-AT-jN5"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
