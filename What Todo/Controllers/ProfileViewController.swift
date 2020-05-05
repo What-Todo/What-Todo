@@ -17,23 +17,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var recentActivitiesTableView: UITableView!
     
+    @IBOutlet weak var completedCounterLabel: UILabel!
+    @IBOutlet weak var madeCounterLabel: UILabel!
+    
+    
     var recentActivities: [Post] = []
     
     let LoginVC = "LoginVC"
     let UsersRef = Database.database().reference(withPath: "Users")
+    let currentUser = Auth.auth().currentUser
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showUserProfile()
-
         // Do any additional setup after loading the view.
-
         self.recentActivitiesTableView.reloadData()
-
     }
     
     func showUserProfile() {
-        let currentUser = Auth.auth().currentUser
 
         UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -42,7 +43,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             self.nameLabel?.text = value?.value(forKey: "displayName") as? String
             self.locationLabel?.text = value?.value(forKey: "location") as? String
-
+            
+//            self.completedCounterLabel?.text = value?.value(forKey: "completedCounter") as? NSNumber
+        print(value?.value(forKey: "completedCounter") as? NSNumber)
+            self.madeCounterLabel?.text = value?.value(forKey: "madeCounter") as? String
         })
         
         UsersRef.child(currentUser!.uid).child("recentActivities").observeSingleEvent(of: .value) { (snapshot) in
@@ -54,6 +58,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.recentActivitiesTableView.reloadData()
         }
+        
     }
 
     
@@ -99,6 +104,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                                 section: Int) -> String? {
        return "Recent Activities"
     }
+    
 
     /*
     // MARK: - Navigation

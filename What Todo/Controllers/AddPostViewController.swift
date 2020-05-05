@@ -15,12 +15,14 @@ class AddPostViewController: UIViewController {
     @IBOutlet weak var detailsTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    let currentUser = Auth.auth().currentUser
+    let UsersRef = Database.database().reference(withPath: "Users")
+
     var selectedCategoryKey: String = ""
     var selectedDue: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -37,8 +39,6 @@ class AddPostViewController: UIViewController {
     
     @IBAction func postButtonDidTouch(_ sender: Any) {
         let postsRef = Database.database().reference().child("ToDoLists").child(selectedCategoryKey).child("posts")
-        let currentUser = Auth.auth().currentUser
-            
         let todoPost = Post(aDetails: detailsTextField.text!,
                             completed: false,
                             anAddedByUser: currentUser!.uid,
@@ -46,8 +46,21 @@ class AddPostViewController: UIViewController {
         // this todo post's unique reference is set by firebase
         let todoPostRef = postsRef.childByAutoId()
         todoPostRef.setValue(todoPost.toAnyObject())
-        
+        incrementMadeCounter()
+
         navigationController?.popViewController(animated: true)
+    }
+    
+    func incrementMadeCounter() {
+        UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            if snapshot.hasChild("madeCounter") {
+                let madeCounter = value?.value(forKey: "madeCounter") as! Int
+                self.UsersRef.child(self.currentUser!.uid).updateChildValues(["madeCounter" : madeCounter + 1])
+            } else {
+                self.UsersRef.child(self.currentUser!.uid).child("madeCounter").setValue(1)
+            }
+        }
     }
 
     

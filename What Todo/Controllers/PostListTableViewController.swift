@@ -88,6 +88,7 @@ class PostListTableViewController: UITableViewController {
         ])
         addToRecentActivities(selected)
         addToNotifications(selected)
+        incrementCompletedCounter()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -211,6 +212,18 @@ class PostListTableViewController: UITableViewController {
             break
         default:
             break
+        }
+    }
+    
+    func incrementCompletedCounter() {
+        UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            if snapshot.hasChild("completedCounter") {
+                var completedCounter = value?.value(forKey: "completedCounter") as! Int
+                self.UsersRef.child(self.currentUser!.uid).updateChildValues(["completedCounter" : completedCounter + 1])
+            } else {
+                self.UsersRef.child(self.currentUser!.uid).child("completedCounter").setValue(1)
+            }
         }
     }
     
