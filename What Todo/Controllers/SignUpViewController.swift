@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, CLLocationManagerDelegate {
 
     // MARK: Proparties
     @IBOutlet weak var nameTextField: UITextField!
@@ -21,6 +21,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     let UserRef = Database.database().reference(withPath: "Users")
+    var locationManager = CLLocationManager()
+    var userLocation: String = "Earth"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,7 @@ class SignUpViewController: UIViewController {
             displayNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             confPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+
             return "Please Fill All Contents"
         } else if passwordTextField.text != confPasswordTextField.text {
             return "Password is not matched"
@@ -76,7 +79,10 @@ class SignUpViewController: UIViewController {
     func addUserInfo(_ newUser: AuthDataResult) {
         let usersRef = Database.database().reference().child("Users")
         var user = User(aUserId: newUser.user.uid, aEmail: newUser.user.email!, aName: nameTextField.text!, aDisplayName: displayNameTextField.text!)
-        user.setLocation(newLocation: "default")
+        if CLLocationManager.locationServicesEnabled() {
+            switchAuthorizationStatus(newUser)
+        }
+        user.setLocation(newLocation: self.userLocation)
         
         let userRef = usersRef.child(newUser.user.uid)
         userRef.setValue(user.toAnyObject())
@@ -88,7 +94,47 @@ class SignUpViewController: UIViewController {
     }
     
     func locationSetUp() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
+
+    }
     
+    func switchAuthorizationStatus(_ newUser: AuthDataResult) {
+        print(CLLocationManager.authorizationStatus() as Any)
+        switch(CLLocationManager.authorizationStatus())
+         {
+        case .authorizedAlways, .authorizedWhenInUse:
+             print("Authorize.")
+             let latitude: CLLocationDegrees = (locationManager.location?.coordinate.latitude)!
+             let longitude: CLLocationDegrees = (locationManager.location?.coordinate.longitude)!
+             let location = CLLocation(latitude: latitude, longitude: longitude)
+             CLGeocoder().reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
+                 if error != nil {
+                     return
+                 }else if let country = placemarks?.first?.country,
+                     let city = placemarks?.first?.locality {
+                    self.UserRef.child(newUser.user.uid).updateChildValues(["location": city + ", " + country])
+                 }
+                 else {
+                    print("else")
+                 }
+             })
+             break
+
+         case .notDetermined:
+             print("Not determined.")
+             break
+
+         case .restricted:
+             print("Restricted.")
+             break
+
+         case .denied:
+             print("Denied.")
+         }
     }
 
     /*

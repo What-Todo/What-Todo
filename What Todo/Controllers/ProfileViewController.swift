@@ -47,10 +47,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let completedCounter = value?.value(forKey: "completedCounter") as? NSNumber
             if let compCounterInt = completedCounter?.intValue {
                 self.completedCounterLabel?.text = String(compCounterInt)
+            } else {
+                self.completedCounterLabel?.text = String(0)
             }
             let madeCounter = value?.value(forKey: "madeCounter") as? NSNumber
             if let madeCounterInt = madeCounter?.intValue {
                 self.madeCounterLabel?.text = String(madeCounterInt)
+            } else {
+                self.madeCounterLabel?.text = String(0)
             }
             
         })
