@@ -57,6 +57,7 @@ class PostListTableViewController: UITableViewController {
         let AddPostVC = segue.destination as! AddPostViewController
         // pass selectedCategoryKey to AddPostVC
         AddPostVC.selectedCategoryKey = self.selectedCategoryKey
+        AddPostVC.cellColor = self.cellColor
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,7 +83,6 @@ class PostListTableViewController: UITableViewController {
         guard let cell = tableView.cellForRow(at: indexPath) else { return }
       let selected = posts[indexPath.row]
       let toggledCompletion = !selected.completed
-      toggleChecked(cell, isCompleted: toggledCompletion)
       selected.ref?.updateChildValues([
         "completed": toggledCompletion
         ])
@@ -93,35 +93,13 @@ class PostListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
-           
-//            posts.remove(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-            
             let deletingPost = posts[indexPath.row]
             deletingPost.ref?.removeValue()
         }
-        
     }
     
     override func willMove(toParent parent: UIViewController?) {
         self.navigationController?.navigationBar.barTintColor = UIColor.white
-    }
-    
-    func toggleChecked(_ cell: UITableViewCell, isCompleted: Bool) {
-        cell.textLabel?.textColor = .gray
-        
-      if isCompleted {
-//        cell.accessoryType = .checkmark
-//        cell.detailsTextLabel?.textColor = .gray
-//        cell.userNameLabel?.textColor = .gray
-        cell.contentView.backgroundColor = UIColor.lightText
-
-      } else {
-        cell.contentView.backgroundColor = UIColor.clear
-//        cell.accessoryType = .none
-//        cell.userNameLabel?.textColor = .black
-//        cell.detailsTextLabel?.textColor = .black
-      }
     }
     
     func updatePosts() {

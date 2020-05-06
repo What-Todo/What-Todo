@@ -14,16 +14,19 @@ class AddPostViewController: UIViewController {
     @IBOutlet weak var postTodoLabel: UILabel!
     @IBOutlet weak var detailsTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var postItImageView: UIImageView!
     
     let currentUser = Auth.auth().currentUser
     let UsersRef = Database.database().reference(withPath: "Users")
-
+    
+    var cellColor: Int = 0
     var selectedCategoryKey: String = ""
     var selectedDue: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        colorSet()
     }
     
     @IBAction func datePickerDidSelect(_ sender: Any) {
@@ -61,6 +64,23 @@ class AddPostViewController: UIViewController {
                 self.UsersRef.child(self.currentUser!.uid).child("madeCounter").setValue(1)
             }
         }
+    }
+    
+    func colorSet() {
+        var image: UIImage = UIImage(named: "yellow")!
+        switch cellColor {
+        case 0:
+            image = UIImage(named: "yellow")!
+            break
+        case 1:
+            image = UIImage(named: "pink")!
+            break
+        case 2:
+            image = UIImage(named: "blue")!
+        default:
+            break
+        }
+        self.postItImageView.image = image
     }
 
     

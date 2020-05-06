@@ -28,6 +28,7 @@ class NotificationTableViewController: UIViewController, UITableViewDataSource, 
 
         segmentedControl.setTitle(segmentedControlData[0], forSegmentAt: 0)
         segmentedControl.setTitle(segmentedControlData[1], forSegmentAt: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(red: 192/255, green: 245/255, blue: 243/255, alpha: 1)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,6 +37,10 @@ class NotificationTableViewController: UIViewController, UITableViewDataSource, 
         getNotifications()
     }
 
+    override func willMove(toParent parent: UIViewController?) {
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+    }
+    
     // MARK: - Notification Table View
 
     func numberOfSections(in tableView: UITableView) -> Int {

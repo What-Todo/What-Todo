@@ -29,6 +29,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        recentActivitiesTableView.backgroundView = UIImageView(image: UIImage(named: "pink"))
+        recentActivitiesTableView.backgroundColor = UIColor.clear
         self.showUserProfile()
         // Do any additional setup after loading the view.
         self.recentActivitiesTableView.reloadData()
@@ -107,12 +109,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             // due
             cell.dueLabel!.text = thisPost.due
         }
+        cell.backgroundColor = UIColor.clear
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
+        view.tintColor = UIColor.clear
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+        header.textLabel?.font = UIFont.init(name: "Noteworthy", size: 20)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection
                                 section: Int) -> String? {
-       return "Recent Activities"
+        return "Recent Activities"
     }
     
 

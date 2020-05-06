@@ -12,6 +12,7 @@ import Firebase
 class InvitaionKeyTableViewController: UITableViewController {
 
     var categories: [Category] = []
+    var cellColor: Int = 0
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
 
     @IBOutlet var invitationTableView: UITableView!
@@ -48,7 +49,7 @@ class InvitaionKeyTableViewController: UITableViewController {
         cell.categoryNameLabel?.text = thisCat.name
         cell.modeLabel?.text = thisCat.mode
         cell.categoryKeyLabel?.text = thisCat.key
-
+        setColor(cell)
         return cell
     }
     
@@ -85,6 +86,25 @@ class InvitaionKeyTableViewController: UITableViewController {
             }
         }
         return false
+    }
+    
+    func setColor(_ cell: InvitationKeyTableViewCell) {
+        switch cellColor {
+        case 0:
+            cell.backgroundColor = UIColor.init(red: 252/255, green: 243/255, blue: 173/255, alpha: 1)
+            cellColor = 1
+            break
+        case 1:
+            cell.backgroundColor = UIColor.init(red: 248/255, green: 209/255, blue: 235/255, alpha: 1)
+            cellColor = 2
+            break
+        case 2:
+            cell.backgroundColor = UIColor.init(red: 192/255, green: 245/255, blue: 243/255, alpha: 1)
+            cellColor = 0
+            break
+        default:
+            break
+        }
     }
 
     /*

@@ -16,6 +16,7 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate, UIPicke
     @IBOutlet weak var categoryNameTextField: UITextField!
     @IBOutlet weak var joinCategoryLabel: UILabel!
     @IBOutlet weak var joinKeyTextField: UITextField!
+    @IBOutlet weak var addCategoryStackView: UIStackView!
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let mainNavigationController = "MainNC"
@@ -29,6 +30,7 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Do any additional setup after loading the view.
         self.modePickerView.delegate = self
         self.modePickerView.dataSource = self
+        setBackGround()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -90,6 +92,9 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate, UIPicke
         view.window?.makeKeyAndVisible()
     }
         
+    func setBackGround() {
+        modePickerView.backgroundColor = UIColor.clear
+    }
     
     /*
     // MARK: - Navigation
