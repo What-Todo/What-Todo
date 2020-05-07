@@ -135,18 +135,24 @@ Shared people can track their achievement and get motivated.
 * Main Menu Screen
     * (Read/GET) Query all posts where user is author
     ```
-        self.ToDoRef.queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
-          var newItems: [Category] = []
-          for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-              let category = Category(snapshot: snapshot) {
-              newItems.append(category)
-                print(category.name, category.key)
-            }
-          }
-          self.categories = newItems
-          self.collectionView.reloadData()
-        })
+        // 1
+    ref.observe(.value, with: { snapshot in
+      // 2
+      var newItems: [Categories] = []
+
+      // 3
+      for child in snapshot.children {
+        // 4
+        if let snapshot = child as? DataSnapshot,
+           let listCategory = Categories(snapshot: snapshot) {
+          newItems.append(listCategory)
+        }
+      }
+
+      // 5
+      self.items = newItems
+      self.tableView.reloadData()
+    })
     ```
 
     * (Delete) Delete existing category
@@ -158,16 +164,18 @@ Shared people can track their achievement and get motivated.
     ```
     * (Create/POST) Create a new category
     ```
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let textField = addPopUp.textFields?.first,
-                let text = textField.text else { return }
-          
-            // firebase operation
-            let category = Category(aName: text,
-                                    anAddedByUser: "self.user.name")
-            let categoryRef = self.ToDoRef.childByAutoId()
-            categoryRef.setValue(category.toAnyObject())
-        }
+    let saveAction = UIAlertAction(title: "Save",
+                                   style: .default) { _ in
+        guard let textField = alert.textFields?.first,
+          let text = textField.text else { return }
+
+        let category = Categories(categoryId: lastIndex+1
+                               addedByUser: self.user.userId,
+                                name: text)
+        let categoryRef = self.ref.child(text.lowercased())
+
+        categoryRef.setValue(category.toAnyObject())
+    }
     ```
     
 * Notification Screen 
@@ -182,18 +190,18 @@ Shared people can track their achievement and get motivated.
 * Post Screen
     * (Create/POST) Create a new post 
     ```
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let textField = addPopUp.textFields?.first,
-                let text = textField.text else { return }
-            
-            let todoPost = Post(aDetails: text,
-                                completed: false,
-                                anAddedByUser: "self.user.name",
-                                timestamp: "timestamp")
-            // this todo post's unique reference is set by firebase
-            let todoPostRef = postsRef.childByAutoId()
-            todoPostRef.setValue(todoPost.toAnyObject())
-        }
+    let saveAction = UIAlertAction(title: "Save",
+                                   style: .default) { _ in
+        guard let textField = alert.textFields?.first,
+          let text = textField.text else { return }
+
+        let post = Posts(postId: lastIndex+1
+                                name: text,
+                               addedByUser: self.user.userId)
+        let postRef = self.ref.child(text.lowercased())
+
+        postRef.setValue(post.toAnyObject())
+    }
     ```
     * (Delete) Delete existing post
     ```
@@ -225,5 +233,6 @@ Shared people can track their achievement and get motivated.
     self.ref.child("users/\(user.name)/userName").setValue(userName)
     self.ref.child("users/\(user.location)/location").setValue(location)
     ```
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
 
+
+![](https://i.imgur.com/Njmyqff.gif)
