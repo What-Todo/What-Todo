@@ -55,7 +55,7 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate, UIPicke
                                 aMembers: [currentUser!.uid])
         let categoryRef = self.ToDoRef.childByAutoId()
         categoryRef.setValue(category.toAnyObject())
-        self.transitionToHome()
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func joinButtonDidTouch(_ sender: Any) {
@@ -83,7 +83,7 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate, UIPicke
         }) { (error) in
             print(error.localizedDescription)
         }
-        self.transitionToHome()
+        navigationController?.popViewController(animated: true)
     }
 
     func transitionToHome() {
