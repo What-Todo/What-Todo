@@ -61,6 +61,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         })
         
+        UsersRef.child(currentUser!.uid).observe(.value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let completedCounter = value?.value(forKey: "completedCounter") as? NSNumber
+            if let compCounterInt = completedCounter?.intValue {
+                self.completedCounterLabel?.text = String(compCounterInt)
+            } else {
+                self.completedCounterLabel?.text = String(0)
+            }
+            let madeCounter = value?.value(forKey: "madeCounter") as? NSNumber
+            if let madeCounterInt = madeCounter?.intValue {
+                self.madeCounterLabel?.text = String(madeCounterInt)
+            } else {
+                self.madeCounterLabel?.text = String(0)
+            }
+        }
+        
         UsersRef.child(currentUser!.uid).child("recentActivities").observe(.childAdded) { (snapshot) in
             if let post = Post(snapshot: snapshot) {
                 if self.recentActivities.count > 4 {
@@ -71,16 +87,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             self.recentActivitiesTableView.reloadData()
         }
-        
-//        UsersRef.child(currentUser!.uid).child("recentActivities").observeSingleEvent(of: .value) { (snapshot) in
-//            for child in snapshot.children {
-//                if let snapshot = child as? DataSnapshot,
-//                    let post = Post(snapshot: snapshot) {
-//                    self.recentActivities.append(post)
-//                }
-//            }
-//            self.recentActivitiesTableView.reloadData()
-//        }
         
     }
 
@@ -106,7 +112,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitiesTableViewCell", for: indexPath) as! RecentActivitiesTableViewCell
-        if recentActivities.count > 0 {
+        cell.userNameLabel?.text = " "
+        cell.detailsLabel?.text = " "
+        cell.dueLabel?.text = " "
+        
+        if recentActivities.count > 0{
             // detailsLabel
             let thisPost = recentActivities[indexPath.row]
             cell.detailsLabel?.text = thisPost.details
@@ -120,9 +130,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             // due
             cell.dueLabel!.text = thisPost.due
         }
-        cell.userNameLabel?.text = " "
-        cell.detailsLabel?.text = " "
-        cell.dueLabel?.text = " "
         cell.backgroundColor = UIColor.clear
         return cell
     }
