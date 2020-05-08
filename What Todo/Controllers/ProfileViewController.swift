@@ -9,11 +9,12 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var recentActivitiesTableView: UITableView!
     
@@ -84,6 +85,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
 
+    @IBAction func profileImageViewDidTouch(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        
+        profileImageView.image = image
+        uploadImage(image, info)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func uploadImage(_ image: UIImage, _ info: [UIImagePickerController.InfoKey : Any]) {
+    }
     
     @IBAction func logOutDidTouch(_ sender: Any) {
         do {
