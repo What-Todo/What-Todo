@@ -296,8 +296,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zgz-Za-bcK">
-                                <rect key="frame" x="20" y="98" width="75" height="75"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zgz-Za-bcK">
+                                <rect key="frame" x="20" y="99.5" width="75" height="72.5"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="zgz-Za-bcK" secondAttribute="height" multiplier="1:1" id="0iC-9s-QVO"/>
@@ -1226,6 +1226,7 @@
         <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="blue" width="500" height="500"/>
         <image name="link" catalog="system" width="128" height="116"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="post it deco" width="830" height="292"/>
         <image name="radio_button" width="96" height="96"/>

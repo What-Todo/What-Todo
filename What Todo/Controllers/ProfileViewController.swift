@@ -27,6 +27,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let LoginVC = "LoginVC"
     let UsersRef = Database.database().reference(withPath: "Users")
     let currentUser = Auth.auth().currentUser
+    let StorageRef = Storage.storage().reference()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         })
         
+        UsersRef.child(currentUser!.uid).observe(.value) { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            
+            let completedCounter = value?.value(forKey: "completedCounter") as? NSNumber
+            if let compCounterInt = completedCounter?.intValue {
+                self.completedCounterLabel?.text = String(compCounterInt)
+            } else {
+                self.completedCounterLabel?.text = String(0)
+            }
+            let madeCounter = value?.value(forKey: "madeCounter") as? NSNumber
+            if let madeCounterInt = madeCounter?.intValue {
+                self.madeCounterLabel?.text = String(madeCounterInt)
+            } else {
+                self.madeCounterLabel?.text = String(0)
+            }
+        }
+        
         UsersRef.child(currentUser!.uid).child("recentActivities").observe(.childAdded) { (snapshot) in
             if let post = Post(snapshot: snapshot) {
                 if self.recentActivities.count > 4 {
@@ -71,6 +89,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.recentActivities.append(post)
             }
             self.recentActivitiesTableView.reloadData()
+        }
+        
+        // get image
+        StorageRef.child(currentUser!.uid).downloadURL { (url, error) in
+            let userProfilePhotoRef = self.StorageRef.child(self.currentUser!.uid)
+            userProfilePhotoRef.getData(maxSize: 1024 * 1024) { (data, error) in
+                if let error = error { return } else {
+                    let image = UIImage(data: data!)
+                    self.profileImageView.image = image
+                }
+            }
         }
         
 //        UsersRef.child(currentUser!.uid).child("recentActivities").observeSingleEvent(of: .value) { (snapshot) in
@@ -103,6 +132,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func uploadImage(_ image: UIImage, _ info: [UIImagePickerController.InfoKey : Any]) {
+        // Upload the file to the path "images/rivers.jpg"
+        let userProfilePhotoRef = StorageRef.child(currentUser!.uid)
+//        let photoPath = info[UIImagePickerController.InfoKey.referenceURL] as! NSURL
+        
+        let uploadMetaData = StorageMetadata()
+        uploadMetaData.contentType = "image/jpeg"
+        let imageData = image.jpegData(compressionQuality: 0.8)
+        userProfilePhotoRef.putData(imageData!, metadata: uploadMetaData) { (uploadedImageMeta, error) in
+            
+            if error != nil
+            {
+                print("Error took place \(String(describing: error?.localizedDescription))")
+                return
+            } else {
+                print("Meta data of uploaded image \(String(describing: uploadedImageMeta))")
+            }
+        }
+        
+//        let uploadTask = userProfilePhotoRef.putFile(from: photoPath as URL, metadata: nil) { (metadata, error) in
+//          guard let _ = metadata else {return}
+//        }
     }
     
     @IBAction func logOutDidTouch(_ sender: Any) {
@@ -126,6 +176,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitiesTableViewCell", for: indexPath) as! RecentActivitiesTableViewCell
+        cell.userNameLabel?.text = " "
+        cell.detailsLabel?.text = " "
+        cell.dueLabel?.text = " "
+        
         if recentActivities.count > 0 {
             // detailsLabel
             let thisPost = recentActivities[indexPath.row]
@@ -140,9 +194,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             // due
             cell.dueLabel!.text = thisPost.due
         }
-        cell.userNameLabel?.text = " "
-        cell.detailsLabel?.text = " "
-        cell.dueLabel?.text = " "
+
         cell.backgroundColor = UIColor.clear
         return cell
     }
