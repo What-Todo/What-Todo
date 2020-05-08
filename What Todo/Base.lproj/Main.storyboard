@@ -573,7 +573,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="I5B-7S-Bb2">
                                 <rect key="frame" x="70" y="444" width="304" height="160"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l5I-oj-YEQ">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l5I-oj-YEQ">
                                         <rect key="frame" x="0.0" y="0.0" width="304" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="e4A-dx-c0O"/>
@@ -581,7 +581,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dp0-AB-uml">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dp0-AB-uml">
                                         <rect key="frame" x="0.0" y="60" width="304" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Vdr-4v-NzS"/>
@@ -697,10 +697,10 @@
                         <viewLayoutGuide key="safeArea" id="DZf-xL-Sgn"/>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="l5I-oj-YEQ" id="jzd-GD-ICh"/>
                         <outlet property="errorLabel" destination="bJj-gf-UVL" id="k2A-8s-dup"/>
                         <outlet property="passwordTextField" destination="dp0-AB-uml" id="QGv-Kj-3Og"/>
                         <outlet property="signupButton" destination="xVj-fD-8Zy" id="Qfn-7f-bQV"/>
-                        <outlet property="usernameTextField" destination="l5I-oj-YEQ" id="jzd-GD-ICh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jqk-sn-SuJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -718,7 +718,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8s1-Dy-HqK">
                                 <rect key="frame" x="80" y="294" width="294" height="379"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NV5-Hs-YzE">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NV5-Hs-YzE">
                                         <rect key="frame" x="0.0" y="0.0" width="294" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="lgl-ya-SBE"/>
@@ -726,7 +726,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MTT-z3-1Ja">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MTT-z3-1Ja">
                                         <rect key="frame" x="0.0" y="60" width="294" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="qYe-Rg-VUu"/>
@@ -734,7 +734,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username (display name)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r1C-aY-k8r">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username (display name)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r1C-aY-k8r">
                                         <rect key="frame" x="0.0" y="120" width="294" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Fov-mg-vuA"/>
@@ -742,7 +742,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2A-TJ-KFt">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2A-TJ-KFt">
                                         <rect key="frame" x="0.0" y="180" width="294" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="DgL-7X-ydf"/>
@@ -750,7 +750,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxG-03-1eg">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxG-03-1eg">
                                         <rect key="frame" x="0.0" y="240" width="294" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="GWw-Pe-dAZ"/>
