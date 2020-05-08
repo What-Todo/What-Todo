@@ -86,19 +86,20 @@ class NotificationTableViewController: UIViewController, UITableViewDataSource, 
     }
     
     func getNotifications() {
-        UsersRef.child(currentUser!.uid).child("notifications").observe(.childAdded) { (snapshot) in
+        UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.mode) {
-                self.UsersRef.child(self.currentUser!.uid).child("notifications").child(self.mode).observeSingleEvent(of: .value) { (snapshot) in
+                self.UsersRef.child(self.currentUser!.uid).child("notifications").child(self.mode).observe(.value) { (snapshot) in
                     for child in snapshot.children {
                         if let snapshot = child as? DataSnapshot,
                             let post = Post(snapshot: snapshot) {
                             self.notifications.insert(post, at: 0)
                         }
+                        self.notificationTableView.reloadData()
                     }
                     self.notificationTableView.reloadData()
                 }
             }
-        }
+        })
         UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.mode) {
                 self.UsersRef.child(self.currentUser!.uid).child("notifications").child(self.mode).observeSingleEvent(of: .value) { (snapshot) in
