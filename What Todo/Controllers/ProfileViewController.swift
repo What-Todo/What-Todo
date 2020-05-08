@@ -82,10 +82,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         UsersRef.child(currentUser!.uid).child("recentActivities").observe(.childAdded) { (snapshot) in
             if let post = Post(snapshot: snapshot) {
-                if self.recentActivities.count > 4 {
-                    self.recentActivities.remove(at: 0)
-                }
-                self.recentActivities.append(post)
+                self.recentActivities.insert(post, at: 0)
             }
             self.recentActivitiesTableView.reloadData()
         }
