@@ -21,6 +21,8 @@ class PostListTableViewController: UITableViewController {
     
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     let UsersRef = Database.database().reference(withPath: "Users")
+    let StorageRef = Storage.storage().reference()
+
     let currentUser = Auth.auth().currentUser
     
     
@@ -75,6 +77,17 @@ class PostListTableViewController: UITableViewController {
         
         // due
         cell.dueLabel!.text = thisPost.due
+        
+        // get image
+        StorageRef.child(thisPost.addedByUser).downloadURL { (url, error) in
+            let userProfilePhotoRef = self.StorageRef.child(thisPost.addedByUser)
+            userProfilePhotoRef.getData(maxSize: 1024 * 1024) { (data, error) in
+                if let error = error { return } else {
+                    let image = UIImage(data: data!)
+                    cell.profileImageView.image = image
+                }
+            }
+        }
 
         return cell
     }
@@ -85,6 +98,7 @@ class PostListTableViewController: UITableViewController {
       selected.ref?.updateChildValues([
         "completed": toggledCompletion
         ])
+        setCompletedBy(selected)
         addToRecentActivities(selected)
         addToNotifications(selected)
         incrementCompletedCounter()
@@ -127,6 +141,10 @@ class PostListTableViewController: UITableViewController {
         }
     }
     
+    func setCompletedBy(_ completedPost: Post) {
+        self.ToDoRef.child(selectedCategoryKey).child("posts").child(completedPost.key).updateChildValues(["addedByUser": self.currentUser!.uid])
+    }
+    
     func addToRecentActivities(_ completedPost: Post) {
         UsersRef.child(currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
@@ -154,11 +172,6 @@ class PostListTableViewController: UITableViewController {
             let members = value?.value(forKey: "members") as! [String]
             let mode = value?.value(forKey: "mode") as! String
             for member in members {
-                print("param: snapshot")
-                print(snapshot)
-                print("completedPost:")
-                print(completedPost)
-                print(member + mode)
                 self.addNotificationsToMember(snapshot, completedPost, member, mode)
             }
         }
