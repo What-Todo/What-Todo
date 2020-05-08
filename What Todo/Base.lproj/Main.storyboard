@@ -264,7 +264,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made Counter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQ4-le-sBM">
-                                <rect key="frame" x="244" y="204" width="132" height="36"/>
+                                <rect key="frame" x="243" y="204" width="132" height="36"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="22"/>
                                 <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -318,7 +318,7 @@
                             <constraint firstItem="i0z-It-jlX" firstAttribute="centerX" secondItem="R0C-Vp-Uo8" secondAttribute="centerX" id="4v5-Jn-pQg"/>
                             <constraint firstItem="Tyl-RZ-gLR" firstAttribute="leading" secondItem="cfS-fE-Src" secondAttribute="leading" constant="120" id="9Lr-EN-HjX"/>
                             <constraint firstItem="WFt-Mc-86S" firstAttribute="top" secondItem="XNg-L4-c9z" secondAttribute="bottom" constant="51.5" id="9NA-YE-fWN"/>
-                            <constraint firstItem="BQ4-le-sBM" firstAttribute="leading" secondItem="ddp-Oi-DzH" secondAttribute="trailing" constant="49.5" id="AXX-nb-2V9"/>
+                            <constraint firstItem="BQ4-le-sBM" firstAttribute="leading" secondItem="ddp-Oi-DzH" secondAttribute="trailing" constant="48.5" id="AXX-nb-2V9"/>
                             <constraint firstItem="Tyl-RZ-gLR" firstAttribute="top" secondItem="i0z-It-jlX" secondAttribute="bottom" constant="4" id="C97-r2-9wm"/>
                             <constraint firstItem="Tyl-RZ-gLR" firstAttribute="trailing" secondItem="R0C-Vp-Uo8" secondAttribute="trailing" id="E6d-DJ-rcK"/>
                             <constraint firstItem="R0C-Vp-Uo8" firstAttribute="top" secondItem="9EK-M2-XAb" secondAttribute="bottom" constant="50" id="H5s-TS-yht"/>
@@ -335,9 +335,10 @@
                             <constraint firstItem="Wsx-WA-sWa" firstAttribute="centerX" secondItem="NAG-fi-9Iz" secondAttribute="centerX" constant="-102" id="a9i-jL-Q0n"/>
                             <constraint firstItem="qEx-Rc-UDC" firstAttribute="leading" secondItem="XNg-L4-c9z" secondAttribute="leading" id="aX1-EZ-Gem"/>
                             <constraint firstItem="XNg-L4-c9z" firstAttribute="top" secondItem="cfS-fE-Src" secondAttribute="top" constant="8" id="ao6-Gi-gfG"/>
+                            <constraint firstItem="BQ4-le-sBM" firstAttribute="centerX" secondItem="9EK-M2-XAb" secondAttribute="centerX" id="dkk-dl-gkI"/>
                             <constraint firstItem="nUf-VQ-oQe" firstAttribute="top" secondItem="NAG-fi-9Iz" secondAttribute="top" constant="267" id="dxd-R8-bYH"/>
                             <constraint firstItem="WFt-Mc-86S" firstAttribute="top" secondItem="9EK-M2-XAb" secondAttribute="top" id="elC-Gh-z6A"/>
-                            <constraint firstItem="cfS-fE-Src" firstAttribute="trailing" secondItem="BQ4-le-sBM" secondAttribute="trailing" constant="38" id="ev6-0b-XMI"/>
+                            <constraint firstItem="cfS-fE-Src" firstAttribute="trailing" secondItem="BQ4-le-sBM" secondAttribute="trailing" constant="39" id="ev6-0b-XMI"/>
                             <constraint firstItem="Wsx-WA-sWa" firstAttribute="top" secondItem="ddp-Oi-DzH" secondAttribute="bottom" constant="31" id="i2T-ZX-A79"/>
                             <constraint firstItem="i0z-It-jlX" firstAttribute="top" secondItem="cfS-fE-Src" secondAttribute="top" constant="10" id="nje-1r-rTW"/>
                             <constraint firstItem="XNg-L4-c9z" firstAttribute="leading" secondItem="cfS-fE-Src" secondAttribute="leading" constant="43" id="o9F-ep-NkR"/>

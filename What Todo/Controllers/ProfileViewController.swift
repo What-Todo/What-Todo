@@ -106,7 +106,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentActivitiesTableViewCell", for: indexPath) as! RecentActivitiesTableViewCell
-        if recentActivities.count != 0 {
+        if recentActivities.count > 0 {
             // detailsLabel
             let thisPost = recentActivities[indexPath.row]
             cell.detailsLabel?.text = thisPost.details
