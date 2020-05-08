@@ -61,15 +61,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         })
         
-        UsersRef.child(currentUser!.uid).child("recentActivities").observeSingleEvent(of: .value) { (snapshot) in
-            for child in snapshot.children {
-                if let snapshot = child as? DataSnapshot,
-                    let post = Post(snapshot: snapshot) {
-                    self.recentActivities.append(post)
+        UsersRef.child(currentUser!.uid).child("recentActivities").observe(.childAdded) { (snapshot) in
+            if let post = Post(snapshot: snapshot) {
+                if self.recentActivities.count > 4 {
+                    print("removed: " + self.recentActivities[0].details)
+                    self.recentActivities.remove(at: 0)
                 }
+                self.recentActivities.append(post)
             }
             self.recentActivitiesTableView.reloadData()
         }
+        
+//        UsersRef.child(currentUser!.uid).child("recentActivities").observeSingleEvent(of: .value) { (snapshot) in
+//            for child in snapshot.children {
+//                if let snapshot = child as? DataSnapshot,
+//                    let post = Post(snapshot: snapshot) {
+//                    self.recentActivities.append(post)
+//                }
+//            }
+//            self.recentActivitiesTableView.reloadData()
+//        }
         
     }
 
@@ -90,7 +101,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: Recent Activities Table View
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recentActivities.count
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
