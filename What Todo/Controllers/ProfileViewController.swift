@@ -181,6 +181,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if recentActivities.count > 0 {
             // detailsLabel
+            
             let thisPost = recentActivities[indexPath.row]
             cell.detailsLabel?.text = thisPost.details
             
