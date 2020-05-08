@@ -80,7 +80,6 @@ class PostListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) else { return }
       let selected = posts[indexPath.row]
       let toggledCompletion = !selected.completed
       selected.ref?.updateChildValues([
@@ -155,21 +154,36 @@ class PostListTableViewController: UITableViewController {
             let members = value?.value(forKey: "members") as! [String]
             let mode = value?.value(forKey: "mode") as! String
             for member in members {
+                print("param: snapshot")
+                print(snapshot)
+                print("completedPost:")
+                print(completedPost)
+                print(member + mode)
                 self.addNotificationsToMember(snapshot, completedPost, member, mode)
             }
         }
     }
     
     func addNotificationsToMember(_ snapshot: DataSnapshot, _ completedPost: Post, _ member: String, _ mode: String) {
-        if snapshot.hasChild("notifications") {
-            let value = snapshot.value as? NSDictionary
-            var notifications = value?.value(forKey: mode) as! [Any]
-            notifications.append(completedPost.toAnyObject())
-            self.UsersRef.child(member).child("notifications").updateChildValues([mode: notifications])
-        } else {
-            self.UsersRef.child(member).child("notifications").child(mode).setValue([completedPost.toAnyObject()])
+        UsersRef.child(member).observeSingleEvent(of: .value) { (memberSnap) in
+            if memberSnap.hasChild("notifications") {
+                self.UsersRef.child(member).child("notifications").observeSingleEvent(of: .value) { (notificationSnap) in
+                    if notificationSnap.hasChild(mode) {
+                        let value = notificationSnap.value as? NSDictionary
+                        var notificationsOfMode = value?.value(forKey: mode) as! [Any]
+                        notificationsOfMode.append(completedPost.toAnyObject())
+                        self.UsersRef.child(member).child("notifications").updateChildValues([mode: notificationsOfMode])
+                    } else {
+                        self.UsersRef.child(member).child("notifications").child(mode).setValue([completedPost.toAnyObject()])
+                    }
+                }
+            } else {
+                self.UsersRef.child(member).child("notifications").child(mode).setValue([completedPost.toAnyObject()])
+            }
         }
     }
+    
+    
     
     func setNavigationBar() {
         // set title
