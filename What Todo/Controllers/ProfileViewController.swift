@@ -120,6 +120,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             // due
             cell.dueLabel!.text = thisPost.due
         }
+        cell.userNameLabel?.text = " "
+        cell.detailsLabel?.text = " "
+        cell.dueLabel?.text = " "
         cell.backgroundColor = UIColor.clear
         return cell
     }
