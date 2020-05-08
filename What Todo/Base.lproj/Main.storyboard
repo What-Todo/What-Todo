@@ -208,7 +208,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="4" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R0C-Vp-Uo8">
-                                <rect key="frame" x="20" y="383" width="335" height="316"/>
+                                <rect key="frame" x="20" y="353" width="335" height="346"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentActivitiesTableViewCell" rowHeight="102" id="pDx-0P-PTd" customClass="RecentActivitiesTableViewCell" customModule="What_Todo" customModuleProvider="target">
@@ -347,6 +347,7 @@
                             <constraint firstItem="R0C-Vp-Uo8" firstAttribute="top" secondItem="9EK-M2-XAb" secondAttribute="bottom" constant="50" id="H5s-TS-yht"/>
                             <constraint firstItem="zgz-Za-bcK" firstAttribute="top" secondItem="cfS-fE-Src" secondAttribute="top" constant="10" id="I8P-G4-Yey"/>
                             <constraint firstItem="cfS-fE-Src" firstAttribute="bottom" secondItem="R0C-Vp-Uo8" secondAttribute="bottom" constant="30" id="K5e-sf-wyb"/>
+                            <constraint firstItem="R0C-Vp-Uo8" firstAttribute="top" secondItem="9EK-M2-XAb" secondAttribute="bottom" constant="20" id="Kfm-0p-9De"/>
                             <constraint firstItem="R0C-Vp-Uo8" firstAttribute="leading" secondItem="cfS-fE-Src" secondAttribute="leading" constant="20" id="NXU-4m-xrv"/>
                             <constraint firstItem="XNg-L4-c9z" firstAttribute="centerY" secondItem="i0z-It-jlX" secondAttribute="centerY" constant="2" id="NgL-Wj-oxH"/>
                             <constraint firstItem="ddp-Oi-DzH" firstAttribute="centerX" secondItem="NAG-fi-9Iz" secondAttribute="centerX" constant="-101.5" id="OQn-jr-vXw"/>
@@ -355,6 +356,7 @@
                             <constraint firstItem="WFt-Mc-86S" firstAttribute="top" secondItem="Tyl-RZ-gLR" secondAttribute="bottom" constant="30" id="QUZ-TQ-HXy"/>
                             <constraint firstItem="nUf-VQ-oQe" firstAttribute="top" secondItem="BQ4-le-sBM" secondAttribute="bottom" constant="27" id="SsC-bi-MuE"/>
                             <constraint firstItem="nUf-VQ-oQe" firstAttribute="centerX" secondItem="9EK-M2-XAb" secondAttribute="centerX" id="UNu-ya-1Ze"/>
+                            <constraint firstItem="R0C-Vp-Uo8" firstAttribute="top" secondItem="WFt-Mc-86S" secondAttribute="bottom" constant="20" id="Uko-Dz-lav"/>
                             <constraint firstItem="WFt-Mc-86S" firstAttribute="leading" secondItem="R0C-Vp-Uo8" secondAttribute="leading" id="XZl-IM-ulg"/>
                             <constraint firstItem="Wsx-WA-sWa" firstAttribute="centerX" secondItem="NAG-fi-9Iz" secondAttribute="centerX" constant="-102" id="a9i-jL-Q0n"/>
                             <constraint firstItem="qEx-Rc-UDC" firstAttribute="leading" secondItem="XNg-L4-c9z" secondAttribute="leading" id="aX1-EZ-Gem"/>
