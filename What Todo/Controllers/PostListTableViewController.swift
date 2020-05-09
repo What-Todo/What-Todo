@@ -116,7 +116,7 @@ class PostListTableViewController: UITableViewController {
     }
     
     func updatePosts() {
-        self.ToDoRef.child(selectedCategoryKey).observeSingleEvent(of: .value) { (snapshot) in // look category
+        self.ToDoRef.child(selectedCategoryKey).observe(.value, with: { (snapshot) in // look category
             if snapshot.hasChild("posts") { // if posts exists
                 self.ToDoRef.child(self.selectedCategoryKey).child("posts").queryOrdered(byChild: "completed").observe(.value, with: { snapshot in
                   var newItems: [Post] = []
@@ -138,7 +138,7 @@ class PostListTableViewController: UITableViewController {
             } else { // if posts does not exists (first time)
                 self.ToDoRef.child(self.selectedCategoryKey).child("posts").setValue("posts")
             }
-        }
+        })
     }
     
     func setCompletedBy(_ completedPost: Post) {

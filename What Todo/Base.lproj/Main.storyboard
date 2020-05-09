@@ -373,11 +373,6 @@
                         <viewLayoutGuide key="safeArea" id="cfS-fE-Src"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="PJv-lo-egX">
-                        <barButtonItem key="leftBarButtonItem" title="Invitation Keys" image="link" catalog="system" id="gvd-po-EeA">
-                            <connections>
-                                <segue destination="TI8-e7-FXc" kind="show" id="pq7-xF-5j6"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="4lD-Gd-gqK">
                             <connections>
                                 <action selector="logOutDidTouch:" destination="w2k-qp-JBc" id="2FI-MM-6fd"/>
@@ -752,12 +747,12 @@
         <scene sceneID="wRF-VE-DV9">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="PRG-Dj-sW1" customClass="SignUpViewController" customModule="What_Todo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="O6j-VA-Uip">
+                    <view key="view" contentMode="scaleToFill" id="O6j-VA-Uip">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8s1-Dy-HqK">
-                                <rect key="frame" x="80" y="294" width="255" height="380.33333333333326"/>
+                                <rect key="frame" x="80" y="294" width="255" height="295"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NV5-Hs-YzE">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="40"/>
@@ -791,16 +786,16 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxG-03-1eg">
-                                        <rect key="frame" x="0.0" y="240" width="255" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxG-03-1eg">
+                                        <rect key="frame" x="0.0" y="240" width="255" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="GWw-Pe-dAZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvH-1a-gvT">
-                                        <rect key="frame" x="0.0" y="300" width="255" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvH-1a-gvT">
+                                        <rect key="frame" x="0.0" y="260" width="255" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Noteworthy-Light" family="Noteworthy" pointSize="17"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -809,8 +804,8 @@
                                             <action selector="signUpButtonDidTouch:" destination="PRG-Dj-sW1" eventType="touchUpInside" id="ffX-fB-AUU"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SignUp Error Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAz-t0-JrM">
-                                        <rect key="frame" x="0.0" y="360" width="255" height="20.333333333333314"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="SignUp Error Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAz-t0-JrM">
+                                        <rect key="frame" x="0.0" y="280" width="255" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -820,14 +815,14 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="app name" translatesAutoresizingMaskIntoConstraints="NO" id="kjy-3j-AM5">
                                 <rect key="frame" x="63" y="138" width="249" height="101"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="post it deco" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-eQ-N9I">
-                                <rect key="frame" x="24" y="713" width="327" height="183"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="post it deco" translatesAutoresizingMaskIntoConstraints="NO" id="m2M-eQ-N9I">
+                                <rect key="frame" x="24" y="629" width="327" height="183"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="183" id="Kbf-5d-BCG"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="luc-kD-eb6">
-                                <rect key="frame" x="39" y="294" width="33" height="344"/>
+                                <rect key="frame" x="39" y="294" width="33" height="200"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="d7F-Ei-U0G">
                                         <rect key="frame" x="0.0" y="0.0" width="33" height="36"/>
@@ -843,22 +838,22 @@
                                             <constraint firstAttribute="height" constant="36" id="mt2-bn-Hzv"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="FlD-qX-6eg">
-                                        <rect key="frame" x="0.0" y="124" width="33" height="36"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="FlD-qX-6eg">
+                                        <rect key="frame" x="0.0" y="124" width="33" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="KjI-wM-9An"/>
                                             <constraint firstAttribute="width" constant="33" id="dQL-4H-aon"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-7N-08I">
-                                        <rect key="frame" x="0.0" y="186" width="33" height="36"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-7N-08I">
+                                        <rect key="frame" x="0.0" y="150" width="33" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="CFT-TO-kMj"/>
                                             <constraint firstAttribute="width" constant="33" id="xi6-86-YhN"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="ShN-O0-bhY">
-                                        <rect key="frame" x="0.0" y="248" width="33" height="96"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="ShN-O0-bhY">
+                                        <rect key="frame" x="0.0" y="176" width="33" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="33" id="d82-yw-dg6"/>
                                             <constraint firstAttribute="height" constant="36" id="hqr-4A-WGb"/>
@@ -1062,6 +1057,11 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="" image="rectangle.3.offgrid.fill" catalog="system" id="Nxn-Ac-w60"/>
                     <navigationItem key="navigationItem" title="My Todo Lists" id="Twn-y1-7pj">
+                        <barButtonItem key="leftBarButtonItem" title="Invitation Keys" image="link" catalog="system" id="gvd-po-EeA">
+                            <connections>
+                                <segue destination="TI8-e7-FXc" kind="show" id="pq7-xF-5j6"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="zLF-bh-Pne">
                             <connections>
                                 <segue destination="l7F-f5-Qyu" kind="push" id="9Tc-1c-T3O"/>

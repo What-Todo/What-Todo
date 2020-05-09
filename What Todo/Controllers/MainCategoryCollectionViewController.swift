@@ -14,7 +14,6 @@ class MainCategoryCollectionViewController: UICollectionViewController {
     // MARK: Properties
     var categories: [Category] = []
     var user: User!
-    var imageNum = 0
     let ToDoRef = Database.database().reference(withPath: "ToDoLists")
     
     @IBOutlet var catCollectionView: UICollectionView!
@@ -77,7 +76,7 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         let thisCat = categories[indexPath.row]
         cell.nameLabel?.text = thisCat.name
         cell.modeLabel?.text = thisCat.mode
-        colorSet(cell)
+        colorSet(cell, indexPath.row)
         return cell
     }
     
@@ -121,23 +120,25 @@ class MainCategoryCollectionViewController: UICollectionViewController {
         return false
     }
     
-    func colorSet(_ cell: CategoryCollectionViewCell) {
+    func colorSet(_ cell: CategoryCollectionViewCell, _ row: Int) {
         var image: UIImage = UIImage(named: "yellow")!
+        var imageNum = row
+        while (imageNum > 3) {
+            imageNum = imageNum - 3
+        }
+        
         switch imageNum {
         case 0:
             image = UIImage(named: "yellow")!
             cell.cellColor = 0
-            imageNum = 1
             break
         case 1:
             image = UIImage(named: "pink")!
             cell.cellColor = 1
-            imageNum = 2
             break
         case 2:
             image = UIImage(named: "blue")!
             cell.cellColor = 2
-            imageNum = 0
         default:
             break
         }

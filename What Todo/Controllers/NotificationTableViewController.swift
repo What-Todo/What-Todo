@@ -89,20 +89,7 @@ class NotificationTableViewController: UIViewController, UITableViewDataSource, 
         UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.mode) {
                 self.UsersRef.child(self.currentUser!.uid).child("notifications").child(self.mode).observe(.value) { (snapshot) in
-                    for child in snapshot.children {
-                        if let snapshot = child as? DataSnapshot,
-                            let post = Post(snapshot: snapshot) {
-                            self.notifications.insert(post, at: 0)
-                        }
-                        self.notificationTableView.reloadData()
-                    }
-                    self.notificationTableView.reloadData()
-                }
-            }
-        })
-        UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.hasChild(self.mode) {
-                self.UsersRef.child(self.currentUser!.uid).child("notifications").child(self.mode).observeSingleEvent(of: .value) { (snapshot) in
+                    self.notifications = []
                     for child in snapshot.children {
                         if let snapshot = child as? DataSnapshot,
                             let post = Post(snapshot: snapshot) {
@@ -113,6 +100,19 @@ class NotificationTableViewController: UIViewController, UITableViewDataSource, 
                 }
             }
         })
+//        UsersRef.child(currentUser!.uid).child("notifications").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if snapshot.hasChild(self.mode) {
+//                self.UsersRef.child(self.currentUser!.uid).child("notifications").child(self.mode).observeSingleEvent(of: .value) { (snapshot) in
+//                    for child in snapshot.children {
+//                        if let snapshot = child as? DataSnapshot,
+//                            let post = Post(snapshot: snapshot) {
+//                            self.notifications.insert(post, at: 0)
+//                        }
+//                    }
+//                    self.notificationTableView.reloadData()
+//                }
+//            }
+//        })
     }
 
     @IBAction func modeSegmentControlDidTouch(_ sender: Any) {
