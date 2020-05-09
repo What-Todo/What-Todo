@@ -778,8 +778,8 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2A-TJ-KFt">
-                                        <rect key="frame" x="0.0" y="180" width="255" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h2A-TJ-KFt">
+                                        <rect key="frame" x="0.0" y="180" width="255" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="DgL-7X-ydf"/>
                                         </constraints>
@@ -787,7 +787,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxG-03-1eg">
-                                        <rect key="frame" x="0.0" y="240" width="255" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="200" width="255" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="GWw-Pe-dAZ"/>
                                         </constraints>
@@ -824,29 +824,29 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="luc-kD-eb6">
                                 <rect key="frame" x="39" y="294" width="33" height="200"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="d7F-Ei-U0G">
-                                        <rect key="frame" x="0.0" y="0.0" width="33" height="36"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="d7F-Ei-U0G">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="2Xy-49-5q6"/>
                                             <constraint firstAttribute="width" constant="33" id="Elo-iu-ozE"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-Mx-grH">
-                                        <rect key="frame" x="0.0" y="62" width="33" height="36"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-Mx-grH">
+                                        <rect key="frame" x="0.0" y="26" width="33" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="33" id="IHx-jZ-Ip6"/>
                                             <constraint firstAttribute="height" constant="36" id="mt2-bn-Hzv"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="FlD-qX-6eg">
-                                        <rect key="frame" x="0.0" y="124" width="33" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="52" width="33" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="KjI-wM-9An"/>
                                             <constraint firstAttribute="width" constant="33" id="dQL-4H-aon"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="radio_button" translatesAutoresizingMaskIntoConstraints="NO" id="VZt-7N-08I">
-                                        <rect key="frame" x="0.0" y="150" width="33" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="114" width="33" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="CFT-TO-kMj"/>
                                             <constraint firstAttribute="width" constant="33" id="xi6-86-YhN"/>
