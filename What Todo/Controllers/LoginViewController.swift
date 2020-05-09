@@ -44,6 +44,22 @@ class LoginViewController: UIViewController {
         // Change color of placeholder text to be darker
         textField.attributedPlaceholder = NSAttributedString(string: textField.attributedPlaceholder?.string ?? "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
+    
+    func lineTextField(_ textField: UITextField) {
+        
+        // Create the bottom layer
+        let bottomLine = CALayer()
+                
+        bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2, width: textField.frame.width, height: 2)
+        
+        bottomLine.backgroundColor = UIColor.init(red: 0/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+        
+        // Add the line to the text field
+        textField.layer.addSublayer(bottomLine)
+        
+        // Change color of placeholder text to be darker
+        textField.attributedPlaceholder = NSAttributedString(string: textField.attributedPlaceholder?.string ?? "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+    }
 
     @IBAction func loginButtonDidTouch(_ sender: Any) {
         guard

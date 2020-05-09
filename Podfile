@@ -13,6 +13,7 @@ pod 'Firebase/Analytics'
   pod 'Firebase/Core', :inhibit_warnings => true
   pod 'Firebase/Database', :inhibit_warnings => true
   pod 'Firebase/Auth', :inhibit_warnings => true
+  pod 'Firebase/Storage'
 # https://firebase.google.com/docs/ios/setup#available-pods
 
 
