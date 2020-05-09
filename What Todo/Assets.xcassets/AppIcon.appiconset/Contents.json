@@ -31,12 +31,13 @@
       "size" : "40x40"
     },
     {
-      "filename" : "Artboard 1.png",
+      "filename" : "120-windows.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "180-windows.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"

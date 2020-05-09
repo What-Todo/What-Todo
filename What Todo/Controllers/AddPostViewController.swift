@@ -27,6 +27,8 @@ class AddPostViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         colorSet()
+        // Change color of placeholder text to be darker
+        detailsTextField.attributedPlaceholder = NSAttributedString(string: "details", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
     
     @IBAction func datePickerDidSelect(_ sender: Any) {
