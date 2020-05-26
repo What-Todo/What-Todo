@@ -176,21 +176,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.dueLabel?.text = " "
         
 
-//        if recentActivities.count > 0 {
-//            // detailsLabel
-//            
-//            let thisPost = recentActivities[indexPath.row]
-//            cell.detailsLabel?.text = thisPost.details
-//            
-//            // dispalyName
-//            UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
-//                let value = snapshot.value as? NSDictionary
-//                cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
-//            })
-//            
-//            // due
-//            cell.dueLabel!.text = thisPost.due
-//        }
+        if recentActivities.count > 0 {
+            // detailsLabel
+            
+            let thisPost = recentActivities[indexPath.row]
+            cell.detailsLabel?.text = thisPost.details
+            
+            // dispalyName
+            UsersRef.child(thisPost.addedByUser).observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                cell.userNameLabel!.text = value?["displayName"] as? String ?? "failed"
+            })
+            
+            // due
+            cell.dueLabel!.text = thisPost.due
+        }
 
         cell.backgroundColor = UIColor.clear
         return cell
