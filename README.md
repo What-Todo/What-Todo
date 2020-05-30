@@ -238,10 +238,10 @@ Shared people can track their achievement and get motivated.
 ![](https://i.imgur.com/Njmyqff.gif)
 
 ## Gif of Add Member to Category (Invitation)
-![](https://imgur.com/yu3GslZ)
+![](https://i.imgur.com/VFYMLAe.gifv)
 
 ## Gif of Real Time Notification
-![](https://imgur.com/lO39RsW)
+![](https://i.imgur.com/Nbmrlzh.gifv)
 
 ## Narrated Walkthrough Video
 
