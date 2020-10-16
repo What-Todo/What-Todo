@@ -29,7 +29,6 @@ class SignUpViewController: UIViewController, CLLocationManagerDelegate {
         errorLabel.alpha = 0
         locationSetUp()
         // Do any additional setup after loading the view.
-    
         lineTextField(nameTextField)
         lineTextField(emailTextField)
         lineTextField(displayNameTextField)

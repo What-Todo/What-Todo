@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
         // Change color of placeholder text to be darker
         textField.attributedPlaceholder = NSAttributedString(string: textField.attributedPlaceholder?.string ?? "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
     }
-    
+
     @IBAction func loginButtonDidTouch(_ sender: Any) {
         guard
           let email = emailTextField.text,
